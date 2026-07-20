@@ -362,7 +362,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const desc = document.getElementById("maintDesc").value || "لا توجد متطلبات إضافية";
       
       // رقم الواتساب الخاص بالصيانة والطلبات
-      const whatsappNumber = "201099887766"; 
+      const whatsappNumber = "201061694024"; 
       
       // صياغة رسالة حجز الصيانة بشكل احترافي ومنظم للواتساب
       const messageText = `السلام عليكم ورحمة الله وبركاته،
