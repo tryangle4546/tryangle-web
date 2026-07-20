@@ -225,7 +225,7 @@ document.addEventListener("DOMContentLoaded", () => {
       if (!product) return;
       
       // رقم واتساب المكتب (المستلم للطلبات) - رقم عبد الرحمن فرحات
-      const whatsappNumber = "201099887766"; 
+      const whatsappNumber = "201061694024"; 
       
       // صياغة الرسالة بتنسيق فاخر ومنظم للواتساب
       const messageText = `السلام عليكم ورحمة الله وبركاته،
