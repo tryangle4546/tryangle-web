@@ -88,10 +88,12 @@ document.addEventListener("DOMContentLoaded", () => {
         let capacityHTML = "";
         let initialPrice = 0;
         let initialId = "";
+        let initialCapacity = "";
         
         if (product.variants && product.variants.length > 0) {
           initialPrice = product.variants[0].price;
           initialId = product.variants[0].id;
+          initialCapacity = product.variants[0].capacity;
           
           // بناء قائمة الاختيار الفرعية
           const optionsHTML = product.variants.map((v, idx) => `<option value="${idx}">${v.capacity}</option>`).join("");
@@ -106,22 +108,58 @@ document.addEventListener("DOMContentLoaded", () => {
         } else {
           initialPrice = product.price;
           initialId = product.id;
+          initialCapacity = product.capacity;
           capacityHTML = `<span class="product-capacity-tag">${product.capacity}</span>`;
         }
         
-        const formattedPrice = initialPrice.toLocaleString("ar-EG");
-        
+                const formattedPrice = initialPrice.toLocaleString("ar-EG");
+        const galleryItems = Array.isArray(product.gallery) && product.gallery.length > 0
+          ? product.gallery
+          : [{ src: product.image, label: "صورة المنتج" }];
+        const galleryThumbsHTML = galleryItems.map((item, index) => `
+          <button type="button" class="product-thumb ${index === 0 ? "active" : ""}" data-gallery-index="${index}" aria-label="عرض ${item.label}">
+            <img src="${item.src}" alt="${item.label}" loading="lazy">
+          </button>
+        `).join("");
+        const specsHTML = (product.specs || []).map(spec => `
+          <div class="product-spec-item">
+            <span>${spec.label}</span>
+            <strong>${spec.value}</strong>
+          </div>
+        `).join("");
+        const initialModelCode = product.modelCodes?.[initialCapacity] || "متعدد حسب القدرة";
+        const sourceHTML = product.sourceUrl
+          ? `<a class="product-source" href="${product.sourceUrl}" target="_blank" rel="noopener noreferrer">${product.sourceLabel || "مصدر المواصفات"}<span aria-hidden="true">↗</span></a>`
+          : "";
+
         card.innerHTML = `
-          <div class="product-img-wrapper">
-            <img src="${product.image}" alt="${product.name}" class="product-img">
+          <div class="product-img-wrapper product-gallery" data-gallery-count="${galleryItems.length}">
+            <div class="product-image-stage">
+              <img src="${galleryItems[0].src}" alt="${galleryItems[0].label}" class="product-img">
+              <div class="product-gallery-count"><span aria-hidden="true">▣</span> ${galleryItems.length} صور</div>
+            </div>
+            <button type="button" class="gallery-nav gallery-prev" data-gallery-action="prev" aria-label="الصورة السابقة">‹</button>
+            <button type="button" class="gallery-nav gallery-next" data-gallery-action="next" aria-label="الصورة التالية">›</button>
             <div class="product-badges">
               ${product.inverter ? '<span class="badge-inverter">إنفرتر موفر</span>' : ''}
               <span class="badge-type">${product.type}</span>
             </div>
+            <div class="product-thumbnails" role="list" aria-label="صور المنتج">
+              ${galleryThumbsHTML}
+            </div>
           </div>
           <div class="product-info">
             ${capacityHTML}
+            <div class="product-model-row">
+              <span class="product-model-label">الموديل</span>
+              <span class="product-model-code">${initialModelCode}</span>
+            </div>
             <h3 class="product-name">${product.name}</h3>
+            <div class="product-specs">
+              <div class="product-specs-heading"><span aria-hidden="true">✦</span> مواصفات المنتج</div>
+              <div class="product-specs-grid">${specsHTML}</div>
+              ${sourceHTML}
+            </div>
             <ul class="product-features-list">
               ${featuresHTML}
             </ul>
@@ -134,12 +172,40 @@ document.addEventListener("DOMContentLoaded", () => {
             </div>
           </div>
         `;
-        
+
         const productImage = card.querySelector(".product-img");
-        if (productImage) {
-          productImage.addEventListener("error", () => {
-            productImage.src = defaultAcSvg;
-          }, { once: true });
+        const galleryElement = card.querySelector(".product-gallery");
+        const thumbnailButtons = card.querySelectorAll(".product-thumb");
+        const setProductImage = (index) => {
+          const safeIndex = (index + galleryItems.length) % galleryItems.length;
+          const selectedImage = galleryItems[safeIndex];
+          if (productImage) {
+            productImage.src = selectedImage.src;
+            productImage.alt = selectedImage.label;
+          }
+          thumbnailButtons.forEach((thumb, thumbIndex) => {
+            thumb.classList.toggle("active", thumbIndex === safeIndex);
+            thumb.setAttribute("aria-current", thumbIndex === safeIndex ? "true" : "false");
+          });
+          if (galleryElement) galleryElement.dataset.galleryIndex = String(safeIndex);
+        };
+
+        [productImage, ...card.querySelectorAll(".product-thumb img")].forEach(image => {
+          image.addEventListener("error", () => {
+            image.onerror = null;
+            image.src = defaultAcSvg;
+          });
+        });
+
+        if (galleryElement) {
+          galleryElement.addEventListener("click", (event) => {
+            const control = event.target.closest("[data-gallery-index], [data-gallery-action]");
+            if (!control) return;
+            const currentIndex = Number(galleryElement.dataset.galleryIndex || 0);
+            if (control.dataset.galleryAction === "prev") setProductImage(currentIndex - 1);
+            if (control.dataset.galleryAction === "next") setProductImage(currentIndex + 1);
+            if (control.dataset.galleryIndex !== undefined) setProductImage(Number(control.dataset.galleryIndex));
+          });
         }
 
         productsGrid.appendChild(card);
@@ -439,6 +505,12 @@ window.changeProductVariant = function(productId, variantIndex, selectElement) {
     priceVal.innerHTML = `${variant.price.toLocaleString("ar-EG")} <span class="price-currency">ج.م</span>`;
   }
   
+  // تحديث كود الموديل حسب القدرة المختارة
+  const modelCode = card.querySelector(".product-model-code");
+  if (modelCode) {
+    modelCode.textContent = product.modelCodes?.[variant.capacity] || "متعدد حسب القدرة";
+  }
+
   // تحديث معرّف الطلب في الزر
   const orderBtn = card.querySelector(".order-btn");
   if (orderBtn) {
