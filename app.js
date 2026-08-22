@@ -272,6 +272,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const clientPhone = document.getElementById("clientPhone").value;
       const clientAddress = document.getElementById("clientAddress").value;
       const clientNotes = document.getElementById("clientNotes").value || "لا توجد ملاحظات إضافية";
+      const selectedPayment = document.querySelector('input[name="paymentMethod"]:checked')?.value || "كاش عند الاستلام (Cash on Delivery)";
       
       // جلب تفاصيل المنتج من المصفوفة (البحث المباشر أو داخل الخيارات الفرعية)
       let product = products.find(p => p.id === productId);
@@ -310,7 +311,7 @@ document.addEventListener("DOMContentLoaded", () => {
 - *القدرة:* ${selectedCapacity}
 - *النوع:* ${product.type}
 - *السعر الإجمالي:* ${selectedPrice.toLocaleString("ar-EG")} جنيه مصري
-- *طريقة الدفع:* الدفع عند الاستلام بعد التركيب 💵
+- *طريقة الدفع:* ${selectedPayment}
 
 *👤 بيانات العميل للتركيب والتوصيل:*
 - *الاسم بالكامل:* ${clientName}
