@@ -113,7 +113,7 @@ document.addEventListener("DOMContentLoaded", () => {
         
         card.innerHTML = `
           <div class="product-img-wrapper">
-            <img src="${product.image}" alt="${product.name}" class="product-img" onerror="this.onerror=null; this.src='${defaultAcSvg}';">
+            <img src="${product.image}" alt="${product.name}" class="product-img">
             <div class="product-badges">
               ${product.inverter ? '<span class="badge-inverter">إنفرتر موفر</span>' : ''}
               <span class="badge-type">${product.type}</span>
@@ -135,6 +135,13 @@ document.addEventListener("DOMContentLoaded", () => {
           </div>
         `;
         
+        const productImage = card.querySelector(".product-img");
+        if (productImage) {
+          productImage.addEventListener("error", () => {
+            productImage.src = defaultAcSvg;
+          }, { once: true });
+        }
+
         productsGrid.appendChild(card);
       });
       
