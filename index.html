@@ -11,18 +11,19 @@
 <body>
 
   <!-- شاشة التحميل المسبق الفاخرة (Preloader) -->
-  <div class="preloader" id="preloader">
+  <div class="preloader" id="preloader" role="status" aria-live="polite">
     <div class="preloader-content">
+      <div class="preloader-kicker">أهلاً بك في</div>
       <div class="preloader-logo-wrapper">
         <div class="preloader-logo-badge"></div>
       </div>
       <div class="preloader-text">تراي أنجل للتكييف والصيانة</div>
-      <div class="preloader-spinner"></div>
+      <div class="preloader-progress" aria-hidden="true"><span></span></div>
     </div>
   </div>
 
   <!-- شريط التنقل العلوي (Navbar) -->
-  <header class="glass">
+  <header class="glass entry-header">
     <div class="nav-container">
       <!-- الشعار -->
       <a href="#home" class="logo">
@@ -77,7 +78,7 @@
         </div>
 
         <!-- شبكات التواصل الاجتماعي -->
-        <div class="social-links" style="justify-content: center; margin-top: 30px;">
+        <div class="social-links reveal-fade" style="justify-content: center; margin-top: 30px;">
           <span class="social-title">تابعنا على:</span>
           <div class="social-icons">
             <a href="https://www.facebook.com/share/17yf9LtdmD/?mibextid=wwXIfr" target="_blank" aria-label="Facebook" class="social-icon">

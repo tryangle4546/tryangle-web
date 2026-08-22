@@ -205,83 +205,128 @@ img {
    ========================================================================== */
 .preloader {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: var(--dark-bg);
+  inset: 0;
+  background: radial-gradient(circle at 50% 42%, #182631 0%, var(--dark-bg) 58%, #050608 100%);
   z-index: 9999;
   display: flex;
   justify-content: center;
   align-items: center;
-  transition: opacity 0.5s ease, visibility 0.5s ease;
+  overflow: hidden;
+  isolation: isolate;
+  transition: opacity 0.48s cubic-bezier(0.23, 1, 0.32, 1), visibility 0.48s;
+}
+
+.preloader::before,
+.preloader::after {
+  content: '';
+  position: absolute;
+  width: 38vw;
+  height: 38vw;
+  min-width: 260px;
+  min-height: 260px;
+  border-radius: 50%;
+  filter: blur(70px);
+  opacity: 0.18;
+  pointer-events: none;
+  z-index: -1;
+}
+
+.preloader::before {
+  top: -18vw;
+  left: -12vw;
+  background: var(--primary-blue);
+}
+
+.preloader::after {
+  right: -14vw;
+  bottom: -20vw;
+  background: var(--primary-orange);
 }
 
 .preloader.fade-out {
   opacity: 0;
   visibility: hidden;
+  pointer-events: none;
 }
 
 .preloader-content {
+  width: min(86vw, 360px);
   text-align: center;
   color: white;
+  animation: preloader-content-in 0.7s cubic-bezier(0.23, 1, 0.32, 1) both;
+}
+
+.preloader-kicker {
+  margin-bottom: 14px;
+  color: rgba(255, 255, 255, 0.58);
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
 }
 
 .preloader-logo-wrapper {
-  margin-bottom: 20px;
+  margin-bottom: 18px;
   display: inline-block;
 }
 
 .preloader-logo-badge {
-  width: 70px;
-  height: 70px;
+  width: 76px;
+  height: 76px;
   background: radial-gradient(circle, var(--primary-orange) 60%, #cc7a00 100%);
   border-radius: 50%;
   position: relative;
-  box-shadow: 0 4px 15px rgba(243, 146, 0, 0.4);
-  animation: pulse-animation 2s infinite ease-in-out;
+  box-shadow: 0 0 0 10px rgba(243, 146, 0, 0.07), 0 8px 28px rgba(243, 146, 0, 0.36);
+  animation: preloader-breathe 1.8s ease-in-out infinite;
 }
 
 .preloader-logo-badge::before {
   content: '';
   width: 0;
   height: 0;
-  border-left: 20px solid transparent;
-  border-right: 20px solid transparent;
-  border-top: 34px solid var(--primary-blue);
+  border-left: 22px solid transparent;
+  border-right: 22px solid transparent;
+  border-top: 37px solid var(--primary-blue);
   position: absolute;
-  top: 20px;
-  left: 15px;
+  top: 21px;
+  left: 16px;
 }
 
 .preloader-logo-badge::after {
   content: '';
   width: 0;
   height: 0;
-  border-left: 10px solid transparent;
-  border-right: 10px solid transparent;
-  border-bottom: 17px solid #ffffff;
+  border-left: 11px solid transparent;
+  border-right: 11px solid transparent;
+  border-bottom: 18px solid #ffffff;
   position: absolute;
-  top: 26px;
-  left: 25px;
+  top: 28px;
+  left: 27px;
 }
 
 .preloader-text {
-  font-size: 1.6rem;
+  font-size: clamp(1.25rem, 4vw, 1.6rem);
   font-weight: 800;
-  margin-bottom: 15px;
+  margin-bottom: 20px;
   color: white;
   letter-spacing: 0.5px;
 }
 
-.preloader-spinner {
-  width: 40px;
-  height: 40px;
-  border: 3px solid rgba(255, 255, 255, 0.1);
-  border-top-color: var(--primary-orange);
-  border-radius: 50%;
-  animation: spin 1s infinite linear;
+.preloader-progress {
+  width: 160px;
+  height: 3px;
   margin: 0 auto;
+  overflow: hidden;
+  border-radius: 99px;
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.preloader-progress span {
+  display: block;
+  width: 42%;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, var(--primary-blue), var(--primary-orange));
+  animation: preloader-progress 0.9s cubic-bezier(0.23, 1, 0.32, 1) infinite;
 }
 
 /* ==========================================================================
@@ -1591,31 +1636,53 @@ footer {
 /* ==========================================================================
    13. الحركات والأنيميشن التفاعلية (Keyframes & Reveals)
    ========================================================================== */
+.entry-header.is-visible {
+  animation: header-entry 0.62s cubic-bezier(0.23, 1, 0.32, 1) both;
+}
+
 .reveal-fade {
   opacity: 0;
-  transform: translateY(30px);
-  transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1), transform 1s cubic-bezier(0.16, 1, 0.3, 1);
+  transform: translateY(22px) scale(0.985);
+  transition: opacity 0.62s cubic-bezier(0.23, 1, 0.32, 1), transform 0.62s cubic-bezier(0.23, 1, 0.32, 1);
+  transition-delay: var(--entry-delay, 0ms);
+  will-change: opacity, transform;
 }
 
 .reveal-fade.revealed {
   opacity: 1;
-  transform: translateY(0);
+  transform: translateY(0) scale(1);
 }
-
-.reveal-fade:nth-child(1) { transition-delay: 0.1s; }
-.reveal-fade:nth-child(2) { transition-delay: 0.25s; }
-.reveal-fade:nth-child(3) { transition-delay: 0.4s; }
-.reveal-fade:nth-child(4) { transition-delay: 0.55s; }
 
 .scroll-reveal {
   opacity: 0;
-  transform: translateY(40px);
-  transition: opacity 0.8s cubic-bezier(0.25, 1, 0.5, 1), transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+  transform: translateY(28px);
+  transition: opacity 0.58s cubic-bezier(0.23, 1, 0.32, 1), transform 0.58s cubic-bezier(0.23, 1, 0.32, 1);
+  will-change: opacity, transform;
 }
 
 .scroll-reveal.revealed {
   opacity: 1;
   transform: translateY(0);
+}
+
+@keyframes preloader-content-in {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes preloader-breathe {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.06); }
+}
+
+@keyframes preloader-progress {
+  0% { transform: translateX(-250%); }
+  100% { transform: translateX(360%); }
+}
+
+@keyframes header-entry {
+  from { opacity: 0; transform: translateY(-14px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 @keyframes pulse-border {
@@ -1643,6 +1710,26 @@ footer {
 /* ==========================================================================
    14. التجاوب وتوافق الشاشات (Responsive Design)
    ========================================================================== */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .preloader,
+  .preloader-content,
+  .preloader-logo-badge,
+  .preloader-progress span,
+  .entry-header.is-visible,
+  .reveal-fade,
+  .scroll-reveal {
+    animation: none !important;
+    transition: none !important;
+  }
+
+  .reveal-fade,
+  .scroll-reveal {
+    opacity: 1;
+    transform: none;
+  }
+}
+
 @media (max-width: 992px) {
   .contact-container {
     grid-template-columns: 1fr;

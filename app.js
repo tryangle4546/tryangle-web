@@ -269,27 +269,40 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // 7. إدارة شاشة التحميل المسبق وتفعيل حركات الدخول (Preloader & Entrance Animations)
   const preloader = document.getElementById("preloader");
-  function hidePreloader() {
+  const entryHeader = document.querySelector(".entry-header");
+  const entryTargets = document.querySelectorAll(".reveal-fade");
+  let introStarted = false;
+
+  function startIntro() {
+    if (introStarted) return;
+    introStarted = true;
+
+    if (entryHeader) {
+      entryHeader.classList.add("is-visible");
+    }
+
+    entryTargets.forEach((element, index) => {
+      element.style.setProperty("--entry-delay", `${index * 80}ms`);
+      window.setTimeout(() => {
+        element.classList.add("revealed");
+      }, 120 + (index * 80));
+    });
+
     if (preloader) {
-      setTimeout(() => {
+      window.setTimeout(() => {
         preloader.classList.add("fade-out");
-        // تفعيل حركات الهيرو
-        document.querySelectorAll(".reveal-fade").forEach(el => {
-          el.classList.add("revealed");
-        });
-      }, 600);
-    } else {
-      document.querySelectorAll(".reveal-fade").forEach(el => {
-        el.classList.add("revealed");
-      });
+      }, 120);
+
+      window.setTimeout(() => {
+        preloader.remove();
+      }, 700);
     }
   }
 
-  if (document.readyState === "complete" || document.readyState === "interactive") {
-    hidePreloader();
-  } else {
-    window.addEventListener("load", hidePreloader);
-  }
+  // نبدأ بعد أول إطار لضمان ظهور الانتقال بسلاسة حتى مع التحميل السريع.
+  window.requestAnimationFrame(() => {
+    window.setTimeout(startIntro, 120);
+  });
 
   // 8. محرك الكشف عند التمرير (Scroll Reveal Engine)
   const revealElements = document.querySelectorAll(".scroll-reveal");
