@@ -457,10 +457,33 @@
           <span class="selected-product-price" id="modalAcPrice">32,500 ج.م</span>
         </div>
 
-        <div class="cod-alert-box">
-          <span class="cod-alert-icon">💵</span>
-          <div class="cod-alert-text">
-            طريقة الدفع المتاحة: الدفع نقداً عند الاستلام والتركيب فقط (Cash on Delivery).
+        <div class="payment-methods-box">
+          <label class="form-label" style="margin-bottom: 12px; display: block;">اختر طريقة الدفع *</label>
+          <div class="payment-options">
+            <label class="payment-option">
+              <input type="radio" name="paymentMethod" value="كاش عند الاستلام (Cash on Delivery)" checked required>
+              <span class="payment-card">
+                <span class="payment-icon">💵</span>
+                <span class="payment-name">كاش عند الاستلام</span>
+                <span class="payment-desc">ادفع بعد التركيب والمعاينة</span>
+              </span>
+            </label>
+            <label class="payment-option">
+              <input type="radio" name="paymentMethod" value="إنستا باي (Instapay)">
+              <span class="payment-card">
+                <span class="payment-icon">📲</span>
+                <span class="payment-name">إنستا باي</span>
+                <span class="payment-desc">تحويل فوري عبر إنستا باي</span>
+              </span>
+            </label>
+            <label class="payment-option">
+              <input type="radio" name="paymentMethod" value="فودافون كاش (Vodafone Cash)">
+              <span class="payment-card">
+                <span class="payment-icon">📱</span>
+                <span class="payment-name">فودافون كاش</span>
+                <span class="payment-desc">تحويل عبر فودافون كاش</span>
+              </span>
+            </label>
           </div>
         </div>
 
