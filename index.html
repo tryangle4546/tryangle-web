@@ -7,6 +7,9 @@
   <meta name="keywords" content="تكييف, كاريير, ميديا, تراي انجل, Eng/Ebada, Carrier, Midea, تكييفات, تركيب تكييف, صيانة تكييف">
   <title>تراي أنجل للتكييف والتبريد | وكيل كاريير وميديا المعتمد</title>
   <link rel="stylesheet" href="styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 </head>
 <body>
 
@@ -22,10 +25,10 @@
     </div>
   </div>
 
-  <!-- شريط التنقل العلوي (Navbar) -->
+  <!-- شريط التنقل العلوي (Navbar) مع الحفاظ التام على اللوجو الأصلي -->
   <header class="glass entry-header">
     <div class="nav-container">
-      <!-- الشعار -->
+      <!-- الشعار الأصلي -->
       <a href="#home" class="logo">
         <div class="logo-badge"></div>
         <div class="logo-text">
@@ -39,6 +42,7 @@
         <ul class="nav-menu" id="navMenu">
           <li><a href="#home" class="nav-link active">الرئيسية</a></li>
           <li><a href="#store" class="nav-link">المتجر</a></li>
+          <li><a href="#payments" class="nav-link">طرق الدفع</a></li>
           <li><a href="#maintenance" class="nav-link">حجز صيانة</a></li>
           <li><a href="#faq" class="nav-link">الأسئلة الشائعة</a></li>
           <li><a href="#contact" class="nav-link">تواصل معنا</a></li>
@@ -47,7 +51,10 @@
 
       <!-- إجراءات التنقل -->
       <div class="nav-actions">
-        <a href="tel:+201061694024" class="nav-btn-call">اتصل الآن</a>
+        <a href="tel:+201061694024" class="nav-btn-call">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+          اتصل الآن
+        </a>
         <div class="menu-toggle" id="menuToggle">
           <span></span>
           <span></span>
@@ -57,11 +64,14 @@
     </div>
   </header>
 
-  <!-- القسم الرئيسي (Home / Hero) -->
+  <!-- القسم الرئيسي (Home / Hero) مع جزيئات التبريد التفاعلية في الخلفية -->
   <section class="hero" id="home">
+    <canvas id="heroAirCanvas" class="hero-air-canvas" aria-hidden="true"></canvas>
+
     <div class="hero-container" style="justify-content: center; text-align: center;">
-      <div class="hero-content" style="max-width: 800px; margin: 0 auto;">
-        <!-- شارة الاعتماد -->
+      <div class="hero-content" style="max-width: 850px; margin: 0 auto;">
+        
+        <!-- شارة الاعتماد الأصلية مع لمسة توهج ناعمة -->
         <div class="authorized-badge reveal-fade" style="margin: 0 auto 20px auto;">
           <span class="badge-dot"></span>
           <span class="badge-text">وكيل وموزع معتمد لـ Carrier و Midea</span>
@@ -73,22 +83,42 @@
         </p>
 
         <div class="hero-cta reveal-fade" style="justify-content: center;">
-          <a href="#store" class="btn btn-primary">تصفح المتجر واطلب الآن</a>
+          <a href="#store" class="btn btn-primary btn-glow">تصفح المتجر واطلب الآن</a>
+          <a href="#payments" class="btn btn-secondary">طرق الدفع والتقسيط</a>
           <a href="#maintenance" class="btn btn-secondary">احجز صيانة الآن</a>
+        </div>
+
+        <!-- كروت الثقة والمميزات السريعة -->
+        <div class="hero-stats-row reveal-fade">
+          <div class="hero-stat-pill">
+            <span class="pill-icon">🛡️</span>
+            <span>ضمان 5 سنوات شامل من ميراكو كاريير</span>
+          </div>
+          <div class="hero-stat-pill">
+            <span class="pill-icon">🔧</span>
+            <span>تركيب مجاني ومعاينة فنية فورية</span>
+          </div>
+          <div class="hero-stat-pill">
+            <span class="pill-icon">💳</span>
+            <span>دفع عند الاستلام أو عبر إنستا باي وفودافون</span>
+          </div>
         </div>
 
         <!-- شبكات التواصل الاجتماعي -->
         <div class="social-links reveal-fade" style="justify-content: center; margin-top: 30px;">
-          <span class="social-title">تابعنا على:</span>
+          <span class="social-title">تابعنا وتواصل معنا:</span>
           <div class="social-icons">
-            <a href="https://www.facebook.com/share/17yf9LtdmD/?mibextid=wwXIfr" target="_blank" aria-label="Facebook" class="social-icon">
-              <svg class="icon-svg" viewBox="0 0 24 24"><path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H8v-3h2V9.5C10 7.57 11.57 6 13.5 6H16v3h-2c-.55 0-1 .45-1 1v2h3v3h-3v6.95c4.56-.93 8-4.96 8-9.75z"/></svg>
-            </a>
-            <a href="https://wa.me/201061694024" target="_blank" aria-label="WhatsApp" class="social-icon">
+            <a href="https://wa.me/201061694024" target="_blank" aria-label="WhatsApp" class="social-icon whatsapp-icon">
               <svg class="icon-svg" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397.01 12.008.01c3.202.001 6.212 1.246 8.477 3.514 2.266 2.268 3.507 5.28 3.505 8.484-.004 6.657-5.34 11.997-11.953 11.997-2.005-.001-3.973-.502-5.73-1.466L0 24zm6.59-4.846c1.6.95 2.8 1.458 4.825 1.459 5.55 0 10.061-4.512 10.063-10.066.002-2.69-1.043-5.22-2.94-7.119C16.699 1.529 14.18 .483 11.997.484 6.444.484 1.932 4.997 1.93 10.553c-.001 2.03.527 3.255 1.492 4.922L2.44 21.56l6.207-1.628zM17.5 14.5c-.3-.15-1.78-.88-2.05-.98-.28-.1-.48-.15-.68.15-.2.3-.78.98-.95 1.18-.18.2-.35.23-.65.08-1.02-.51-1.74-.91-2.42-1.58-.57-.56-1.12-1.22-1.3-1.53-.18-.3-.02-.46.13-.61.14-.14.3-.35.45-.53.15-.18.2-.3.3-.5.1-.2.05-.38-.02-.53-.07-.15-.68-1.63-.93-2.24-.25-.61-.51-.53-.68-.53h-.58c-.2 0-.53.07-.8.38-.28.3-1.08 1.05-1.08 2.57 0 1.52 1.1 3 1.25 3.2.15.2 2.16 3.3 5.24 4.63.73.3 1.3.49 1.75.63.74.24 1.4.2 1.93.12.59-.09 1.78-.73 2.03-1.43.25-.7.25-1.3.17-1.43-.08-.13-.28-.2-.58-.35z"/></svg>
             </a>
-            <a href="https://www.tiktok.com/@tryangel18?_r=1&_t=ZS-98AHp9YRBE9" target="_blank" aria-label="TikTok" class="social-icon">
+            <a href="https://www.facebook.com/share/17yf9LtdmD/?mibextid=wwXIfr" target="_blank" aria-label="Facebook" class="social-icon facebook-icon">
+              <svg class="icon-svg" viewBox="0 0 24 24"><path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H8v-3h2V9.5C10 7.57 11.57 6 13.5 6H16v3h-2c-.55 0-1 .45-1 1v2h3v3h-3v6.95c4.56-.93 8-4.96 8-9.75z"/></svg>
+            </a>
+            <a href="https://www.tiktok.com/@tryangel18?_r=1&_t=ZS-98AHp9YRBE9" target="_blank" aria-label="TikTok" class="social-icon tiktok-icon">
               <svg class="icon-svg" viewBox="0 0 24 24"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.17-2.86-.74-3.94-1.74-.22-.21-.42-.45-.61-.7-.03 3.76-.02 7.53-.03 11.29-.07 3.08-1.51 6.13-4.48 7.37-3.79 1.68-8.58-.1-10.23-4.05-1.88-4.22.42-9.61 4.88-10.45.6-.11 1.22-.12 1.83-.07v4.09c-.58-.08-1.18-.03-1.74.15-1.92.57-2.91 2.82-2.14 4.69.75 1.92 3.1 2.78 4.9 1.82 1.17-.6 1.81-1.89 1.79-3.21-.02-5.07-.01-10.14-.02-15.21z"/></svg>
+            </a>
+            <a href="tel:+201061694024" aria-label="Phone" class="social-icon phone-icon">
+              <svg class="icon-svg" viewBox="0 0 24 24"><path d="M20.01 15.38c-1.23 0-2.42-.2-3.53-.56a.977.977 0 0 0-1.01.24l-2.2 2.2a15.045 15.045 0 0 1-6.59-6.59l2.2-2.21c.28-.26.36-.65.25-1A11.36 11.36 0 0 0 8.5 4c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1 0 9.39 7.61 17 17 17 .55 0 1-.45 1-1v-3.5c0-.55-.45-1-1-1z"/></svg>
             </a>
           </div>
         </div>
@@ -142,7 +172,7 @@
     </div>
   </section>
 
-  <!-- قسم المتجر وعرض المنتجات (Store) -->
+  <!-- قسم المتجر وعرض المنتجات (Store) - التكييفات ثابتة وواضحة ومستقرة تماماً -->
   <section class="store-section" id="store">
     <div class="section-header">
       <span class="section-subtitle">متجر تراي أنجل</span>
@@ -168,9 +198,150 @@
       </button>
     </div>
 
-    <!-- شبكة المنتجات -->
+    <!-- شبكة المنتجات الثابتة بدون اهتزاز أو ميلان 3D غير مرغوب -->
     <div class="products-grid" id="productsGrid">
       <!-- سيتم توليد محتوى المنتجات ديناميكياً بواسطة جافا سكريبت -->
+    </div>
+  </section>
+
+  <!-- قسم طرق الدفع والتقسيط الفاخر مع لوجو الشركات الحقيقي -->
+  <section class="payments-section scroll-reveal" id="payments">
+    <div class="section-header">
+      <span class="section-subtitle">مرونة وأمان 100%</span>
+      <h2 class="section-title text-white">طرق الدفع والتسهيلات المعتمدة</h2>
+      <p class="section-desc text-muted">نوفر لك تجربة شراء سهلة وموثوقة بخيارات دفع متعددة تناسب احتياجك.</p>
+    </div>
+
+    <div class="payments-showcase-container">
+      
+      <!-- الكارت التفاعلي 3D لوسائل الدفع -->
+      <div class="payment-3d-wrapper scroll-reveal">
+        <div class="payment-card-3d instapay-theme" id="interactivePaymentCard">
+          <div class="card-3d-glass-layer"></div>
+          <div class="card-3d-content">
+            <div class="card-3d-top">
+              <div class="card-chip-container">
+                <div class="card-emv-chip">
+                  <div class="chip-line"></div>
+                  <div class="chip-line"></div>
+                  <div class="chip-line"></div>
+                </div>
+                <div class="card-contactless">
+                  <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2"><path d="M8.5 16.5a5 5 0 0 1 0-9M12 19a8.5 8.5 0 0 0 0-14M15.5 21.5a12 12 0 0 0 0-19"/></svg>
+                </div>
+              </div>
+              <div class="card-3d-logo-badge" id="card3dLogoBadge">
+                <span class="badge-text-logo">InstaPay</span>
+              </div>
+            </div>
+
+            <div class="card-3d-middle">
+              <div class="card-number-display" id="card3dNumber">
+                <span>••••</span> <span>••••</span> <span>••••</span> <span>2026</span>
+              </div>
+              <div class="card-tagline" id="card3dTagline">شبكة المدفوعات اللحظية IPN - تحويل فوري 24/7</div>
+            </div>
+
+            <div class="card-3d-bottom">
+              <div class="card-holder-info">
+                <span class="card-holder-title">المستفيد المعتمد</span>
+                <span class="card-holder-name">TRIANGLE AIR CONDITIONING</span>
+              </div>
+              <div class="card-security-seal">
+                <span class="seal-icon">🛡️</span>
+                <span class="seal-text">معتمد وآمن</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- شبكة طرق الدفع مع لوجو الشركات الرسمي -->
+      <div class="payment-methods-grid">
+
+        <!-- إنستا باي -->
+        <div class="payment-method-card active" data-payment-type="instapay">
+          <div class="method-card-header">
+            <div class="method-logo-box">
+              <svg viewBox="0 0 120 40" class="company-logo-svg" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                  <linearGradient id="ipSecGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#802bb1"/>
+                    <stop offset="50%" stop-color="#d6249f"/>
+                    <stop offset="100%" stop-color="#ff007f"/>
+                  </linearGradient>
+                </defs>
+                <circle cx="20" cy="20" r="14" fill="url(#ipSecGrad)"/>
+                <polygon points="17,13 27,20 17,27" fill="#ffffff"/>
+                <text x="40" y="26" fill="#ffffff" font-family="'Segoe UI', Cairo, sans-serif" font-weight="900" font-size="18">InstaPay</text>
+              </svg>
+            </div>
+            <span class="method-pill-badge instant-pill">تحويل فوري لحظي</span>
+          </div>
+          <h3 class="method-title">إنستا باي (InstaPay)</h3>
+          <p class="method-description">
+            تحويل فوري مباشر عبر شبكة المدفوعات اللحظية IPN برقم الهاتف أو عنوان الدفع اللحظي IPA.
+          </p>
+        </div>
+
+        <!-- فودافون كاش والمحافظ -->
+        <div class="payment-method-card" data-payment-type="vodafone">
+          <div class="method-card-header">
+            <div class="method-logo-box">
+              <svg viewBox="0 0 140 40" class="company-logo-svg" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="20" cy="20" r="14" fill="#e60000"/>
+                <path d="M22 12c-4.4 0-8 3.6-8 8s3.6 8 8 8c1.8 0 3.4-.6 4.8-1.6l-2-2.4c-.8.6-1.8.9-2.8.9-2.8 0-5-2.2-5-5s2.2-5 5-5c1.8 0 3.3.9 4.2 2.3l2.5-1.9C27.1 13.5 24.7 12 22 12z" fill="#ffffff"/>
+                <text x="42" y="25" fill="#ffffff" font-family="'Segoe UI', sans-serif" font-weight="800" font-size="15">Vodafone</text>
+              </svg>
+            </div>
+            <span class="method-pill-badge wallet-pill">محافظ إلكترونية</span>
+          </div>
+          <h3 class="method-title">فودافون كاش ومحافظ المحمول</h3>
+          <p class="method-description">
+            دعم كامل لجميع المحافظ الإلكترونية: فودافون كاش، أورانج كاش، اتصالات كاش، وWE Pay.
+          </p>
+        </div>
+
+        <!-- كاش عند الاستلام -->
+        <div class="payment-method-card" data-payment-type="cod">
+          <div class="method-card-header">
+            <div class="method-logo-box">
+              <svg viewBox="0 0 130 40" class="company-logo-svg" xmlns="http://www.w3.org/2000/svg">
+                <rect x="5" y="8" width="30" height="24" rx="4" fill="#f39200"/>
+                <text x="12" y="25" fill="#ffffff" font-weight="bold" font-size="12">ج.م</text>
+                <text x="42" y="25" fill="#ffffff" font-family="'Cairo', sans-serif" font-weight="800" font-size="15">كاش عند الاستلام</text>
+              </svg>
+            </div>
+            <span class="method-pill-badge cod-pill">ضمان ومعاينة</span>
+          </div>
+          <h3 class="method-title">الدفع عند الاستلام والمعاينة</h3>
+          <p class="method-description">
+            ادفع نقداً بعد وصول الفنيين والتركيب والتأكد من كفاءة التبريد وشهادة الضمان بالموقع.
+          </p>
+        </div>
+
+        <!-- بطاقات بنكية وتقسيط -->
+        <div class="payment-method-card" data-payment-type="cards">
+          <div class="method-card-header">
+            <div class="method-logo-box">
+              <svg viewBox="0 0 160 40" class="company-logo-svg" xmlns="http://www.w3.org/2000/svg">
+                <text x="5" y="26" fill="#38bdf8" font-family="sans-serif" font-weight="900" font-style="italic" font-size="16">VISA</text>
+                <circle cx="65" cy="20" r="9" fill="#eb001b"/>
+                <circle cx="78" cy="20" r="9" fill="#f79e1b" fill-opacity="0.85"/>
+                <rect x="98" y="10" width="45" height="20" rx="3" fill="#008053"/>
+                <text x="104" y="24" fill="#ffffff" font-weight="bold" font-size="11">meeza</text>
+              </svg>
+            </div>
+            <span class="method-pill-badge cards-pill">تقسيط وبطاقات</span>
+          </div>
+          <h3 class="method-title">البطاقات البنكية والتقسيط</h3>
+          <p class="method-description">
+            سدد ببطاقتك الائتمانية أو بطاقة ميزة، وتقسيط يصل حتى 36 شهر مع البنوك المعتمدة وفاليو وأمان.
+          </p>
+        </div>
+
+      </div>
+
     </div>
   </section>
 
@@ -197,7 +368,7 @@
 
       <div class="faq-item scroll-reveal">
         <div class="faq-question">
-          <h3>ما هو سبب تساقط المياه من الوحدة الداخلية للغرفة?</h3>
+          <h3>ما هو سبب تساقط المياه من الوحدة الداخلية للغرفة؟</h3>
           <span class="faq-icon">
             <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M7 10l5 5 5-5H7z"/></svg>
           </span>
@@ -308,7 +479,7 @@
           <textarea id="maintDesc" class="form-control form-control-dark" placeholder="مثال: يرجى التوصيل بعد الساعة 4 مساءً، أو أي تفاصيل خاصة بموقع التركيب..."></textarea>
         </div>
 
-        <button type="submit" class="btn btn-primary submit-btn-whatsapp">
+        <button type="submit" class="btn btn-primary submit-btn-whatsapp btn-glow">
           <svg class="icon-svg" viewBox="0 0 24 24" style="width:20px;height:20px;fill:currentColor;margin-left:8px;">
             <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397.01 12.008.01c3.202.001 6.212 1.246 8.477 3.514 2.266 2.268 3.507 5.28 3.505 8.484-.004 6.657-5.34 11.997-11.953 11.997-2.005-.001-3.973-.502-5.73-1.466L0 24zm6.59-4.846c1.6.95 2.8 1.458 4.825 1.459 5.55 0 10.061-4.512 10.063-10.066.002-2.69-1.043-5.22-2.94-7.119C16.699 1.529 14.18 .483 11.997.484 6.444.484 1.932 4.997 1.93 10.553c-.001 2.03.527 3.255 1.492 4.922L2.44 21.56l6.207-1.628zM17.5 14.5c-.3-.15-1.78-.88-2.05-.98-.28-.1-.48-.15-.68.15-.2.3-.78.98-.95 1.18-.18.2-.35.23-.65.08-1.02-.51-1.74-.91-2.42-1.58-.57-.56-1.12-1.22-1.3-1.53-.18-.3-.02-.46.13-.61.14-.14.3-.35.45-.53.15-.18.2-.3.3-.5.1-.2.05-.38-.02-.53-.07-.15-.68-1.63-.93-2.24-.25-.61-.51-.53-.68-.53h-.58c-.2 0-.53.07-.8.38-.28.3-1.08 1.05-1.08 2.57 0 1.52 1.1 3 1.25 3.2.15.2 2.16 3.3 5.24 4.63.73.3 1.3.49 1.75.63.74.24 1.4.2 1.93.12.59-.09 1.78-.73 2.03-1.43.25-.7.25-1.3.17-1.43-.08-.13-.28-.2-.58-.35z"/>
           </svg>
@@ -334,8 +505,8 @@
           <div class="info-details">
             <h3>أرقام المبيعات والاستفسارات</h3>
             <p>اتصل بنا مباشرة للحصول على الاستشارة وحجز موعد المعاينة:</p>
-            <a href="tel:+201061694024">01061694024</a> <br>
-            <a href="tel:+201061711439">01061711439</a>
+            <a href="tel:+201061694024" class="phone-link">01061694024</a> <br>
+            <a href="tel:+201061711439" class="phone-link">01061711439</a>
           </div>
         </div>
 
@@ -346,7 +517,7 @@
           <div class="info-details">
             <h3>البريد الإلكتروني</h3>
             <p>راسلنا لاستفسارات الشركات والطلبات التجارية الكبيرة:</p>
-            <a href="mailto:ebadaragab@gmail.com">ebadaragab@gmail.com</a>
+            <a href="mailto:ebadaragab@gmail.com" class="email-link">ebadaragab@gmail.com</a>
           </div>
         </div>
 
@@ -377,16 +548,17 @@
             <label class="form-label" for="contactMsg">نص الرسالة أو الاستفسار</label>
             <textarea id="contactMsg" class="form-control" placeholder="كيف يمكننا مساعدتك؟ اكتب تفاصيل استفسارك هنا..." required></textarea>
           </div>
-          <button type="submit" class="btn btn-primary submit-btn">إرسال الرسالة</button>
+          <button type="submit" class="btn btn-primary submit-btn btn-glow">إرسال الرسالة</button>
         </form>
       </div>
     </div>
   </section>
 
-  <!-- الفوتر (Footer) -->
+  <!-- الفوتر الأصلي (Footer) -->
   <footer>
     <div class="footer-container">
       <div class="footer-brand">
+        <!-- الشعار الأصلي -->
         <div class="logo">
           <div class="logo-badge"></div>
           <div class="logo-text">
@@ -404,6 +576,7 @@
         <ul class="footer-links-list">
           <li><a href="#home">الرئيسية</a></li>
           <li><a href="#store">تكييفات كاريير وميديا</a></li>
+          <li><a href="#payments">طرق الدفع والتقسيط</a></li>
           <li><a href="#maintenance">حجز صيانة فورية</a></li>
           <li><a href="#faq">الأسئلة الشائعة</a></li>
           <li><a href="#contact">تواصل معنا</a></li>
@@ -440,7 +613,7 @@
     </div>
   </footer>
 
-  <!-- نافذة الطلب المنبثقة (Order Modal) -->
+  <!-- نافذة الطلب المنبثقة مع لوجو وسائل الدفع الرسمي -->
   <div class="modal-overlay" id="orderModal">
     <div class="modal-content">
       <div class="modal-header">
@@ -470,7 +643,7 @@
                   </svg>
                 </span>
                 <span class="payment-name">كاش عند الاستلام</span>
-                <span class="payment-desc">ادفع بعد التركيب والمعاينة الفنية بالموقع</span>
+                <span class="payment-desc">ادفع بعد التركيب والمعاينة</span>
               </span>
             </label>
             <label class="payment-option">
@@ -480,19 +653,19 @@
                 <span class="payment-icon-wrapper">
                   <svg viewBox="0 0 100 35" class="payment-logo-svg instapay-svg" xmlns="http://www.w3.org/2000/svg">
                     <defs>
-                      <linearGradient id="ipGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                      <linearGradient id="ipModalGrad" x1="0%" y1="0%" x2="100%" y2="100%">
                         <stop offset="0%" stop-color="#802bb1"/>
                         <stop offset="50%" stop-color="#d6249f"/>
                         <stop offset="100%" stop-color="#ff007f"/>
                       </linearGradient>
                     </defs>
-                    <circle cx="16" cy="17.5" r="12" fill="url(#ipGrad)"/>
+                    <circle cx="16" cy="17.5" r="12" fill="url(#ipModalGrad)"/>
                     <polygon points="13,11 22,17.5 13,24" fill="#ffffff"/>
                     <text x="34" y="23" fill="#ffffff" font-family="'Segoe UI', Cairo, sans-serif" font-weight="900" font-size="15">InstaPay</text>
                   </svg>
                 </span>
-                <span class="payment-name">إنستا باي (InstaPay)</span>
-                <span class="payment-desc">تحويل فوري عبر شبكة المدفوعات اللحظية IPN</span>
+                <span class="payment-name">إنستا باي</span>
+                <span class="payment-desc">تحويل فوري عبر إنستا باي</span>
               </span>
             </label>
             <label class="payment-option">
@@ -507,7 +680,7 @@
                   </svg>
                 </span>
                 <span class="payment-name">فودافون كاش</span>
-                <span class="payment-desc">تحويل سريع عبر محفظة فودافون كاش</span>
+                <span class="payment-desc">تحويل عبر فودافون كاش</span>
               </span>
             </label>
           </div>
@@ -536,13 +709,39 @@
             <textarea id="clientNotes" class="form-control" placeholder="مثال: يرجى التوصيل بعد الساعة 4 مساءً، أو أي تفاصيل خاصة بموقع التركيب..."></textarea>
           </div>
 
-          <button type="submit" class="btn btn-primary submit-btn" style="margin-top: 15px;">
+          <button type="submit" class="btn btn-primary submit-btn btn-glow" style="margin-top: 15px; width: 100%;">
             <svg class="icon-svg" viewBox="0 0 24 24" style="width:18px;height:18px;margin-left:5px;"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
             تأكيد الطلب عبر الواتساب
           </button>
         </form>
       </div>
     </div>
+  </div>
+
+  <!-- الأزرار العائمة الفاخرة للاتصال والواتساب -->
+  <div class="floating-actions-suite" aria-label="أزرار التواصل السريع">
+    <a href="https://wa.me/201061694024" target="_blank" class="floating-btn floating-whatsapp" aria-label="محادثة واتساب">
+      <span class="radar-pulse"></span>
+      <svg viewBox="0 0 24 24" width="28" height="28" fill="currentColor">
+        <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397.01 12.008.01c3.202.001 6.212 1.246 8.477 3.514 2.266 2.268 3.507 5.28 3.505 8.484-.004 6.657-5.34 11.997-11.953 11.997-2.005-.001-3.973-.502-5.73-1.466L0 24zm6.59-4.846c1.6.95 2.8 1.458 4.825 1.459 5.55 0 10.061-4.512 10.063-10.066.002-2.69-1.043-5.22-2.94-7.119C16.699 1.529 14.18 .483 11.997.484 6.444.484 1.932 4.997 1.93 10.553c-.001 2.03.527 3.255 1.492 4.922L2.44 21.56l6.207-1.628zM17.5 14.5c-.3-.15-1.78-.88-2.05-.98-.28-.1-.48-.15-.68.15-.2.3-.78.98-.95 1.18-.18.2-.35.23-.65.08-1.02-.51-1.74-.91-2.42-1.58-.57-.56-1.12-1.22-1.3-1.53-.18-.3-.02-.46.13-.61.14-.14.3-.35.45-.53.15-.18.2-.3.3-.5.1-.2.05-.38-.02-.53-.07-.15-.68-1.63-.93-2.24-.25-.61-.51-.53-.68-.53h-.58c-.2 0-.53.07-.8.38-.28.3-1.08 1.05-1.08 2.57 0 1.52 1.1 3 1.25 3.2.15.2 2.16 3.3 5.24 4.63.73.3 1.3.49 1.75.63.74.24 1.4.2 1.93.12.59-.09 1.78-.73 2.03-1.43.25-.7.25-1.3.17-1.43-.08-.13-.28-.2-.58-.35z"/>
+      </svg>
+      <span class="floating-tooltip">تواصل عبر واتساب</span>
+    </a>
+
+    <a href="tel:+201061694024" class="floating-btn floating-phone" aria-label="اتصال فوري">
+      <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
+        <path d="M20.01 15.38c-1.23 0-2.42-.2-3.53-.56a.977.977 0 0 0-1.01.24l-2.2 2.2a15.045 15.045 0 0 1-6.59-6.59l2.2-2.21c.28-.26.36-.65.25-1A11.36 11.36 0 0 0 8.5 4c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1 0 9.39 7.61 17 17 17 .55 0 1-.45 1-1v-3.5c0-.55-.45-1-1-1z"/>
+      </svg>
+      <span class="floating-tooltip">اتصل الآن مباشرة</span>
+    </a>
+
+    <button class="floating-btn floating-backtop" id="backToTopBtn" aria-label="الرجوع لأعلى الصفحة">
+      <svg class="progress-ring" viewBox="0 0 36 36">
+        <path class="progress-ring-bg" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
+        <path class="progress-ring-circle" id="scrollProgressCircle" stroke-dasharray="100, 100" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
+      </svg>
+      <span class="arrow-up">▲</span>
+    </button>
   </div>
 
   <div class="toast-success" id="toastSuccess">
@@ -553,7 +752,6 @@
   <script src="products.js"></script>
   <script src="app.js"></script>
 
-  <!-- كود ربط وإصلاح أزرار متجر التكييفات لتعمل بشكل فوري وديناميكي -->
   <script>
     document.addEventListener("DOMContentLoaded", function() {
       const tabs = document.querySelectorAll('.brand-tab-btn');
