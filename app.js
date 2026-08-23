@@ -15,22 +15,19 @@ document.addEventListener("DOMContentLoaded", () => {
   // 3. عرض وتبديل المنتجات (Store Grid - ثابتة ومستقرة تماماً)
   initProductsGrid();
 
-  // 4. نظام كارت وسائل الدفع التفاعلي (Payment Showcase)
-  initPaymentShowcase();
-
-  // 5. نموذج تواصل معنا
+  // 4. نموذج تواصل معنا
   initContactForm();
 
-  // 6. استمارة طلب التكييف وحجز الصيانة عبر الواتساب (WhatsApp Dispatch)
+  // 5. استمارة طلب التكييف وحجز الصيانة عبر الواتساب (WhatsApp Dispatch)
   initOrderAndMaintenanceForms();
 
-  // 7. إدارة شاشة التحميل المسبق وحركات الدخول (Preloader & Reveal)
+  // 6. إدارة شاشة التحميل المسبق وحركات الدخول (Preloader & Reveal)
   initIntroAndScrollReveal();
 
-  // 8. التحكم في الأسئلة الشائعة (FAQ Accordion)
+  // 7. التحكم في الأسئلة الشائعة (FAQ Accordion)
   initFaqAccordion();
 
-  // 9. الأزرار العائمة ومؤشر تقدم التمرير (Floating Actions)
+  // 8. الأزرار العائمة ومؤشر تقدم التمرير (Floating Actions)
   initFloatingActions();
 });
 
@@ -193,7 +190,7 @@ function initProductsGrid() {
 
       filtered.forEach(product => {
         const card = document.createElement("div");
-        card.className = "product-card"; // ثابت تماماً بدون 3D tilt
+        card.className = "product-card";
 
         const featuresHTML = product.features.map(f => `<li>${f}</li>`).join("");
 
@@ -360,62 +357,7 @@ window.changeProductVariant = function(productId, variantIndex, selectElement) {
 };
 
 /* ==========================================================================
-   4. نظام كارت وسائل الدفع التفاعلي (Payment Showcase)
-   ========================================================================== */
-function initPaymentShowcase() {
-  const interactiveCard = document.getElementById("interactivePaymentCard");
-  const card3dLogoBadge = document.getElementById("card3dLogoBadge");
-  const card3dTagline = document.getElementById("card3dTagline");
-  const card3dNumber = document.getElementById("card3dNumber");
-  const paymentCards = document.querySelectorAll(".payment-method-card");
-
-  const paymentData = {
-    instapay: {
-      theme: "instapay-theme",
-      logo: '<span class="badge-text-logo" style="color: #ff4db8;">InstaPay</span>',
-      tagline: "شبكة المدفوعات اللحظية IPN - تحويل فوري 24/7",
-      number: "<span>IPA:</span> <span>user@instapay</span>"
-    },
-    vodafone: {
-      theme: "vodafone-theme",
-      logo: '<span class="badge-text-logo" style="color: #ff4444;">Vodafone Cash</span>',
-      tagline: "المحافظ الإلكترونية: فودافون / أورانج / اتصالات / WE",
-      number: "<span>WALLET:</span> <span>010 6169 4024</span>"
-    },
-    cod: {
-      theme: "cod-theme",
-      logo: '<span class="badge-text-logo" style="color: #f39200;">Cash On Delivery</span>',
-      tagline: "ادفع بعد التركيب والمعاينة الفنية بالموقع 100%",
-      number: "<span>ضمان المعاينة:</span> <span>سداد بعد الاستلام</span>"
-    },
-    cards: {
-      theme: "cards-theme",
-      logo: '<span class="badge-text-logo" style="color: #38bdf8;">VISA / meeza / valU</span>',
-      tagline: "تقسيط مريح يصل حتى 36 شهر بالتعاون مع البنوك المعتمدة",
-      number: "<span>••••</span> <span>••••</span> <span>••••</span> <span>2026</span>"
-    }
-  };
-
-  paymentCards.forEach(card => {
-    card.addEventListener("click", () => {
-      paymentCards.forEach(c => c.classList.remove("active"));
-      card.classList.add("active");
-
-      const type = card.getAttribute("data-payment-type");
-      const config = paymentData[type];
-
-      if (interactiveCard && config) {
-        interactiveCard.className = `payment-card-3d ${config.theme}`;
-        if (card3dLogoBadge) card3dLogoBadge.innerHTML = config.logo;
-        if (card3dTagline) card3dTagline.textContent = config.tagline;
-        if (card3dNumber) card3dNumber.innerHTML = config.number;
-      }
-    });
-  });
-}
-
-/* ==========================================================================
-   5. استمارات الطلب والصيانة وتنسيق رسائل الواتساب
+   4. استمارات الطلب والصيانة وتنسيق رسائل الواتساب
    ========================================================================== */
 const orderModal = document.getElementById("orderModal");
 
@@ -592,7 +534,7 @@ function initContactForm() {
 }
 
 /* ==========================================================================
-   6. الأسئلة الشائعة وشاشة التحميل والكشف عند التمرير
+   5. الأسئلة الشائعة وشاشة التحميل والكشف عند التمرير
    ========================================================================== */
 function initFaqAccordion() {
   const faqItems = document.querySelectorAll(".faq-item");
@@ -669,7 +611,7 @@ function initIntroAndScrollReveal() {
 }
 
 /* ==========================================================================
-   7. الأزرار العائمة ومؤشر التقدم (Floating Actions Suite)
+   6. الأزرار العائمة ومؤشر التقدم (Floating Actions Suite)
    ========================================================================== */
 function initFloatingActions() {
   const backToTopBtn = document.getElementById("backToTopBtn");
