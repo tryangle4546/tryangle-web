@@ -3,10 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="موقع تراي أنجل للتكييف والتبريد - الوكيل والموزع المعتمد لتكييفات كاريير (Carrier) وميديا (Midea) في مصر. تصفح التكييفات واطلب الآن والدفع عند الاستلام.">
-  <meta name="keywords" content="تكييف, كاريير, ميديا, تراي انجل, Eng/Ebada, Carrier, Midea, تكييفات, تركيب تكييف, صيانة تكييف">
+  <meta name="description" content="موقع تراي أنجل للتكييف والتبريد - الوكيل والموزع المعتمد لتكييفات كاريير (Carrier) وميديا (Midea) في مصر. تصفح التكييفات، استكشف طرق الدفع والتقسيط واطلب الآن.">
+  <meta name="keywords" content="تكييف, كاريير, ميديا, تراي انجل, انستاباي, فودافون كاش, تقسيط تكييفات, تقسيط كاريير, تقسيط ميديا, Eng/Ebada, Carrier, Midea, تكييفات, تركيب تكييف, صيانة تكييف">
   <title>تراي أنجل للتكييف والتبريد | وكيل كاريير وميديا المعتمد</title>
   <link rel="stylesheet" href="styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 </head>
 <body>
 
@@ -17,7 +20,7 @@
       <div class="preloader-logo-wrapper">
         <div class="preloader-logo-badge"></div>
       </div>
-      <div class="preloader-text">تراي أنجل للتكييف والصيانة</div>
+      <div class="preloader-text">تراي أنجل للتكييف والتبريد</div>
       <div class="preloader-progress" aria-hidden="true"><span></span></div>
     </div>
   </div>
@@ -39,6 +42,7 @@
         <ul class="nav-menu" id="navMenu">
           <li><a href="#home" class="nav-link active">الرئيسية</a></li>
           <li><a href="#store" class="nav-link">المتجر</a></li>
+          <li><a href="#payments" class="nav-link">طرق الدفع والتقسيط</a></li>
           <li><a href="#maintenance" class="nav-link">حجز صيانة</a></li>
           <li><a href="#faq" class="nav-link">الأسئلة الشائعة</a></li>
           <li><a href="#contact" class="nav-link">تواصل معنا</a></li>
@@ -47,7 +51,10 @@
 
       <!-- إجراءات التنقل -->
       <div class="nav-actions">
-        <a href="tel:+201061694024" class="nav-btn-call">اتصل الآن</a>
+        <a href="tel:+201061694024" class="nav-btn-call">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+          اتصل الآن
+        </a>
         <div class="menu-toggle" id="menuToggle">
           <span></span>
           <span></span>
@@ -57,38 +64,86 @@
     </div>
   </header>
 
-  <!-- القسم الرئيسي (Home / Hero) -->
+  <!-- القسم الرئيسي (Home / Hero) مع خلفية 3D التفاعلية وجزيئات التبريد -->
   <section class="hero" id="home">
-    <div class="hero-container" style="justify-content: center; text-align: center;">
-      <div class="hero-content" style="max-width: 800px; margin: 0 auto;">
-        <!-- شارة الاعتماد -->
-        <div class="authorized-badge reveal-fade" style="margin: 0 auto 20px auto;">
+    <canvas id="heroAirCanvas" class="hero-air-canvas" aria-hidden="true"></canvas>
+    
+    <div class="hero-container">
+      <div class="hero-content">
+        <!-- شارة الاعتماد ثلاثية الأبعاد -->
+        <div class="authorized-badge reveal-fade" data-tilt>
           <span class="badge-dot"></span>
-          <span class="badge-text">وكيل وموزع معتمد لـ Carrier و Midea</span>
+          <span class="badge-text">وكيل وموزع معتمد لـ Carrier و Midea بمصر</span>
+          <span class="badge-sparkle">✦</span>
         </div>
 
-        <h1 class="hero-title reveal-fade">نصنع لك <span>المناخ المثالي</span><br>طوال العام</h1>
+        <h1 class="hero-title reveal-fade">
+          نصنع لك <span class="gradient-text">المناخ المثالي</span><br>بأحدث تقنيات التبريد الذكية
+        </h1>
+        
         <p class="hero-description reveal-fade">
-          شركة <strong>تراي أنجل للتكييف والتبريد (Triangle Air Conditioning)</strong> توفر لك أفضل حلول التبريد والتدفئة بأقوى العروض والأسعار المعتمدة لشركتي كاريير وميديا مع خدمات التركيب والصيانة الاحترافية.
+          شركة <strong>تراي أنجل للتكييف والتبريد (Triangle Air Conditioning)</strong> تقدم أقوى عروض تكييفات كاريير وميديا بأسعار المصنع وضمان شامل 5 سنوات، مع خدمة التوصيل والتركيب الفوري والدفع عند الاستلام أو عبر إنستا باي ومحافظ الكاش والتقسيط.
         </p>
 
-        <div class="hero-cta reveal-fade" style="justify-content: center;">
-          <a href="#store" class="btn btn-primary">تصفح المتجر واطلب الآن</a>
-          <a href="#maintenance" class="btn btn-secondary">احجز صيانة الآن</a>
+        <div class="hero-cta reveal-fade">
+          <a href="#store" class="btn btn-primary btn-glow">
+            <span>تصفح المتجر واطلب الآن</span>
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>
+          </a>
+          <a href="#payments" class="btn btn-secondary">
+            <span>طرق الدفع والتقسيط</span>
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M20 4H4c-1.11 0-1.99.89-1.99 2L2 18c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V6c0-1.11-.89-2-2-2zm0 14H4v-6h16v6zm0-10H4V6h16v2z"/></svg>
+          </a>
         </div>
 
-        <!-- شبكات التواصل الاجتماعي -->
-        <div class="social-links reveal-fade" style="justify-content: center; margin-top: 30px;">
-          <span class="social-title">تابعنا على:</span>
+        <!-- كروت الإحصائيات ثلاثية الأبعاد العائمة -->
+        <div class="hero-stats-grid reveal-fade">
+          <div class="hero-stat-card" data-tilt>
+            <div class="stat-icon-wrapper">
+              <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z"/></svg>
+            </div>
+            <div class="stat-info">
+              <span class="stat-number">5 سنوات</span>
+              <span class="stat-label">ضمان معتمد شامل</span>
+            </div>
+          </div>
+
+          <div class="hero-stat-card" data-tilt>
+            <div class="stat-icon-wrapper">
+              <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.07-.94l2.03-1.58c.18-.14.23-.41.12-.61l-1.92-3.32c-.12-.22-.37-.29-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54c-.04-.24-.24-.41-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96c-.22-.08-.47 0-.59.22L2.74 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.05.3-.09.63-.09.94s.02.64.07.94l-2.03 1.58c-.18.14-.23.41-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.47-.12-.61l-2.01-1.58zM12 15.6c-1.98 0-3.6-1.62-3.6-3.6s1.62-3.6 3.6-3.6 3.6 1.62 3.6 3.6-1.62 3.6-3.6 3.6z"/></svg>
+            </div>
+            <div class="stat-info">
+              <span class="stat-number">تركيب مجاني</span>
+              <span class="stat-label">بأعلى معايير المصنع</span>
+            </div>
+          </div>
+
+          <div class="hero-stat-card" data-tilt>
+            <div class="stat-icon-wrapper">
+              <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
+            </div>
+            <div class="stat-info">
+              <span class="stat-number">دفع عند الاستلام</span>
+              <span class="stat-label">أو تحويل إنستا باي وفودافون</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- شبكات التواصل الاجتماعي الفاخرة -->
+        <div class="social-links reveal-fade">
+          <span class="social-title">تواصل وتفاعل معنا:</span>
           <div class="social-icons">
-            <a href="https://www.facebook.com/share/17yf9LtdmD/?mibextid=wwXIfr" target="_blank" aria-label="Facebook" class="social-icon">
-              <svg class="icon-svg" viewBox="0 0 24 24"><path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H8v-3h2V9.5C10 7.57 11.57 6 13.5 6H16v3h-2c-.55 0-1 .45-1 1v2h3v3h-3v6.95c4.56-.93 8-4.96 8-9.75z"/></svg>
-            </a>
-            <a href="https://wa.me/201061694024" target="_blank" aria-label="WhatsApp" class="social-icon">
+            <a href="https://wa.me/201061694024" target="_blank" aria-label="WhatsApp" class="social-icon whatsapp-icon">
               <svg class="icon-svg" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397.01 12.008.01c3.202.001 6.212 1.246 8.477 3.514 2.266 2.268 3.507 5.28 3.505 8.484-.004 6.657-5.34 11.997-11.953 11.997-2.005-.001-3.973-.502-5.73-1.466L0 24zm6.59-4.846c1.6.95 2.8 1.458 4.825 1.459 5.55 0 10.061-4.512 10.063-10.066.002-2.69-1.043-5.22-2.94-7.119C16.699 1.529 14.18 .483 11.997.484 6.444.484 1.932 4.997 1.93 10.553c-.001 2.03.527 3.255 1.492 4.922L2.44 21.56l6.207-1.628zM17.5 14.5c-.3-.15-1.78-.88-2.05-.98-.28-.1-.48-.15-.68.15-.2.3-.78.98-.95 1.18-.18.2-.35.23-.65.08-1.02-.51-1.74-.91-2.42-1.58-.57-.56-1.12-1.22-1.3-1.53-.18-.3-.02-.46.13-.61.14-.14.3-.35.45-.53.15-.18.2-.3.3-.5.1-.2.05-.38-.02-.53-.07-.15-.68-1.63-.93-2.24-.25-.61-.51-.53-.68-.53h-.58c-.2 0-.53.07-.8.38-.28.3-1.08 1.05-1.08 2.57 0 1.52 1.1 3 1.25 3.2.15.2 2.16 3.3 5.24 4.63.73.3 1.3.49 1.75.63.74.24 1.4.2 1.93.12.59-.09 1.78-.73 2.03-1.43.25-.7.25-1.3.17-1.43-.08-.13-.28-.2-.58-.35z"/></svg>
             </a>
-            <a href="https://www.tiktok.com/@tryangel18?_r=1&_t=ZS-98AHp9YRBE9" target="_blank" aria-label="TikTok" class="social-icon">
+            <a href="https://www.facebook.com/share/17yf9LtdmD/?mibextid=wwXIfr" target="_blank" aria-label="Facebook" class="social-icon facebook-icon">
+              <svg class="icon-svg" viewBox="0 0 24 24"><path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H8v-3h2V9.5C10 7.57 11.57 6 13.5 6H16v3h-2c-.55 0-1 .45-1 1v2h3v3h-3v6.95c4.56-.93 8-4.96 8-9.75z"/></svg>
+            </a>
+            <a href="https://www.tiktok.com/@tryangel18?_r=1&_t=ZS-98AHp9YRBE9" target="_blank" aria-label="TikTok" class="social-icon tiktok-icon">
               <svg class="icon-svg" viewBox="0 0 24 24"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.17-2.86-.74-3.94-1.74-.22-.21-.42-.45-.61-.7-.03 3.76-.02 7.53-.03 11.29-.07 3.08-1.51 6.13-4.48 7.37-3.79 1.68-8.58-.1-10.23-4.05-1.88-4.22.42-9.61 4.88-10.45.6-.11 1.22-.12 1.83-.07v4.09c-.58-.08-1.18-.03-1.74.15-1.92.57-2.91 2.82-2.14 4.69.75 1.92 3.1 2.78 4.9 1.82 1.17-.6 1.81-1.89 1.79-3.21-.02-5.07-.01-10.14-.02-15.21z"/></svg>
+            </a>
+            <a href="tel:+201061694024" aria-label="اتصال هاتف" class="social-icon phone-icon">
+              <svg class="icon-svg" viewBox="0 0 24 24"><path d="M20.01 15.38c-1.23 0-2.42-.2-3.53-.56a.977.977 0 0 0-1.01.24l-2.2 2.2a15.045 15.045 0 0 1-6.59-6.59l2.2-2.21c.28-.26.36-.65.25-1A11.36 11.36 0 0 0 8.5 4c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1 0 9.39 7.61 17 17 17 .55 0 1-.45 1-1v-3.5c0-.55-.45-1-1-1z"/></svg>
             </a>
           </div>
         </div>
@@ -96,70 +151,75 @@
     </div>
   </section>
 
-  <!-- قسم المميزات والاعتمادية -->
+  <!-- قسم المميزات والاعتمادية ثلاثية الأبعاد -->
   <section class="features-section">
-    <div class="section-header">
+    <div class="section-header scroll-reveal">
       <span class="section-subtitle">لماذا تختارنا؟</span>
       <h2 class="section-title">خدمات تراي أنجل المعتمدة</h2>
     </div>
 
     <div class="features-grid">
       <!-- ميزة 1 -->
-      <div class="feature-card">
+      <div class="feature-card scroll-reveal" data-tilt>
         <div class="feature-icon-wrapper">
           <svg class="icon-svg" viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z"/></svg>
         </div>
         <h3>موزع رسمي معتمد</h3>
-        <p>نحن وكيل معتمد لشركتي كاريير وميديا بمصر، مما يضمن لك الحصول على جهاز أصلي وضمان حقيقي 100%.</p>
+        <p>نحن وكيل معتمد لشركتي كاريير وميديا بمصر، مما يضمن لك الحصول على جهاز أصلي وضمان حقيقي 100% من الوكيل الرسمي ميراكو كاريير.</p>
+        <div class="card-glow-line"></div>
       </div>
 
       <!-- ميزة 2 -->
-      <div class="feature-card">
+      <div class="feature-card scroll-reveal" data-tilt>
         <div class="feature-icon-wrapper">
           <svg class="icon-svg" viewBox="0 0 24 24"><path d="M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.07-.94l2.03-1.58c.18-.14.23-.41.12-.61l-1.92-3.32c-.12-.22-.37-.29-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54c-.04-.24-.24-.41-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96c-.22-.08-.47 0-.59.22L2.74 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.05.3-.09.63-.09.94s.02.64.07.94l-2.03 1.58c-.18.14-.23.41-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.47-.12-.61l-2.01-1.58zM12 15.6c-1.98 0-3.6-1.62-3.6-3.6s1.62-3.6 3.6-3.6 3.6 1.62 3.6 3.6-1.62 3.6-3.6 3.6z"/></svg>
         </div>
         <h3>تركيب احترافي مجاني</h3>
-        <p>نخبة من الفنيين المحترفين لتركيب التكييف طبقاً للمواصفات الفنية للشركة لضمان كفاءة التبريد القصوى.</p>
+        <p>نخبة من الفنيين المحترفين لتركيب التكييف طبقاً للمواصفات القياسية الهندسية لضمان كفاءة التبريد القصوى وهدوء التشغيل.</p>
+        <div class="card-glow-line"></div>
       </div>
 
       <!-- ميزة 3 -->
-      <div class="feature-card">
+      <div class="feature-card scroll-reveal" data-tilt>
         <div class="feature-icon-wrapper">
           <svg class="icon-svg" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17h-2v-2h2v2zm2.07-7.75l-.9.92C13.45 12.9 13 13.5 13 15h-2v-.5c0-1.1.45-2.1 1.17-2.83l1.24-1.26c.37-.36.59-.86.59-1.41 0-1.1-.9-2-2-2s-2 .9-2 2H7c0-2.76 2.24-5 5-5s5 2.24 5 5c0 1.04-.42 1.99-1.07 2.75z"/></svg>
         </div>
-        <h3>استشارات فنية مجانية</h3>
-        <p>نساعدك في اختيار القدرة المناسبة لمساحة غرفتك (1.5 حصان، 2.25 حصان، 3 حصان) لضمان عمر أطول للجهاز.</p>
+        <h3>استشارات فنية ومقايسات مجانية</h3>
+        <p>نساعدك بدقة في حساب الأحمال الحرارية واختيار القدرة المناسبة للغرفة (1.5 حصان، 2.25 حصان، 3 حصان، 4 و5 حصان) لتوفير الكهرباء.</p>
+        <div class="card-glow-line"></div>
       </div>
 
       <!-- ميزة 4 -->
-      <div class="feature-card">
+      <div class="feature-card scroll-reveal" data-tilt>
         <div class="feature-icon-wrapper">
           <svg class="icon-svg" viewBox="0 0 24 24"><path d="M21 18v1c0 1.1-.9 2-2 2H5c-1.11 0-2-.9-2-2V5c0-1.1.89-2 2-2h14c1.1 0 2 .9 2 2v1h-9c-1.11 0-2 .9-2 2v8c0 1.1.89 2 2 2h9zm-9-2h10V8H12v8zm4-2.5c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"/></svg>
         </div>
-        <h3>الدفع عند الاستلام (COD)</h3>
-        <p>لا داعي للدفع المسبق، اطلب تكييفك الآن وقم بالدفع نقداً بعد الاستلام والتركيب والمعاينة الفنية بالموقع.</p>
+        <h3>وسائل دفع متعددة ومرنة</h3>
+        <p>ادفع كاش عند الاستلام والمعاينة، أو عبر تحويل لحظي إنستا باي، فودافون كاش، محافظ المحمول، أو بالبطاقات البنكية مع أنظمة تقسيط مريحة.</p>
+        <div class="card-glow-line"></div>
       </div>
     </div>
   </section>
 
   <!-- قسم المتجر وعرض المنتجات (Store) -->
   <section class="store-section" id="store">
-    <div class="section-header">
-      <span class="section-subtitle">متجر تراي أنجل</span>
-      <h2 class="section-title">اختر تكييفك المفضل</h2>
+    <div class="section-header scroll-reveal">
+      <span class="section-subtitle">متجر تراي أنجل للتكييف</span>
+      <h2 class="section-title">اختر تكييفك المفضل بالأسعار المحدثة</h2>
+      <p class="section-desc">تصفح موديلات كاريير وميديا إنفرتر وعادي مع إمكانية معاينة معرض الصور وتحديد القدرة مباشرة.</p>
     </div>
 
-    <!-- أزرار التبويب (Tabs) للماركات -->
-    <div class="brand-tabs-container">
+    <!-- أزرار التبويب (Tabs) للماركات مع لوجو الشركات بتأثير 3D -->
+    <div class="brand-tabs-container scroll-reveal">
       <button class="brand-tab-btn carrier-tab active" data-brand="carrier">
-        <svg class="brand-logo-svg" viewBox="0 0 100 30" xmlns="http://www.w3.org/2000/svg" style="width: 80px; height: 24px; margin-left: 8px;">
+        <svg class="brand-logo-svg" viewBox="0 0 100 30" xmlns="http://www.w3.org/2000/svg">
           <ellipse cx="50" cy="15" rx="45" ry="13" fill="none" stroke="currentColor" stroke-width="2" />
           <text x="50" y="20" fill="currentColor" font-family="Segoe UI, sans-serif" font-weight="900" font-size="13" text-anchor="middle" font-style="italic">Carrier</text>
         </svg>
         <span>تكييفات Carrier</span>
       </button>
       <button class="brand-tab-btn midea-tab" data-brand="midea">
-        <svg class="brand-logo-svg" viewBox="0 0 100 30" xmlns="http://www.w3.org/2000/svg" style="width: 80px; height: 24px; margin-left: 8px;">
+        <svg class="brand-logo-svg" viewBox="0 0 100 30" xmlns="http://www.w3.org/2000/svg">
           <circle cx="15" cy="15" r="9" fill="none" stroke="currentColor" stroke-width="2" />
           <circle cx="15" cy="15" r="5" fill="currentColor" />
           <text x="62" y="20" fill="currentColor" font-family="Segoe UI, sans-serif" font-weight="900" font-size="15" text-anchor="middle">Midea</text>
@@ -168,9 +228,202 @@
       </button>
     </div>
 
-    <!-- شبكة المنتجات -->
+    <!-- شبكة المنتجات مع تأثيرات Tilt و3D Glass -->
     <div class="products-grid" id="productsGrid">
       <!-- سيتم توليد محتوى المنتجات ديناميكياً بواسطة جافا سكريبت -->
+    </div>
+  </section>
+
+  <!-- =========================================================================
+       قسم طرق الدفع والتقسيط الفاخر مع كارت 3D تفاعلي ولوجو الشركات الرسمية
+       ========================================================================= -->
+  <section class="payments-section scroll-reveal" id="payments">
+    <div class="section-header">
+      <span class="section-subtitle">مرونة وأمان 100%</span>
+      <h2 class="section-title text-white">طرق الدفع والتسهيلات المعتمدة</h2>
+      <p class="section-desc text-muted">نوفر لك تجربة شراء سهلة وموثوقة بخيارات دفع متعددة تناسب احتياجك دون أي تعقيد.</p>
+    </div>
+
+    <div class="payments-showcase-container">
+      
+      <!-- الكارت التفاعلي ثلاثي الأبعاد (3D Live Payment Card Preview) -->
+      <div class="payment-3d-wrapper scroll-reveal">
+        <div class="payment-card-3d instapay-theme" id="interactivePaymentCard" data-tilt>
+          <div class="card-3d-glass-layer"></div>
+          <div class="card-3d-content">
+            <div class="card-3d-top">
+              <div class="card-chip-container">
+                <div class="card-emv-chip">
+                  <div class="chip-line"></div>
+                  <div class="chip-line"></div>
+                  <div class="chip-line"></div>
+                </div>
+                <div class="card-contactless">
+                  <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2"><path d="M8.5 16.5a5 5 0 0 1 0-9M12 19a8.5 8.5 0 0 0 0-14M15.5 21.5a12 12 0 0 0 0-19"/></svg>
+                </div>
+              </div>
+              <div class="card-3d-logo-badge" id="card3dLogoBadge">
+                <span class="badge-text-logo">InstaPay</span>
+              </div>
+            </div>
+
+            <div class="card-3d-middle">
+              <div class="card-number-display" id="card3dNumber">
+                <span>••••</span> <span>••••</span> <span>••••</span> <span>2026</span>
+              </div>
+              <div class="card-tagline" id="card3dTagline">شبكة المدفوعات اللحظية IPN - تحويل فوري 24/7</div>
+            </div>
+
+            <div class="card-3d-bottom">
+              <div class="card-holder-info">
+                <span class="card-holder-title">المستفيد المعتمد</span>
+                <span class="card-holder-name">TRIANGLE AIR CONDITIONING</span>
+              </div>
+              <div class="card-security-seal">
+                <span class="seal-icon">🛡️</span>
+                <span class="seal-text">معتمد وآمن</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <p class="card-tilt-hint">✨ كارت تفاعلي 3D: حرك المؤشر للتأثير المجسم</p>
+      </div>
+
+      <!-- شبكة طرق الدفع ولوجو الشركات الرسمية -->
+      <div class="payment-methods-grid">
+
+        <!-- 1. إنستا باي (InstaPay) -->
+        <div class="payment-method-card active scroll-reveal" data-payment-type="instapay" data-tilt>
+          <div class="method-card-header">
+            <div class="method-logo-box instapay-logo-box">
+              <svg viewBox="0 0 120 40" class="company-logo-svg" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                  <linearGradient id="instapayGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#802bb1"/>
+                    <stop offset="50%" stop-color="#d6249f"/>
+                    <stop offset="100%" stop-color="#ff007f"/>
+                  </linearGradient>
+                </defs>
+                <circle cx="20" cy="20" r="14" fill="url(#instapayGrad)"/>
+                <polygon points="17,13 27,20 17,27" fill="#ffffff"/>
+                <text x="40" y="26" fill="#ffffff" font-family="'Segoe UI', Cairo, sans-serif" font-weight="900" font-size="18" letter-spacing="0.5">InstaPay</text>
+              </svg>
+            </div>
+            <span class="method-pill-badge instant-pill">تحويل لحظي فوري</span>
+          </div>
+          <h3 class="method-title">إنستا باي (InstaPay)</h3>
+          <p class="method-description">
+            حوّل قيمة التكييف أو دفعة الحجز في ثوانٍ معدودة عبر شبكة المدفوعات اللحظية الوطنية (IPN) باستخدام رقم الهاتف أو عنوان الدفع اللحظي (IPA) بدون أي مصاريف إضافية.
+          </p>
+          <ul class="method-perks">
+            <li><span>✓</span> تحويل لحظي على مدار 24 ساعة طوال أيام الأسبوع</li>
+            <li><span>✓</span> تأكيد فوري ومباشر لطلبك عبر الواتساب</li>
+          </ul>
+        </div>
+
+        <!-- 2. فودافون كاش ومحافظ المحمول (Vodafone Cash & Mobile Wallets) -->
+        <div class="payment-method-card scroll-reveal" data-payment-type="vodafone" data-tilt>
+          <div class="method-card-header">
+            <div class="method-logo-box vodafone-logo-box">
+              <svg viewBox="0 0 140 40" class="company-logo-svg" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="20" cy="20" r="14" fill="#e60000"/>
+                <path d="M22 12c-4.4 0-8 3.6-8 8s3.6 8 8 8c1.8 0 3.4-.6 4.8-1.6l-2-2.4c-.8.6-1.8.9-2.8.9-2.8 0-5-2.2-5-5s2.2-5 5-5c1.8 0 3.3.9 4.2 2.3l2.5-1.9C27.1 13.5 24.7 12 22 12z" fill="#ffffff"/>
+                <text x="42" y="25" fill="#ffffff" font-family="'Segoe UI', sans-serif" font-weight="800" font-size="15">Vodafone</text>
+              </svg>
+            </div>
+            <span class="method-pill-badge wallet-pill">محافظ إلكترونية</span>
+          </div>
+          <h3 class="method-title">فودافون كاش ومحافظ المحمول</h3>
+          <p class="method-description">
+            إمكانية الدفع والتحويل المباشر من خلال محفظة فودافون كاش، أورانج كاش، اتصالات كاش، ومحفظة WE Pay من أي مكان في مصر بكل سهولة.
+          </p>
+          <div class="wallets-sub-logos">
+            <span class="wallet-badge vf">Vodafone Cash</span>
+            <span class="wallet-badge orange">Orange Money</span>
+            <span class="wallet-badge etisalat">Etisalat Cash</span>
+            <span class="wallet-badge we">WE Pay</span>
+          </div>
+        </div>
+
+        <!-- 3. كاش عند الاستلام والمعاينة (Cash on Delivery) -->
+        <div class="payment-method-card scroll-reveal" data-payment-type="cod" data-tilt>
+          <div class="method-card-header">
+            <div class="method-logo-box cod-logo-box">
+              <svg viewBox="0 0 130 40" class="company-logo-svg" xmlns="http://www.w3.org/2000/svg">
+                <rect x="5" y="8" width="30" height="24" rx="4" fill="#f39200"/>
+                <circle cx="20" cy="20" r="5" fill="#ffffff" opacity="0.3"/>
+                <text x="16" y="24" fill="#ffffff" font-weight="bold" font-size="12">ج.م</text>
+                <text x="42" y="25" fill="#ffffff" font-family="'Cairo', sans-serif" font-weight="800" font-size="15">كاش عند الاستلام</text>
+              </svg>
+            </div>
+            <span class="method-pill-badge cod-pill">ضمان وثقة 100%</span>
+          </div>
+          <h3 class="method-title">الدفع نقداً عند الاستلام والمعاينة</h3>
+          <p class="method-description">
+            راحة بال تامة.. لا تدفع إلا بعد وصول الفنيين وتوصيل جهاز التكييف وتركيبه واختبار كفاءة التبريد والتأكد من شهادة الضمان والفاتورة المعتمدة.
+          </p>
+          <ul class="method-perks">
+            <li><span>✓</span> فحص الجهاز ومطابقة المواصفات قبل السداد</li>
+            <li><span>✓</span> تسليم شهادة الضمان والفاتورة الأصلية بالموقع</li>
+          </ul>
+        </div>
+
+        <!-- 4. فيزا، ماستركارد، ميزة وأنظمة التقسيط (Bank Cards & Installments) -->
+        <div class="payment-method-card scroll-reveal" data-payment-type="cards" data-tilt>
+          <div class="method-card-header">
+            <div class="method-logo-box cards-multi-logo">
+              <!-- Visa / MC / Meeza Multi Logo -->
+              <svg viewBox="0 0 160 40" class="company-logo-svg" xmlns="http://www.w3.org/2000/svg">
+                <text x="5" y="26" fill="#1a1f71" font-family="sans-serif" font-weight="900" font-style="italic" font-size="17">VISA</text>
+                <circle cx="70" cy="20" r="10" fill="#eb001b"/>
+                <circle cx="84" cy="20" r="10" fill="#f79e1b" fill-opacity="0.85"/>
+                <rect x="108" y="10" width="45" height="20" rx="3" fill="#008053"/>
+                <text x="114" y="24" fill="#ffffff" font-weight="bold" font-size="11">meeza</text>
+              </svg>
+            </div>
+            <span class="method-pill-badge cards-pill">تقسيط وبطاقات بنكية</span>
+          </div>
+          <h3 class="method-title">البطاقات البنكية والتقسيط المريح</h3>
+          <p class="method-description">
+            سدد ببطاقتك الائتمانية أو بطاقة ميزة الوطنية، واستفد من عروض التقسيط حتى 36 شهراً بالتعاون مع كبرى البنوك المصرية وشركات التمويل الاستهلاكي.
+          </p>
+          <div class="installments-partners">
+            <span class="partner-tag">valU</span>
+            <span class="partner-tag">أمان Aman</span>
+            <span class="partner-tag">سهولة Souhoola</span>
+            <span class="partner-tag">البنك الأهلي</span>
+            <span class="partner-tag">بنك مصر</span>
+            <span class="partner-tag">CIB</span>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- شريط ضمانات الأمان والمصداقية -->
+    <div class="trust-guarantees-bar scroll-reveal">
+      <div class="guarantee-item">
+        <span class="guarantee-icon">🔒</span>
+        <div class="guarantee-text">
+          <strong>معاملات مالية آمنة 100%</strong>
+          <span>تأكيد موثق لجميع الحركات المالية</span>
+        </div>
+      </div>
+      <div class="guarantee-item">
+        <span class="guarantee-icon">📄</span>
+        <div class="guarantee-text">
+          <strong>فواتير وضمان رسمي</strong>
+          <span>شهادات ضمان معتمدة من ميراكو</span>
+        </div>
+      </div>
+      <div class="guarantee-item">
+        <span class="guarantee-icon">⚡</span>
+        <div class="guarantee-text">
+          <strong>تنفيذ وتوصيل فوري</strong>
+          <span>تواصل مباشر وتأكيد خلال دقائق</span>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -178,61 +431,72 @@
   <section class="faq-section scroll-reveal" id="faq">
     <div class="section-header">
       <span class="section-subtitle">الأسئلة الشائعة</span>
-      <h2 class="section-title text-white">إجابات تهمك</h2>
-      <p class="section-desc text-muted">إجابات علمية مبسطة أعدها خبراء تراي أنجل للإجابة على استفساراتكم الشائعة.</p>
+      <h2 class="section-title text-white">إجابات تهمك قبل الشراء والصيانة</h2>
+      <p class="section-desc text-muted">إجابات علمية مبسطة أعدها خبراء تراي أنجل للتكييف لمساعدتك في اتخاذ القرار الأنسب.</p>
     </div>
 
     <div class="faq-container">
       <div class="faq-item scroll-reveal">
         <div class="faq-question">
-          <h3>كم مرة يجب تنظيف وغسيل التكييف؟</h3>
+          <h3>ما هي طرق الدفع المتاحة عند شراء تكييف من تراي أنجل؟</h3>
           <span class="faq-icon">
             <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M7 10l5 5 5-5H7z"/></svg>
           </span>
         </div>
         <div class="faq-answer">
-          <p>يُنصح بتنظيف الفلاتر العادية مرة كل أسبوعين إلى شهر في الصيف. أما الغسيل والتعقيم العميق للوحدة الداخلية والخارجية بالضغط، فيُفضل إجراؤه مرة قبل بداية فصل الصيف (بداية التشغيل المكثف) ومرة قبل الشتاء للحفاظ على الكفاءة وتقليل استهلاك الكهرباء.</p>
+          <p>نوفر جميع خيارات الدفع لتسهيل عملية الشراء: الدفع نقداً عند الاستلام بعد التركيب والمعاينة الفنية، التحويل الفوري عبر شبكة إنستا باي (InstaPay)، الدفع عبر محفظة فودافون كاش ومحافظ المحمول الأخرى، بالإضافة إلى الدفع بالبطاقات البنكية وأنظمة التقسيط عبر فاليو وأمان والبنوك المعتمدة.</p>
         </div>
       </div>
 
       <div class="faq-item scroll-reveal">
         <div class="faq-question">
-          <h3>ما هو سبب تساقط المياه من الوحدة الداخلية للغرفة?</h3>
+          <h3>كم مرة يجب تنظيف وغسيل التكييف سنوياً؟</h3>
           <span class="faq-icon">
             <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M7 10l5 5 5-5H7z"/></svg>
           </span>
         </div>
         <div class="faq-answer">
-          <p>السبب الرئيسي هو انسداد خرطوم تصريف المياه بسبب تراكم الأتربة والأوساخ بالداخل، أو حدوث ثني في الخرطوم. قد يكون السبب أيضاً تجمد الثلج على الكويل (المبخر) نتيجة نقص شحنة الفريون أو اتساخ الفلاتر الشديد.</p>
+          <p>يُنصح بتنظيف الفلاتر العادية مرة كل أسبوعين إلى شهر في الصيف. أما الغسيل والتعقيم العميق للوحدة الداخلية والخارجية بالضغط، فيُفضل إجراؤه مرة قبل بداية فصل الصيف (بداية التشغيل المكثف) ومرة قبل الشتاء للحفاظ على الكفاءة وتقليل استهلاك الكهرباء بنسبة تصل إلى 30%.</p>
         </div>
       </div>
 
       <div class="faq-item scroll-reveal">
         <div class="faq-question">
-          <h3>هل يحتاج التكييف إلى تزويد الفريون كل سنة؟</h3>
+          <h3>ما هو سبب تساقط المياه من الوحدة الداخلية داخل الغرفة؟</h3>
           <span class="faq-icon">
             <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M7 10l5 5 5-5H7z"/></svg>
           </span>
         </div>
         <div class="faq-answer">
-          <p>التكييف جهاز ذو دائرة تبريد مغلقة، وبالتالي لا يفقد الفريون تلقائياً ولا يحتاج لتزويد سنوي إلا في حال حدوث تسريب في مواسير النحاس أو بلوف التوصيل. وفي هذه الحالة، يجب معالجة التسريب أولاً قبل إعادة الشحن.</p>
+          <p>السبب الأكثر شيوعاً هو انسداد حوض أو خرطوم تصريف مياه المتكثف بالأتربة، أو ميل غير صحيح للوحدة أثناء التركيب. قد يرجع السبب أيضاً لتجمد الثلج على الكويل (المبخر) نتيجة نقص شحنة الفريون أو انسداد الفلاتر الهوائية.</p>
         </div>
       </div>
 
       <div class="faq-item scroll-reveal">
         <div class="faq-question">
-          <h3>كيف يمكنني خفض استهلاك التكييف للكهرباء؟</h3>
+          <h3>هل يحتاج التكييف إلى إعادة شحن الفريون كل سنة؟</h3>
+          <span class="faq-icon">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M7 10l5 5 5-5H7z"/></svg>
+          </span>
+        </div>
+        <div class="faq-answer">
+          <p>دائرة التبريد في التكييف مغلقة ومحكمة تماماً، لذا لا يستهلك الفريون ولا ينقص أبداً بمرور الوقت، وإذا حدث نقص فهذا مؤشر قطعي على وجود تسريب في مواسير النحاس أو الوصلات يجب معالجته واختباره بالضغط أولاً قبل إعادة الشحن.</p>
+        </div>
+      </div>
+
+      <div class="faq-item scroll-reveal">
+        <div class="faq-question">
+          <h3>كيف اختار القدرة الحصانية المناسبة لغرفتي؟</h3>
           <span class="faq-icon">
             <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M7 10l5 5 5-5H7z"/></svg>
           </span>
         </div>
         <div class="faq-answer">
           <p>
-            1. اضبط التكييف على درجة حرارة متوازنة (مثال: 24 أو 25 مئوية).<br>
-            2. تأكد من غلق الأبواب والنوافذ وإحكام غلق الغرفة جيداً.<br>
-            3. نظف الفلاتر بانتظام (مرة كل أسبوعين).<br>
-            4. استخدم وضع التوفير (Eco Mode) إن وُجد.<br>
-            5. تأكد من تظليل الغرفة من أشعة الشمس المباشرة باستخدام الستائر.
+            • الغرف حتى 12-14 متر مربع: تكييف <strong>1.5 حصان</strong>.<br>
+            • الغرف والمساحات من 15 إلى 20 متر مربع: تكييف <strong>2.25 حصان</strong>.<br>
+            • الريسبشن والمساحات من 22 إلى 28 متر مربع: تكييف <strong>3 حصان</strong>.<br>
+            * مع مراعاة الأدوار الأخيرة المعرضة للشمس المباشرة، ويقوم مهندسو تراي أنجل بعمل المقايسة الدقيقة مجاناً.
           </p>
         </div>
       </div>
@@ -242,12 +506,12 @@
   <!-- قسم حجز موعد صيانة (Maintenance) -->
   <section class="maintenance-section scroll-reveal" id="maintenance">
     <div class="section-header">
-      <span class="section-subtitle">احجز صيانة تكييفك</span>
-      <h2 class="section-title text-white">احجز موعد الصيانة الآن</h2>
-      <p class="section-desc text-muted">املأ استمارة الحجز وسيتواصل معك مهندسو الصيانة فوراً للتأكيد والحضور في الموعد المفضل.</p>
+      <span class="section-subtitle">خدمة سريعة ومعتمدة</span>
+      <h2 class="section-title text-white">احجز موعد صيانة تكييفك الآن</h2>
+      <p class="section-desc text-muted">املأ استمارة الحجز وسيتواصل معك مهندسو الصيانة فوراً لتأكيد الحضور في الموعد المفضل بأحدث أجهزة الفحص.</p>
     </div>
 
-    <div class="maintenance-container scroll-reveal">
+    <div class="maintenance-container scroll-reveal" data-tilt>
       <form class="maintenance-form" id="maintenanceForm">
         <div class="form-grid">
           
@@ -277,20 +541,20 @@
             <label class="form-label" for="maintService">نوع الخدمة المطلوبة *</label>
             <select id="maintService" class="form-control form-control-dark select-custom" required>
               <option value="" disabled selected>اختر الخدمة المطلوبة</option>
-              <option value="غسيل وتنظيف عميق بالضغط">غسيل وتنظيف عميق بالضغط</option>
-              <option value="شحن فريون ومعالجة تسريب مواسير النحاس">شحن فريون ومعالجة تسريب مواسير النحاس</option>
-              <option value="إصلاح عطل فوري وتغيير قطع غيار">إصلاح عطل فوري وتغيير قطع غيار</option>
-              <option value="تركيب ونقل تكييفات">تركيب ونقل تكييفات</option>
-              <option value="تعاقد صيانة سنوي وقائي">تعاقد صيانة سنوي وقائي</option>
-              <option value="معاينة وفحص فني متكامل للكباس">معاينة وفحص فني متكامل للكباس</option>
+              <option value="غسيل وتعقيم عميق للوحدتين بالضغط">غسيل وتعقيم عميق للوحدتين بالضغط</option>
+              <option value="شحن فريون أصلي ومعالجة تسريب المواسير">شحن فريون أصلي ومعالجة تسريب المواسير</option>
+              <option value="إصلاح عطل فوري وتغيير قطع غيار أصلية">إصلاح عطل فوري وتغيير قطع غيار أصلية</option>
+              <option value="فك وتركيب ونقل تكييفات">فك وتركيب ونقل تكييفات</option>
+              <option value="تعاقد صيانة سنوي وقائي للشركات والمنازل">تعاقد صيانة سنوي وقائي للشركات والمنازل</option>
+              <option value="معاينة وفحص شامل لكهرباء والكباس">معاينة وفحص شامل لكهرباء والكباس</option>
             </select>
           </div>
 
           <div class="form-group">
             <label class="form-label" for="maintDate">تاريخ الزيارة المفضل *</label>
             <select id="maintDate" class="form-control form-control-dark select-custom" required>
-              <option value="" disabled selected>اختر تاريخ الزيارة المفضل</option>
-              <option value="خلال 24 ساعة (عاجل)">خلال 24 ساعة (عاجل)</option>
+              <option value="" disabled selected>اختر موعد الزيارة المفضل</option>
+              <option value="خلال 24 ساعة (عاجل فوري)">خلال 24 ساعة (عاجل فوري)</option>
               <option value="خلال اليومين القادمين">خلال اليومين القادمين</option>
               <option value="تحديد موعد لاحق بالهاتف">تحديد موعد لاحق بالهاتف</option>
             </select>
@@ -304,15 +568,15 @@
         </div>
 
         <div class="form-group full-width">
-          <label class="form-label" for="maintDesc">وصف العطل أو متطلبات إضافية (اختياري)</label>
-          <textarea id="maintDesc" class="form-control form-control-dark" placeholder="مثال: يرجى التوصيل بعد الساعة 4 مساءً، أو أي تفاصيل خاصة بموقع التركيب..."></textarea>
+          <label class="form-label" for="maintDesc">وصف العطل أو أي ملاحظات إضافية (اختياري)</label>
+          <textarea id="maintDesc" class="form-control form-control-dark" placeholder="اكتب أي تفاصيل بخصوص نوع التكييف وموقع التركيب أو مواعيد تواجدك المفضلة..."></textarea>
         </div>
 
-        <button type="submit" class="btn btn-primary submit-btn-whatsapp">
+        <button type="submit" class="btn btn-primary submit-btn-whatsapp btn-glow">
           <svg class="icon-svg" viewBox="0 0 24 24" style="width:20px;height:20px;fill:currentColor;margin-left:8px;">
             <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397.01 12.008.01c3.202.001 6.212 1.246 8.477 3.514 2.266 2.268 3.507 5.28 3.505 8.484-.004 6.657-5.34 11.997-11.953 11.997-2.005-.001-3.973-.502-5.73-1.466L0 24zm6.59-4.846c1.6.95 2.8 1.458 4.825 1.459 5.55 0 10.061-4.512 10.063-10.066.002-2.69-1.043-5.22-2.94-7.119C16.699 1.529 14.18 .483 11.997.484 6.444.484 1.932 4.997 1.93 10.553c-.001 2.03.527 3.255 1.492 4.922L2.44 21.56l6.207-1.628zM17.5 14.5c-.3-.15-1.78-.88-2.05-.98-.28-.1-.48-.15-.68.15-.2.3-.78.98-.95 1.18-.18.2-.35.23-.65.08-1.02-.51-1.74-.91-2.42-1.58-.57-.56-1.12-1.22-1.3-1.53-.18-.3-.02-.46.13-.61.14-.14.3-.35.45-.53.15-.18.2-.3.3-.5.1-.2.05-.38-.02-.53-.07-.15-.68-1.63-.93-2.24-.25-.61-.51-.53-.68-.53h-.58c-.2 0-.53.07-.8.38-.28.3-1.08 1.05-1.08 2.57 0 1.52 1.1 3 1.25 3.2.15.2 2.16 3.3 5.24 4.63.73.3 1.3.49 1.75.63.74.24 1.4.2 1.93.12.59-.09 1.78-.73 2.03-1.43.25-.7.25-1.3.17-1.43-.08-.13-.28-.2-.58-.35z"/>
           </svg>
-          إرسال وحجز عبر واتساب سريع
+          إرسال وحجز موعد الصيانة عبر الواتساب
         </button>
       </form>
     </div>
@@ -322,49 +586,49 @@
   <section class="contact-section scroll-reveal" id="contact">
     <div class="section-header">
       <span class="section-subtitle">يسعدنا تواصلكم</span>
-      <h2 class="section-title">تواصل معنا الآن</h2>
+      <h2 class="section-title">تواصل مع فرع تراي أنجل</h2>
     </div>
 
     <div class="contact-container">
       <div class="contact-info-cards">
-        <div class="info-card">
+        <div class="info-card" data-tilt>
           <div class="info-icon">
             <svg class="icon-svg" viewBox="0 0 24 24"><path d="M20.01 15.38c-1.23 0-2.42-.2-3.53-.56a.977.977 0 0 0-1.01.24l-2.2 2.2a15.045 15.045 0 0 1-6.59-6.59l2.2-2.21c.28-.26.36-.65.25-1A11.36 11.36 0 0 0 8.5 4c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1 0 9.39 7.61 17 17 17 .55 0 1-.45 1-1v-3.5c0-.55-.45-1-1-1z"/></svg>
           </div>
           <div class="info-details">
-            <h3>أرقام المبيعات والاستفسارات</h3>
-            <p>اتصل بنا مباشرة للحصول على الاستشارة وحجز موعد المعاينة:</p>
-            <a href="tel:+201061694024">01061694024</a> <br>
-            <a href="tel:+201061711439">01061711439</a>
+            <h3>أرقام المبيعات والاستفسارات المباشرة</h3>
+            <p>اتصل بنا للحصول على أفضل سعر وحجز موعد المعاينة والتركيب:</p>
+            <a href="tel:+201061694024" class="phone-link">01061694024</a>
+            <a href="tel:+201061711439" class="phone-link">01061711439</a>
           </div>
         </div>
 
-        <div class="info-card">
+        <div class="info-card" data-tilt>
           <div class="info-icon">
             <svg class="icon-svg" viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
           </div>
           <div class="info-details">
-            <h3>البريد الإلكتروني</h3>
-            <p>راسلنا لاستفسارات الشركات والطلبات التجارية الكبيرة:</p>
-            <a href="mailto:ebadaragab@gmail.com">ebadaragab@gmail.com</a>
+            <h3>البريد الإلكتروني التجاري</h3>
+            <p>راسلنا لطلبات الشركات، المشروعات الكبرى والتعاقدات السنوية:</p>
+            <a href="mailto:ebadaragab@gmail.com" class="email-link">ebadaragab@gmail.com</a>
           </div>
         </div>
 
-        <div class="info-card">
+        <div class="info-card" data-tilt>
           <div class="info-icon">
             <svg class="icon-svg" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
           </div>
           <div class="info-details">
-            <h3>المقر الرئيسي للمكتب</h3>
-            <p>القليوبية القناطر الخيرية ارض المهندسين خلف بنك مصر</p>
-            <p class="working-hours" style="font-size: 0.8rem; color: var(--primary-orange); font-weight: 700; margin-top: 5px;">مواعيد العمل: يومياً من 10 صباحاً حتى 10 مساءً</p>
+            <h3>المقر الرئيسي والمعرض</h3>
+            <p>القليوبية - القناطر الخيرية - أرض المهندسين - خلف بنك مصر</p>
+            <p class="working-hours">مواعيد العمل: يومياً من 10:00 صباحاً حتى 10:00 مساءً</p>
           </div>
         </div>
       </div>
 
-      <div class="contact-form-wrapper">
+      <div class="contact-form-wrapper" data-tilt>
         <form class="contact-form" id="contactForm">
-          <h3>إرسال رسالة سريعة</h3>
+          <h3>إرسال استفسار سريع</h3>
           <div class="form-group">
             <label class="form-label" for="contactName">الاسم بالكامل</label>
             <input type="text" id="contactName" class="form-control" placeholder="اكتب اسمك هنا" required>
@@ -375,15 +639,18 @@
           </div>
           <div class="form-group">
             <label class="form-label" for="contactMsg">نص الرسالة أو الاستفسار</label>
-            <textarea id="contactMsg" class="form-control" placeholder="كيف يمكننا مساعدتك؟ اكتب تفاصيل استفسارك هنا..." required></textarea>
+            <textarea id="contactMsg" class="form-control" placeholder="كيف يمكننا مساعدتك؟ اكتب تفاصيل استفسارك أو المقايسة المطلوبة..." required></textarea>
           </div>
-          <button type="submit" class="btn btn-primary submit-btn">إرسال الرسالة</button>
+          <button type="submit" class="btn btn-primary submit-btn btn-glow">
+            <span>إرسال الرسالة</span>
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
+          </button>
         </form>
       </div>
     </div>
   </section>
 
-  <!-- الفوتر (Footer) -->
+  <!-- الفوتر الفاخر (Footer) -->
   <footer>
     <div class="footer-container">
       <div class="footer-brand">
@@ -395,8 +662,17 @@
           </div>
         </div>
         <p class="footer-brand-desc">
-          موزع ووكيل معتمد لأقوى الماركات العالمية (كاريير وميديا). نوفر أفضل المنتجات بأعلى معايير الجودة وخدمات ما بعد البيع.
+          موزع ووكيل معتمد لأقوى الماركات العالمية (كاريير وميديا). نوفر أفضل حلول التكييف بأعلى معايير الجودة وخدمات ما بعد البيع والدفع عند الاستلام.
         </p>
+        <div class="footer-accepted-payments">
+          <span class="accepted-title">طرق الدفع المدعومة:</span>
+          <div class="payment-mini-badges">
+            <span class="p-mini-badge">InstaPay</span>
+            <span class="p-mini-badge">Vodafone Cash</span>
+            <span class="p-mini-badge">Cash on Delivery</span>
+            <span class="p-mini-badge">Meeza / Visa</span>
+          </div>
+        </div>
       </div>
 
       <div class="footer-links-col">
@@ -404,6 +680,7 @@
         <ul class="footer-links-list">
           <li><a href="#home">الرئيسية</a></li>
           <li><a href="#store">تكييفات كاريير وميديا</a></li>
+          <li><a href="#payments">طرق الدفع والتقسيط</a></li>
           <li><a href="#maintenance">حجز صيانة فورية</a></li>
           <li><a href="#faq">الأسئلة الشائعة</a></li>
           <li><a href="#contact">تواصل معنا</a></li>
@@ -422,6 +699,10 @@
             <a href="tel:+201061711439">01061711439</a>
           </div>
           <div class="footer-contact-item">
+            <span class="icon">💬</span>
+            <a href="https://wa.me/201061694024" target="_blank">واتساب المبيعات</a>
+          </div>
+          <div class="footer-contact-item">
             <span class="icon">✉️</span>
             <a href="mailto:ebadaragab@gmail.com">ebadaragab@gmail.com</a>
           </div>
@@ -429,64 +710,109 @@
       </div>
     </div>
 
-    <div class="footer-bottom" style="display: flex; flex-direction: column; align-items: center; gap: 8px;">
+    <div class="footer-bottom">
       <p>© 2026 شركة تراي أنجل للتكييف والتبريد. جميع الحقوق محفوظة لـ <strong>Triangle Air Conditioning</strong>.</p>
-      <div class="developer-credits" style="font-size: 0.85rem; color: #b0b0b0;">
+      <div class="developer-credits">
         تم تطوير هذا الموقع بواسطة 
-        <a href="https://www.facebook.com/share/1KyFd4BL9j/" target="_blank" style="color: #ff9800; text-decoration: none; font-weight: bold; transition: color 0.3s;">
+        <a href="https://www.facebook.com/share/1KyFd4BL9j/" target="_blank">
           ahmed ibrahim
         </a>
       </div>
     </div>
   </footer>
 
-  <!-- نافذة الطلب المنبثقة (Order Modal) -->
-  <div class="modal-overlay" id="orderModal">
-    <div class="modal-content">
+  <!-- =========================================================================
+       نافذة الطلب المنبثقة ثلاثية الأبعاد الفاخرة (Order Modal with 3D Payment Selector)
+       ========================================================================= -->
+  <div class="modal-overlay" id="orderModal" role="dialog" aria-modal="true">
+    <div class="modal-content modal-3d">
       <div class="modal-header">
-        <h2 class="modal-title">طلب تكييف جديد</h2>
+        <div class="modal-header-title-box">
+          <span class="modal-badge-tag">طلب تكييف فوري</span>
+          <h2 class="modal-title">إتمام حجز التكييف</h2>
+        </div>
         <button class="modal-close-btn" id="modalCloseBtn" aria-label="إغلاق">&times;</button>
       </div>
       
       <div class="modal-body">
-        <div class="selected-product-summary">
+        
+        <!-- ملخص المنتج المختار -->
+        <div class="selected-product-summary" data-tilt>
           <div class="selected-product-info">
             <span class="selected-product-name" id="modalAcName">تكييف كاريير أوبتيماكس</span>
-            <span class="selected-product-meta" id="modalAcMeta">1.5 حصان | بارد فقط</span>
+            <span class="selected-product-meta" id="modalAcMeta">1.5 حصان | بارد فقط | إنفرتر موفر</span>
           </div>
-          <span class="selected-product-price" id="modalAcPrice">32,500 ج.م</span>
+          <div class="selected-product-price-box">
+            <span class="price-small-lbl">السعر الإجمالي:</span>
+            <span class="selected-product-price" id="modalAcPrice">32,500 ج.م</span>
+          </div>
         </div>
 
+        <!-- صندوق اختيار طريقة الدفع مع لوجو الشركات الحقيقي -->
         <div class="payment-methods-box">
-          <label class="form-label" style="margin-bottom: 12px; display: block;">اختر طريقة الدفع *</label>
-          <div class="payment-options">
+          <div class="payment-box-header">
+            <label class="form-label">اختر طريقة الدفع المناسبة لك *</label>
+            <span class="payment-active-indicator" id="modalSelectedPaymentLabel">كاش عند الاستلام</span>
+          </div>
+
+          <div class="payment-options modal-payment-grid">
+            
+            <!-- خيار 1: كاش عند الاستلام -->
             <label class="payment-option">
-              <input type="radio" name="paymentMethod" value="كاش عند الاستلام (Cash on Delivery)" checked required>
+              <input type="radio" name="paymentMethod" value="كاش عند الاستلام (Cash on Delivery)" checked required data-brand="cod">
               <span class="payment-card">
-                <span class="payment-icon">💵</span>
+                <span class="payment-check-mark">✓</span>
+                <span class="payment-logo-icon cod-icon-bg">
+                  <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M21 18v1c0 1.1-.9 2-2 2H5c-1.11 0-2-.9-2-2V5c0-1.1.89-2 2-2h14c1.1 0 2 .9 2 2v1h-9c-1.11 0-2 .9-2 2v8c0 1.1.89 2 2 2h9zm-9-2h10V8H12v8zm4-2.5c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"/></svg>
+                </span>
                 <span class="payment-name">كاش عند الاستلام</span>
-                <span class="payment-desc">ادفع بعد التركيب والمعاينة</span>
+                <span class="payment-desc">ادفع بعد التركيب والتجربة بالموقع</span>
               </span>
             </label>
+
+            <!-- خيار 2: إنستا باي -->
             <label class="payment-option">
-              <input type="radio" name="paymentMethod" value="إنستا باي (Instapay)">
+              <input type="radio" name="paymentMethod" value="إنستا باي (InstaPay - IPN)" data-brand="instapay">
               <span class="payment-card">
-                <span class="payment-icon">📲</span>
-                <span class="payment-name">إنستا باي</span>
-                <span class="payment-desc">تحويل فوري عبر إنستا باي</span>
+                <span class="payment-check-mark">✓</span>
+                <span class="payment-logo-icon instapay-icon-bg">
+                  <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><circle cx="12" cy="12" r="10"/><polygon points="10,8 16,12 10,16" fill="#fff"/></svg>
+                </span>
+                <span class="payment-name">إنستا باي (InstaPay)</span>
+                <span class="payment-desc">تحويل فوري لحظي برقم الموبايل أو IPA</span>
               </span>
             </label>
+
+            <!-- خيار 3: فودافون كاش ومحافظ المحمول -->
             <label class="payment-option">
-              <input type="radio" name="paymentMethod" value="فودافون كاش (Vodafone Cash)">
+              <input type="radio" name="paymentMethod" value="فودافون كاش والمحافظ الإلكترونية (Vodafone Cash)" data-brand="vodafone">
               <span class="payment-card">
-                <span class="payment-icon">📱</span>
-                <span class="payment-name">فودافون كاش</span>
-                <span class="payment-desc">تحويل عبر فودافون كاش</span>
+                <span class="payment-check-mark">✓</span>
+                <span class="payment-logo-icon vodafone-icon-bg">
+                  <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 14.5c-2.48 0-4.5-2.02-4.5-4.5S10.52 7.5 13 7.5c1.19 0 2.27.47 3.08 1.23l-1.42 1.42c-.44-.42-1.02-.65-1.66-.65-1.38 0-2.5 1.12-2.5 2.5s1.12 2.5 2.5 2.5c.87 0 1.63-.45 2.06-1.12H13v-2h4.88c.08.36.12.73.12 1.12 0 3.04-2.46 5.5-5.5 5.5z"/></svg>
+                </span>
+                <span class="payment-name">فودافون كاش ومحافظ</span>
+                <span class="payment-desc">تحويل سريع عبر المحفظة الذكية</span>
               </span>
             </label>
+
+            <!-- خيار 4: فيزا / ماستركارد / ميزة والتقسيط -->
+            <label class="payment-option">
+              <input type="radio" name="paymentMethod" value="بطاقة بنكية / تقسيط (Visa - MasterCard - Meeza)" data-brand="cards">
+              <span class="payment-card">
+                <span class="payment-check-mark">✓</span>
+                <span class="payment-logo-icon cards-icon-bg">
+                  <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M20 4H4c-1.11 0-1.99.89-1.99 2L2 18c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V6c0-1.11-.89-2-2-2zm0 14H4v-6h16v6zm0-10H4V6h16v2z"/></svg>
+                </span>
+                <span class="payment-name">فيزا / ميزة / تقسيط</span>
+                <span class="payment-desc">بطاقات بنكية أو تقسيط مع فاليو وأمان</span>
+              </span>
+            </label>
+
           </div>
         </div>
 
+        <!-- استمارة بيانات العميل -->
         <form id="orderForm">
           <input type="hidden" id="orderProductId">
           
@@ -496,38 +822,69 @@
           </div>
 
           <div class="form-group">
-            <label class="form-label" for="clientPhone">رقم هاتف العميل للتواصل *</label>
+            <label class="form-label" for="clientPhone">رقم هاتف العميل للتواصل والتأكيد *</label>
             <input type="tel" id="clientPhone" class="form-control" placeholder="رقم الموبايل (مثال: 01012345678)" required>
           </div>
 
           <div class="form-group">
-            <label class="form-label" for="clientAddress">العنوان بالتفصيل *</label>
+            <label class="form-label" for="clientAddress">العنوان بالتفصيل للتركيب *</label>
             <input type="text" id="clientAddress" class="form-control" placeholder="المحافظة، المدينة، اسم الشارع، رقم المبنى والشقة" required>
           </div>
 
           <div class="form-group">
-            <label class="form-label" for="clientNotes">ملاحظات إضافية (اختياري)</label>
-            <textarea id="clientNotes" class="form-control" placeholder="مثال: يرجى التوصيل بعد الساعة 4 مساءً، أو أي تفاصيل خاصة بموقع التركيب..."></textarea>
+            <label class="form-label" for="clientNotes">ملاحظات إضافية أو موعد المعاينة المفضل (اختياري)</label>
+            <textarea id="clientNotes" class="form-control" placeholder="مثال: يرجى الاتصال قبل الحضور، أو أي تفاصيل خاصة بموقع تركيب الوحدة الخارجية..."></textarea>
           </div>
 
-          <button type="submit" class="btn btn-primary submit-btn" style="margin-top: 15px;">
-            <svg class="icon-svg" viewBox="0 0 24 24" style="width:18px;height:18px;margin-left:5px;"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
-            تأكيد الطلب عبر الواتساب
+          <button type="submit" class="btn btn-primary submit-btn btn-glow" style="margin-top: 15px; width: 100%;">
+            <svg class="icon-svg" viewBox="0 0 24 24" style="width:20px;height:20px;margin-left:8px;fill:currentColor;"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
+            تأكيد الطلب وحجز الجهاز عبر الواتساب
           </button>
         </form>
       </div>
     </div>
   </div>
 
+  <!-- الأزرار العائمة الفاخرة للاتصال السريع والصعود لأعلى -->
+  <div class="floating-actions-suite" aria-label="أزرار التواصل السريع">
+    
+    <!-- زر الواتساب العائم مع نبض الرادار -->
+    <a href="https://wa.me/201061694024" target="_blank" class="floating-btn floating-whatsapp" aria-label="محادثة واتساب">
+      <span class="radar-pulse"></span>
+      <svg viewBox="0 0 24 24" width="28" height="28" fill="currentColor">
+        <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397.01 12.008.01c3.202.001 6.212 1.246 8.477 3.514 2.266 2.268 3.507 5.28 3.505 8.484-.004 6.657-5.34 11.997-11.953 11.997-2.005-.001-3.973-.502-5.73-1.466L0 24zm6.59-4.846c1.6.95 2.8 1.458 4.825 1.459 5.55 0 10.061-4.512 10.063-10.066.002-2.69-1.043-5.22-2.94-7.119C16.699 1.529 14.18 .483 11.997.484 6.444.484 1.932 4.997 1.93 10.553c-.001 2.03.527 3.255 1.492 4.922L2.44 21.56l6.207-1.628zM17.5 14.5c-.3-.15-1.78-.88-2.05-.98-.28-.1-.48-.15-.68.15-.2.3-.78.98-.95 1.18-.18.2-.35.23-.65.08-1.02-.51-1.74-.91-2.42-1.58-.57-.56-1.12-1.22-1.3-1.53-.18-.3-.02-.46.13-.61.14-.14.3-.35.45-.53.15-.18.2-.3.3-.5.1-.2.05-.38-.02-.53-.07-.15-.68-1.63-.93-2.24-.25-.61-.51-.53-.68-.53h-.58c-.2 0-.53.07-.8.38-.28.3-1.08 1.05-1.08 2.57 0 1.52 1.1 3 1.25 3.2.15.2 2.16 3.3 5.24 4.63.73.3 1.3.49 1.75.63.74.24 1.4.2 1.93.12.59-.09 1.78-.73 2.03-1.43.25-.7.25-1.3.17-1.43-.08-.13-.28-.2-.58-.35z"/>
+      </svg>
+      <span class="floating-tooltip">تواصل عبر واتساب</span>
+    </a>
+
+    <!-- زر الاتصال الهاتفي السريع -->
+    <a href="tel:+201061694024" class="floating-btn floating-phone" aria-label="اتصال فوري">
+      <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
+        <path d="M20.01 15.38c-1.23 0-2.42-.2-3.53-.56a.977.977 0 0 0-1.01.24l-2.2 2.2a15.045 15.045 0 0 1-6.59-6.59l2.2-2.21c.28-.26.36-.65.25-1A11.36 11.36 0 0 0 8.5 4c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1 0 9.39 7.61 17 17 17 .55 0 1-.45 1-1v-3.5c0-.55-.45-1-1-1z"/>
+      </svg>
+      <span class="floating-tooltip">اتصل بالمهندس مباشرة</span>
+    </a>
+
+    <!-- زر الصعود لأعلى مع مؤشر التقدم الدائري -->
+    <button class="floating-btn floating-backtop" id="backToTopBtn" aria-label="الرجوع لأعلى الصفحة">
+      <svg class="progress-ring" viewBox="0 0 36 36">
+        <path class="progress-ring-bg" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
+        <path class="progress-ring-circle" id="scrollProgressCircle" stroke-dasharray="100, 100" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
+      </svg>
+      <span class="arrow-up">▲</span>
+    </button>
+  </div>
+
+  <!-- التنبيه العائم الفاخر (Toast Notification) -->
   <div class="toast-success" id="toastSuccess">
-    <span>✓</span>
+    <span class="toast-check">✓</span>
     <span id="toastSuccessMsg">تم إرسال طلبك بنجاح وجاري فتح الواتساب!</span>
   </div>
 
   <script src="products.js"></script>
   <script src="app.js"></script>
 
-  <!-- كود ربط وإصلاح أزرار متجر التكييفات لتعمل بشكل فوري وديناميكي -->
+  <!-- كود ربط أزرار التبويب وتأكيد التفاعل الفوري -->
   <script>
     document.addEventListener("DOMContentLoaded", function() {
       const tabs = document.querySelectorAll('.brand-tab-btn');
