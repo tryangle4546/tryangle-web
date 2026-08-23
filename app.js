@@ -970,21 +970,21 @@ function initIntroAndScrollReveal() {
     entryTargets.forEach((element, index) => {
       setTimeout(() => {
         element.classList.add("revealed");
-      }, 120 + (index * 80));
+      }, 300 + (index * 95));
     });
 
     if (preloader) {
         setTimeout(() => {
           preloader.classList.add("fade-out");
-        }, 460);
+        }, 1900);
         setTimeout(() => {
           preloader.remove();
-        }, 1080);
+        }, 2550);
     }
   }
 
   requestAnimationFrame(() => {
-    setTimeout(startIntro, 120);
+    setTimeout(startIntro, 180);
   });
 
   const revealElements = document.querySelectorAll(".scroll-reveal");
