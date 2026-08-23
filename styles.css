@@ -3620,3 +3620,15 @@ header.header-scrolled .brand-logo-image,
     animation: none !important;
   }
 }
+
+/* Clean transparent logo treatment */
+.brand-logo-image,
+.preloader-logo-image {
+  mix-blend-mode: normal !important;
+  background: transparent !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+}
+.preloader-logo-wrapper {
+  aspect-ratio: 1280 / 241;
+}
