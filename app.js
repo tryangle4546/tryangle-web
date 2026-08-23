@@ -974,12 +974,12 @@ function initIntroAndScrollReveal() {
     });
 
     if (preloader) {
-      setTimeout(() => {
-        preloader.classList.add("fade-out");
-      }, 120);
-      setTimeout(() => {
-        preloader.remove();
-      }, 700);
+        setTimeout(() => {
+          preloader.classList.add("fade-out");
+        }, 460);
+        setTimeout(() => {
+          preloader.remove();
+        }, 1080);
     }
   }
 

@@ -2909,3 +2909,276 @@ header.header-scrolled .brand-logo-image {
     animation: none !important;
   }
 }
+
+
+/* ============================================================================
+   معايرة بصرية نهائية — وضوح الشعار وواجهة 3D
+   ============================================================================ */
+.entry-header {
+  isolation: isolate;
+}
+
+.logo {
+  position: relative;
+  z-index: 3;
+  flex: 0 0 auto;
+}
+
+.brand-logo-image {
+  width: 238px;
+  max-width: 24vw;
+  max-height: 58px;
+  height: auto;
+  padding: 2px 5px;
+  background: #050608;
+  border: 1px solid rgba(143, 232, 255, 0.14);
+  border-radius: 8px;
+  mix-blend-mode: normal;
+  object-fit: contain;
+  filter: drop-shadow(0 0 10px rgba(0, 180, 216, 0.34)) drop-shadow(0 4px 8px rgba(0, 0, 0, 0.35));
+}
+
+header.header-scrolled .brand-logo-image {
+  width: 210px;
+  max-height: 50px;
+}
+
+.preloader-logo-wrapper {
+  width: min(520px, 88vw);
+  padding: 5px 8px;
+  border-radius: 18px;
+  background: linear-gradient(135deg, rgba(0, 98, 172, 0.16), rgba(243, 146, 0, 0.1));
+  border: 1px solid rgba(143, 232, 255, 0.18);
+  box-shadow: 0 24px 80px rgba(0, 98, 172, 0.22), inset 0 0 30px rgba(255, 255, 255, 0.04);
+  animation: preloaderLogoEntrance 1.15s cubic-bezier(0.16, 1, 0.3, 1) both, logoFloat 4s ease-in-out 1.15s infinite;
+}
+
+.preloader-logo-image {
+  border-radius: 10px;
+  transform: perspective(1000px) rotateX(7deg) rotateY(-8deg) scale(0.96);
+  animation: logo3DReveal 1.15s cubic-bezier(0.16, 1, 0.3, 1) 0.08s both, logoSheen 3.2s ease-in-out 1.3s infinite;
+}
+
+.preloader-text {
+  animation: preloaderTextReveal 0.8s ease-out 0.42s both;
+}
+
+.preloader-progress {
+  animation: preloaderTextReveal 0.8s ease-out 0.58s both;
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  left: -12%;
+  bottom: -36%;
+  width: 72%;
+  height: 72%;
+  border-radius: 50%;
+  background: radial-gradient(ellipse, rgba(0, 180, 216, 0.14), transparent 64%);
+  transform: rotateX(62deg) rotateZ(-12deg);
+  filter: blur(2px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(115deg, transparent 35%, rgba(143, 232, 255, 0.035) 50%, transparent 65%);
+  background-size: 220% 100%;
+  animation: heroLightSweep 9s ease-in-out infinite;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.hero-3d-scene {
+  left: 4%;
+  bottom: 9%;
+  width: 350px;
+  height: 255px;
+  opacity: 0.96;
+  filter: drop-shadow(0 25px 28px rgba(0, 0, 0, 0.3));
+  transform-origin: 50% 80%;
+}
+
+.hero-3d-unit {
+  width: 225px;
+  height: 90px;
+  left: 14%;
+  top: 20%;
+  box-shadow: 20px 28px 32px rgba(0, 0, 0, 0.42), inset 0 2px 0 rgba(255, 255, 255, 0.95), 0 0 32px rgba(0, 180, 216, 0.25);
+}
+
+.hero-3d-air {
+  left: 23%;
+  top: 55%;
+  width: 126px;
+  height: 88px;
+}
+
+.hero-3d-glow {
+  left: 7%;
+  top: 18%;
+  width: 245px;
+  height: 135px;
+  background: rgba(0, 180, 216, 0.22);
+  filter: blur(34px);
+}
+
+.hero-3d-scene::after {
+  content: "بارد • ساخن • إنفرتر";
+  position: absolute;
+  left: 4%;
+  bottom: 2%;
+  color: rgba(143, 232, 255, 0.74);
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 1px;
+  text-shadow: 0 0 12px rgba(0, 180, 216, 0.7);
+  opacity: 0.9;
+}
+
+@keyframes preloaderLogoEntrance {
+  from { opacity: 0; transform: translateY(24px) scale(0.78) rotateX(16deg); }
+  to { opacity: 1; transform: translateY(0) scale(1) rotateX(0deg); }
+}
+
+@keyframes logo3DReveal {
+  from { opacity: 0; transform: perspective(1000px) rotateX(28deg) rotateY(-22deg) scale(0.82); }
+  to { opacity: 1; transform: perspective(1000px) rotateX(7deg) rotateY(-8deg) scale(0.96); }
+}
+
+@keyframes preloaderTextReveal {
+  from { opacity: 0; transform: translateY(9px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes heroLightSweep {
+  0%, 35% { background-position: 180% 0; }
+  65%, 100% { background-position: -80% 0; }
+}
+
+@media (max-width: 992px) {
+  .brand-logo-image {
+    width: 200px;
+    max-width: 28vw;
+  }
+
+  header.header-scrolled .brand-logo-image {
+    width: 180px;
+  }
+
+  .hero-3d-scene {
+    left: 1%;
+    opacity: 0.7;
+    transform: scale(0.86);
+  }
+}
+
+@media (max-width: 768px) {
+  .brand-logo-image,
+  header.header-scrolled .brand-logo-image {
+    width: 178px;
+    max-width: 43vw;
+    max-height: 43px;
+  }
+
+  .hero-3d-scene {
+    left: 50%;
+    bottom: 1%;
+    width: 300px;
+    height: 220px;
+    opacity: 0.48;
+    transform: translateX(-50%) scale(0.72);
+  }
+
+  .hero-3d-scene::after {
+    display: none;
+  }
+
+  .hero::before {
+    left: -40%;
+    width: 150%;
+  }
+}
+
+@media (max-width: 390px) {
+  .brand-logo-image,
+  header.header-scrolled .brand-logo-image {
+    width: 154px;
+    max-width: 48vw;
+    max-height: 37px;
+  }
+
+  .hero-3d-scene {
+    transform: translateX(-50%) scale(0.58);
+    opacity: 0.36;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .preloader-logo-wrapper,
+  .preloader-logo-image,
+  .preloader-text,
+  .preloader-progress,
+  .hero::after {
+    animation: none !important;
+  }
+}
+
+
+/* وضوح إضافي للوجو الرسمي داخل الهيدر والفوتر */
+.entry-header .brand-logo-image {
+  width: 292px;
+  max-width: 31vw;
+  max-height: 64px;
+  padding: 2px 7px;
+  border-color: rgba(143, 232, 255, 0.28);
+  box-shadow: 0 0 18px rgba(0, 98, 172, 0.24), inset 0 0 12px rgba(255, 255, 255, 0.05);
+}
+
+.footer-brand .brand-logo-image {
+  width: 270px;
+  max-width: 100%;
+  max-height: 62px;
+}
+
+header.header-scrolled .brand-logo-image {
+  width: 250px;
+  max-width: 28vw;
+  max-height: 56px;
+}
+
+@media (max-width: 992px) {
+  .entry-header .brand-logo-image {
+    width: 230px;
+    max-width: 30vw;
+    max-height: 52px;
+  }
+
+  header.header-scrolled .brand-logo-image {
+    width: 215px;
+    max-width: 28vw;
+    max-height: 48px;
+  }
+}
+
+@media (max-width: 768px) {
+  .entry-header .brand-logo-image,
+  header.header-scrolled .brand-logo-image {
+    width: 195px;
+    max-width: 45vw;
+    max-height: 46px;
+  }
+}
+
+@media (max-width: 390px) {
+  .entry-header .brand-logo-image,
+  header.header-scrolled .brand-logo-image {
+    width: 170px;
+    max-width: 49vw;
+    max-height: 40px;
+  }
+}
