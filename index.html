@@ -18,7 +18,7 @@
     <div class="preloader-content">
       <div class="preloader-kicker">أهلاً بك في</div>
       <div class="preloader-logo-wrapper">
-        <div class="preloader-logo-badge"></div>
+        <img class="preloader-logo-image" src="assets/tryangle-official-logo.jpg" alt="تراي أنجل للتكييف والتبريد">
       </div>
       <div class="preloader-text">تراي أنجل للتكييف والصيانة</div>
       <div class="preloader-progress" aria-hidden="true"><span></span></div>
@@ -29,12 +29,8 @@
   <header class="glass entry-header">
     <div class="nav-container">
       <!-- الشعار الأصلي -->
-      <a href="#home" class="logo">
-        <div class="logo-badge"></div>
-        <div class="logo-text">
-          <span class="logo-main">تراي أنجل</span>
-          <span class="logo-sub">للتكييف والتبريد</span>
-        </div>
+      <a href="#home" class="logo" aria-label="تراي أنجل للتكييف والتبريد - الرئيسية">
+        <img class="brand-logo-image" src="assets/tryangle-official-logo.jpg" alt="تراي أنجل للتكييف والتبريد">
       </a>
 
       <!-- القائمة -->
@@ -67,6 +63,16 @@
   <!-- القسم الرئيسي (Home / Hero) مع جزيئات التبريد التفاعلية في الخلفية -->
   <section class="hero" id="home">
     <canvas id="heroAirCanvas" class="hero-air-canvas" aria-hidden="true"></canvas>
+
+    <div class="hero-3d-scene" aria-hidden="true">
+      <span class="hero-3d-glow"></span>
+      <span class="hero-3d-unit"></span>
+      <span class="hero-3d-side"></span>
+      <span class="hero-3d-air"></span>
+      <span class="hero-3d-particle"></span>
+      <span class="hero-3d-particle"></span>
+      <span class="hero-3d-particle"></span>
+    </div>
 
     <div class="hero-container" style="justify-content: center; text-align: center;">
       <div class="hero-content" style="max-width: 850px; margin: 0 auto;">
@@ -432,11 +438,7 @@
       <div class="footer-brand">
         <!-- الشعار الأصلي -->
         <div class="logo">
-          <div class="logo-badge"></div>
-          <div class="logo-text">
-            <span class="logo-main">تراي أنجل</span>
-            <span class="logo-sub">للتكييف والتبريد</span>
-          </div>
+          <img class="brand-logo-image" src="assets/tryangle-official-logo.jpg" alt="تراي أنجل للتكييف والتبريد">
         </div>
         <p class="footer-brand-desc">
           موزع ووكيل معتمد لأقوى الماركات العالمية (كاريير وميديا). نوفر أفضل المنتجات بأعلى معايير الجودة وخدمات ما بعد البيع.
