@@ -1,6 +1,7 @@
 /* ==========================================================================
    1. استيراد الخطوط والتهيئة العامة ونظام الألوان (Theme & Variables)
    ========================================================================== */
+/* فلسفة الملف: واجهة الخدمة الموثوقة — الهاتف أولًا، لا تمدد أفقي، بطاقات واضحة، ومسافات مريحة مع الحفاظ على هوية الأزرق والبرتقالي. */
 @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&display=swap');
 
 :root {
@@ -1784,5 +1785,800 @@ footer {
   .footer-container {
     grid-template-columns: 1fr;
     gap: 30px;
+  }
+}
+
+
+/* ==========================================================================
+   15. حزمة إصلاح الهاتف — واجهة الخدمة الموثوقة
+   الهدف: منع القص والتمدد الأفقي، وترتيب كل صفوف المنتج والنوافذ المنبثقة على شاشات اللمس.
+   ========================================================================== */
+html {
+  overflow-x: hidden;
+  scroll-padding-top: 76px;
+}
+
+body {
+  overflow-x: hidden;
+  max-width: 100%;
+}
+
+img,
+svg,
+video,
+canvas {
+  max-width: 100%;
+}
+
+.hero {
+  background-image:
+    linear-gradient(180deg, rgba(7, 12, 18, 0.32), rgba(8, 10, 13, 0.78)),
+    url('assets/tryangle-hero-atmosphere_dbd79ad4.jpg'),
+    radial-gradient(circle at 80% 20%, rgba(0, 98, 172, 0.25) 0%, transparent 40%),
+    radial-gradient(circle at 20% 80%, rgba(243, 146, 0, 0.15) 0%, transparent 40%);
+  background-position: center;
+  background-size: cover;
+}
+
+.logo-badge {
+  background: url('assets/tryangle-mark_446a11c6.png') center / contain no-repeat;
+  clip-path: none;
+  filter: drop-shadow(0 0 6px rgba(0, 98, 172, 0.42));
+}
+
+.features-section {
+  background-image: linear-gradient(rgba(245, 247, 250, 0.9), rgba(245, 247, 250, 0.96)), url('assets/tryangle-service-texture_8a58d7e3.jpg');
+  background-size: cover;
+  background-position: center;
+}
+
+@media (max-width: 768px) {
+  :root {
+    --mobile-gutter: clamp(14px, 4vw, 20px);
+  }
+
+  header,
+  header.header-scrolled {
+    height: 70px;
+  }
+
+  .nav-container {
+    padding-inline: var(--mobile-gutter);
+    gap: 10px;
+  }
+
+  .logo {
+    min-width: 0;
+    gap: 8px;
+  }
+
+  .logo-text {
+    min-width: 0;
+  }
+
+  .logo-main {
+    font-size: clamp(0.98rem, 4.6vw, 1.2rem);
+    white-space: nowrap;
+  }
+
+  .logo-sub {
+    font-size: clamp(0.59rem, 2.8vw, 0.72rem);
+    white-space: nowrap;
+  }
+
+  .logo-badge {
+    flex: 0 0 28px;
+    width: 28px;
+    height: 28px;
+  }
+
+  .nav-actions {
+    flex: 0 0 auto;
+    gap: 8px;
+  }
+
+  .nav-btn-call {
+    padding: 9px 12px;
+    gap: 5px;
+    font-size: 0.78rem;
+    white-space: nowrap;
+  }
+
+  .menu-toggle {
+    flex: 0 0 auto;
+    padding: 7px 4px;
+  }
+
+  .nav-menu {
+    top: 70px;
+    right: -100%;
+    width: min(290px, 86vw);
+    height: calc(100dvh - 70px);
+    padding: 26px 22px max(26px, env(safe-area-inset-bottom));
+    overflow-y: auto;
+  }
+
+  .hero {
+    min-height: max(620px, 100svh);
+    padding-top: 104px;
+    padding-bottom: 42px;
+    background-position: 58% center;
+  }
+
+  .hero-container {
+    padding-inline: var(--mobile-gutter);
+  }
+
+  .hero-content {
+    max-width: 100% !important;
+  }
+
+  .authorized-badge {
+    max-width: 100%;
+    justify-content: center;
+    padding: 6px 12px;
+    font-size: 0.76rem;
+    line-height: 1.6;
+    text-align: center;
+  }
+
+  .hero-title {
+    max-width: 100%;
+    margin-inline: auto;
+    font-size: clamp(1.82rem, 8.4vw, 2.2rem);
+    line-height: 1.35;
+    overflow-wrap: anywhere;
+  }
+
+  .hero-description {
+    max-width: 100%;
+    font-size: 0.92rem;
+    line-height: 1.95;
+    overflow-wrap: anywhere;
+  }
+
+  .hero-cta {
+    width: 100%;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .hero-cta .btn {
+    width: 100%;
+    min-height: 48px;
+    justify-content: center;
+  }
+
+  .social-links {
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 22px !important;
+  }
+
+  .social-icons {
+    justify-content: center;
+  }
+
+  .features-section,
+  .store-section,
+  .faq-section,
+  .maintenance-section,
+  .contact-section {
+    padding-inline: var(--mobile-gutter);
+  }
+
+  .section-header {
+    padding-inline: 0;
+  }
+
+  .section-title {
+    font-size: clamp(1.45rem, 7vw, 2rem);
+    line-height: 1.45;
+    overflow-wrap: anywhere;
+  }
+
+  .section-desc {
+    font-size: 0.92rem;
+    line-height: 1.85;
+  }
+
+  .brand-tabs-container {
+    width: 100%;
+    justify-content: flex-start;
+    gap: 10px;
+    margin-bottom: 24px;
+    padding: 4px 2px 10px;
+    overflow-x: auto;
+    overscroll-behavior-inline: contain;
+    scrollbar-width: thin;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .brand-tabs-container::-webkit-scrollbar {
+    height: 4px;
+  }
+
+  .brand-tabs-container::-webkit-scrollbar-thumb {
+    background: rgba(0, 98, 172, 0.28);
+    border-radius: 10px;
+  }
+
+  .brand-tab-btn {
+    flex: 0 0 auto;
+    min-height: 48px;
+    padding: 10px 18px;
+    font-size: 0.95rem;
+    white-space: nowrap;
+  }
+
+  .brand-logo-svg {
+    width: 62px !important;
+    height: 20px !important;
+    margin-left: 6px !important;
+  }
+
+  .products-grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 18px;
+    width: 100%;
+  }
+
+  .product-card {
+    min-width: 0;
+    width: 100%;
+    border-radius: 16px;
+  }
+
+  .product-img-wrapper {
+    padding: 12px;
+  }
+
+  .product-image-stage {
+    height: clamp(174px, 48vw, 210px);
+  }
+
+  .product-img {
+    width: 100%;
+    max-width: 100%;
+    max-height: clamp(132px, 38vw, 172px);
+  }
+
+  .product-gallery-count {
+    top: 10px;
+    left: 10px;
+    font-size: 0.68rem;
+  }
+
+  .product-badges {
+    top: 10px;
+    right: 10px;
+    max-width: 43%;
+  }
+
+  .badge-inverter,
+  .badge-type {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-size: 0.66rem;
+  }
+
+  .gallery-nav {
+    width: 34px;
+    height: 34px;
+    font-size: 1rem;
+  }
+
+  .gallery-prev {
+    right: 6px;
+  }
+
+  .gallery-next {
+    left: 6px;
+  }
+
+  .product-thumbnails {
+    max-width: 100%;
+    gap: 5px;
+    overflow-x: auto;
+    justify-content: flex-start;
+    padding: 2px 4px 4px;
+  }
+
+  .product-thumb {
+    flex: 0 0 44px;
+    width: 44px;
+    height: 34px;
+  }
+
+  .product-info {
+    min-width: 0;
+    padding: 16px;
+  }
+
+  .variant-selector-wrapper {
+    align-items: stretch;
+    flex-direction: column;
+    gap: 7px;
+    padding: 10px;
+  }
+
+  .variant-select {
+    width: 100%;
+    min-height: 42px;
+    font-size: 0.88rem;
+  }
+
+  .product-model-row {
+    align-items: stretch;
+    flex-direction: column;
+    gap: 4px;
+    padding-block: 3px;
+    line-height: 1.6;
+  }
+
+  .product-model-row span,
+  .product-name,
+  .product-spec-item,
+  .product-spec-item strong,
+  .product-features-list li {
+    overflow-wrap: anywhere;
+    word-break: break-word;
+  }
+
+  .product-name {
+    font-size: 1.07rem;
+    line-height: 1.65;
+  }
+
+  .product-specs {
+    padding: 10px;
+  }
+
+  .product-specs-grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 8px;
+  }
+
+  .product-spec-item {
+    display: grid;
+    grid-template-columns: minmax(0, 0.86fr) minmax(0, 1.14fr);
+    align-items: start;
+    gap: 8px;
+    line-height: 1.55;
+  }
+
+  .product-spec-item strong {
+    text-align: left;
+  }
+
+  .product-features-list {
+    gap: 7px;
+  }
+
+  .product-features-list li {
+    font-size: 0.82rem;
+    line-height: 1.85;
+  }
+
+  .product-footer {
+    align-items: stretch;
+    flex-direction: column;
+    gap: 12px;
+    padding-top: 16px;
+  }
+
+  .price-container {
+    align-items: flex-start;
+  }
+
+  .order-btn {
+    width: 100%;
+    min-height: 46px;
+  }
+
+  .selected-product-summary {
+    min-width: 0;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+  }
+
+  .selected-product-summary img {
+    width: 100%;
+    max-height: 150px;
+    object-fit: contain;
+  }
+
+  .payment-options {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 10px;
+  }
+
+  .payment-card {
+    min-width: 0;
+  }
+
+  .form-grid {
+    min-width: 0;
+  }
+
+  input,
+  select,
+  textarea {
+    max-width: 100%;
+    min-width: 0;
+    font-size: 16px;
+  }
+
+  .floating-actions-suite {
+    left: max(12px, env(safe-area-inset-left));
+    bottom: calc(14px + env(safe-area-inset-bottom));
+    gap: 8px;
+  }
+
+  .floating-btn {
+    width: 48px;
+    height: 48px;
+  }
+
+  .floating-tooltip {
+    display: none;
+  }
+
+  .toast-success {
+    left: 16px;
+    right: 16px;
+    bottom: -120px;
+    width: auto;
+    transform: none;
+    justify-content: center;
+    text-align: center;
+    padding: 12px 16px;
+    border-radius: 16px;
+    font-size: 0.82rem;
+    line-height: 1.6;
+  }
+
+  .toast-success.show {
+    bottom: calc(16px + env(safe-area-inset-bottom));
+  }
+}
+
+@media (max-width: 390px) {
+  .nav-container {
+    padding-inline: 12px;
+  }
+
+  .logo {
+    gap: 6px;
+  }
+
+  .logo-badge {
+    flex-basis: 25px;
+    width: 25px;
+    height: 25px;
+  }
+
+  .logo-main {
+    font-size: 0.92rem;
+  }
+
+  .logo-sub {
+    font-size: 0.56rem;
+  }
+
+  .nav-btn-call {
+    padding-inline: 9px;
+    font-size: 0.72rem;
+  }
+
+  .menu-toggle span {
+    width: 22px;
+  }
+
+  .hero-title {
+    font-size: 1.75rem;
+  }
+
+  .product-info {
+    padding: 14px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+
+/* تحسين إضافي للهاتف: إظهار تبويبي العلامات كاملين بدل ترك أحدهما خارج الشاشة. */
+@media (max-width: 768px) {
+  .brand-tabs-container {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+    overflow: visible;
+    padding-inline: 0;
+  }
+
+  .brand-tab-btn {
+    width: 100%;
+    min-width: 0;
+    justify-content: center;
+    padding-inline: 8px;
+  }
+}
+
+@media (max-width: 390px) {
+  .brand-tab-btn {
+    flex-direction: column;
+    gap: 3px;
+    min-height: 66px;
+    padding-block: 7px;
+    font-size: 0.77rem;
+  }
+
+  .brand-logo-svg {
+    width: 58px !important;
+    height: 18px !important;
+    margin: 0 !important;
+  }
+}
+
+
+/* ==========================================================================
+   16. نافذة الطلب والشعارات الأصلية — إصلاح الهاتف
+   فلسفة الملف: هوية واضحة، شعار مقروء، وبطاقة دفع لا تزاحم بيانات العميل.
+   ========================================================================== */
+.brand-logo-img {
+  flex: 0 0 auto;
+  width: 76px;
+  height: 30px;
+  object-fit: contain;
+  object-position: center;
+  border-radius: 5px;
+  background: #ffffff;
+}
+
+.brand-logo-carrier {
+  padding: 3px 5px;
+}
+
+.brand-logo-midea {
+  width: 78px;
+  padding: 2px 4px;
+}
+
+.payment-card {
+  display: grid;
+  grid-template-columns: 58px minmax(0, 1fr);
+  grid-template-areas:
+    "logo name"
+    "logo desc";
+  align-items: center;
+  column-gap: 12px;
+  text-align: right;
+  padding: 12px 14px 12px 38px;
+  min-height: 78px;
+}
+
+.payment-logo-container {
+  grid-area: logo;
+  width: 58px;
+  height: 46px;
+  margin: 0;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background: #f8fafc;
+}
+
+.payment-official-logo {
+  display: block;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  object-fit: contain;
+}
+
+.payment-logo-instapay {
+  padding: 4px;
+  background: #ffffff;
+}
+
+.payment-logo-vodafone {
+  object-fit: cover;
+  border-radius: 7px;
+}
+
+.payment-mark {
+  width: 42px;
+  height: 42px;
+  display: grid;
+  place-items: center;
+  border-radius: 10px;
+}
+
+.payment-mark-cash {
+  background: #fff3df;
+  border: 1px solid rgba(243, 146, 0, 0.35);
+  color: var(--primary-orange);
+}
+
+.payment-mark-icon {
+  width: 25px;
+  height: 25px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.7;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.payment-name {
+  grid-area: name;
+  min-width: 0;
+  margin: 0;
+  line-height: 1.45;
+  overflow-wrap: anywhere;
+}
+
+.payment-desc {
+  grid-area: desc;
+  min-width: 0;
+  margin: 0;
+  line-height: 1.55;
+  overflow-wrap: anywhere;
+}
+
+.payment-check {
+  top: 10px;
+  left: 10px;
+  z-index: 1;
+}
+
+body:has(#orderModal.active) .floating-actions-suite {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+@media (max-width: 768px) {
+  .modal-overlay {
+    align-items: flex-start;
+    padding: max(12px, env(safe-area-inset-top)) 10px max(12px, env(safe-area-inset-bottom));
+    overflow-y: auto;
+  }
+
+  .modal-content {
+    width: 100%;
+    max-width: 560px;
+    max-height: calc(100dvh - max(24px, env(safe-area-inset-top) + env(safe-area-inset-bottom)));
+    border-radius: 18px;
+  }
+
+  .modal-header {
+    padding: 16px 18px;
+  }
+
+  .modal-title {
+    font-size: 1.14rem;
+  }
+
+  .modal-body {
+    max-height: calc(100dvh - 86px - max(24px, env(safe-area-inset-top) + env(safe-area-inset-bottom)));
+    padding: 16px;
+    overscroll-behavior: contain;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .selected-product-summary {
+    align-items: stretch;
+    gap: 7px;
+    padding: 12px 14px;
+    margin-bottom: 16px;
+  }
+
+  .selected-product-name {
+    font-size: 0.96rem;
+    line-height: 1.6;
+  }
+
+  .selected-product-meta {
+    line-height: 1.6;
+  }
+
+  .selected-product-price {
+    font-size: 1.12rem;
+  }
+
+  .payment-methods-box {
+    margin-bottom: 18px;
+  }
+
+  .payment-options {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 10px;
+  }
+
+  .payment-card {
+    min-height: 76px;
+    grid-template-columns: 58px minmax(0, 1fr);
+    column-gap: 11px;
+    padding: 11px 13px 11px 40px;
+    border-radius: 14px;
+  }
+
+  .payment-logo-container {
+    width: 58px;
+    height: 44px;
+  }
+
+  .payment-name {
+    font-size: 0.93rem;
+  }
+
+  .payment-desc {
+    font-size: 0.75rem;
+  }
+
+  .payment-check {
+    top: 9px;
+    left: 9px;
+    width: 19px;
+    height: 19px;
+  }
+
+  #orderForm {
+    min-width: 0;
+  }
+
+  #orderForm .form-control {
+    width: 100%;
+    min-width: 0;
+  }
+
+  #orderForm .submit-btn {
+    min-height: 48px;
+    margin-top: 12px !important;
+  }
+}
+
+@media (max-width: 390px) {
+  .brand-logo-img {
+    width: 64px;
+    height: 25px;
+  }
+
+  .brand-logo-midea {
+    width: 66px;
+  }
+
+  .payment-card {
+    grid-template-columns: 52px minmax(0, 1fr);
+    column-gap: 9px;
+    padding-inline-start: 36px;
+  }
+
+  .payment-logo-container {
+    width: 52px;
+    height: 42px;
+  }
+
+  .payment-name {
+    font-size: 0.88rem;
+  }
+
+  .payment-desc {
+    font-size: 0.71rem;
   }
 }
