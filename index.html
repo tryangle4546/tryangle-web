@@ -6049,19 +6049,14 @@ footer {
   .hero-piece-airout { --to-left:31%; --to-top:45%; --to-width:39%; --to-height:17%; --from-x:-100px; --from-y:90px; --from-z:100px; --from-r:-5deg; }
   .hero-piece-compressor { --to-left:68%; --to-top:49%; --to-width:14%; --to-height:20%; --from-x:130px; --from-y:80px; --from-z:120px; --from-r:-8deg; }
   @media (max-width:700px) { .hero-assembly-piece { filter:brightness(1.04) drop-shadow(0 10px 12px rgba(0,0,0,.35)); } }
-  /* Preloader uses the same transparent component sprites; no full rectangular source image. */
-  .reference-source { display:none !important; }
-  .reference-assembly-sprites { position:absolute; inset:0; z-index:3; transform-style:preserve-3d; pointer-events:none; }
-  .reference-assembly-sprite { position:absolute; display:block; object-fit:contain; object-position:center; opacity:0; filter:saturate(1.06) contrast(1.06) brightness(1.02) drop-shadow(0 14px 22px rgba(0,0,0,.42)); transform:translate3d(var(--ref-x),var(--ref-y),var(--ref-z)) rotateZ(var(--ref-r)) scale(.94); transform-origin:center; animation:referenceSpriteAssemble 4.25s var(--ref-delay) cubic-bezier(.16,1,.3,1) both; }
-  .ref-shell { left:18%; top:24%; width:30%; height:24%; --ref-x:-92px; --ref-y:-36px; --ref-z:160px; --ref-r:-5deg; --ref-delay:.08s; }
-  .ref-chassis { left:34%; top:23%; width:27%; height:24%; --ref-x:52px; --ref-y:-46px; --ref-z:128px; --ref-r:4deg; --ref-delay:.18s; }
-  .ref-coil { left:25%; top:43%; width:28%; height:19%; --ref-x:-84px; --ref-y:62px; --ref-z:118px; --ref-r:-3deg; --ref-delay:.28s; }
-  .ref-blower { left:61%; top:25%; width:18%; height:27%; --ref-x:112px; --ref-y:-50px; --ref-z:148px; --ref-r:-7deg; --ref-delay:.38s; }
-  .ref-board { left:55%; top:54%; width:17%; height:16%; --ref-x:-106px; --ref-y:72px; --ref-z:135px; --ref-r:7deg; --ref-delay:.48s; }
-  .ref-outlet { left:16%; top:57%; width:35%; height:18%; --ref-x:-96px; --ref-y:92px; --ref-z:102px; --ref-r:-4deg; --ref-delay:.58s; }
-  .ref-compressor { left:49%; top:58%; width:14%; height:22%; --ref-x:126px; --ref-y:84px; --ref-z:122px; --ref-r:-8deg; --ref-delay:.68s; }
-  @keyframes referenceSpriteAssemble { 0% { opacity:0; } 14% { opacity:.98; } 100% { opacity:.98; transform:translate3d(0,0,0) rotateZ(0deg) scale(1); } }
-  @media (max-width:700px) { .reference-assembly-sprite { filter:brightness(1.03) drop-shadow(0 8px 14px rgba(0,0,0,.34)); } }
+  /* Cohesive reference scene: one real source, feathered into the page instead of exposed as a card. */
+  .reference-assembly-sprites, .hero-assembly-pieces { display:none !important; }
+  .reference-visual { overflow:visible; }
+  .reference-source { display:block !important; opacity:0; mix-blend-mode:screen; filter:saturate(.94) contrast(1.08) brightness(.88) drop-shadow(0 22px 40px rgba(54,202,255,.16)); -webkit-mask-image:radial-gradient(ellipse 68% 70% at 51% 49%, #000 40%, rgba(0,0,0,.92) 60%, rgba(0,0,0,.42) 76%, transparent 96%); mask-image:radial-gradient(ellipse 68% 70% at 51% 49%, #000 40%, rgba(0,0,0,.92) 60%, rgba(0,0,0,.42) 76%, transparent 96%); animation:cohesiveReferenceIn 4.8s cubic-bezier(.16,1,.3,1) both; }
+  @keyframes cohesiveReferenceIn { 0% { opacity:0; transform:scale(1.08) translate3d(0,18px,0); filter:saturate(.72) contrast(1.02) brightness(.54) blur(4px); } 18% { opacity:.92; } 70% { opacity:.78; } 100% { opacity:.72; transform:scale(1.01) translate3d(0,0,0); filter:saturate(.94) contrast(1.08) brightness(.88) blur(0); } }
+  .hero-reference-visual > img:first-child { -webkit-mask-image:radial-gradient(ellipse 70% 75% at 50% 48%, #000 38%, rgba(0,0,0,.9) 62%, rgba(0,0,0,.32) 82%, transparent 100%); mask-image:radial-gradient(ellipse 70% 75% at 50% 48%, #000 38%, rgba(0,0,0,.9) 62%, rgba(0,0,0,.32) 82%, transparent 100%); mix-blend-mode:screen; }
+  .hero-reference-final { opacity:.95 !important; }
+  @media (max-width:700px) { .reference-source { filter:saturate(.9) contrast(1.04) brightness(.82); } }
   </style>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -6084,15 +6079,7 @@ footer {
     </div>
     <div class="reference-viewer" aria-label="عرض تفاعلي لأجزاء تكييف هواء واقعية">
       <div class="reference-visual">
-        <div class="reference-assembly-sprites" aria-hidden="true">
-          <img class="reference-assembly-sprite ref-shell" src="assets/hvac-parts/front-shell.png" alt="" />
-          <img class="reference-assembly-sprite ref-chassis" src="assets/hvac-parts/main-chassis.png" alt="" />
-          <img class="reference-assembly-sprite ref-coil" src="assets/hvac-parts/heat-exchanger.png" alt="" />
-          <img class="reference-assembly-sprite ref-blower" src="assets/hvac-parts/cross-flow-blower.png" alt="" />
-          <img class="reference-assembly-sprite ref-board" src="assets/hvac-parts/inverter-pcb.png" alt="" />
-          <img class="reference-assembly-sprite ref-outlet" src="assets/hvac-parts/air-outlet.png" alt="" />
-          <img class="reference-assembly-sprite ref-compressor" src="assets/hvac-parts/compressor.png" alt="" />
-        </div>
+        <img class="reference-source" src="assets/ac_exploded_3d_reference.jpg" alt="تكييف هواء مفكك مع أجزائه الداخلية" />
         <span class="reference-scan" aria-hidden="true"></span>
         <span class="reference-ring reference-ring-one" aria-hidden="true"></span>
         <span class="reference-ring reference-ring-two" aria-hidden="true"></span>

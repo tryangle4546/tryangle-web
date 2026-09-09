@@ -31,3 +31,7 @@ After forcing the stage to `is-assembling` post-load, the browser reports the sp
 Preloader timing verification, 2026-09-09:
 
 The existing intro fades after 4.65 seconds for normal motion. The corrected hero assembly begins at 2.5 seconds and reaches its final assembled class at 5.5 seconds, so the piece motion runs behind the intro and the complete-unit hero handoff occurs immediately after the fade rather than exposing the unfinished scene to the user.
+
+Cohesive-scene verification, 2026-09-09:
+
+The failed sprite assembly is now disabled in both preloader and hero. The supplied exploded reference is rendered as one feathered, screen-blended scene with camera-led reveal, while the assembled unit remains the final hero state. Browser verification shows no visible separate sprite cutouts or hard rectangular image card in the final homepage state.
