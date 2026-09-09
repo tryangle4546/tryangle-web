@@ -6002,6 +6002,38 @@ footer {
     .hero-reference-visual { transform: none !important; }
   }
 
+  
+  /* Corrected reference-faithful full-bleed HVAC assembly scene. */
+  .hero { position: relative; isolation: isolate; overflow: hidden; min-height: 100vh; background: radial-gradient(circle at 76% 35%, rgba(23,151,195,.20), transparent 38%), radial-gradient(circle at 24% 82%, rgba(243,146,0,.13), transparent 35%), #050b12; }
+  .hero > .hero-air-canvas, .hero > .hero-reference-stage { z-index: 0; }
+  .hero-container { position: relative; z-index: 5; }
+  .hero-reference-stage { position: absolute; inset: 0; z-index: 1; overflow: hidden; perspective: 1500px; pointer-events: auto; background: linear-gradient(90deg, rgba(3,10,18,.95), rgba(3,10,18,.75) 33%, rgba(3,10,18,.08) 76%, rgba(3,10,18,.18)), linear-gradient(180deg, rgba(4,12,20,.20), transparent 62%, rgba(2,8,14,.68)); animation: heroReferenceEnter 1.1s .25s cubic-bezier(.16,1,.3,1) both; }
+  .hero-reference-stage::before { content:""; position:absolute; inset:0; z-index:5; pointer-events:none; background: linear-gradient(90deg, rgba(3,11,19,.64), transparent 35%, transparent 82%, rgba(3,11,19,.10)), radial-gradient(ellipse at 78% 47%, transparent 26%, rgba(0,0,0,.18) 68%, rgba(0,0,0,.58) 100%); }
+  .hero-reference-glow { position:absolute; inset:7% 8% 11% 38%; z-index:0; border-radius:50%; background:radial-gradient(ellipse, rgba(29,195,233,.31), transparent 62%); filter:blur(42px); transform:translate3d(var(--hero-glow-x,0px),var(--hero-glow-y,0px),0); transition:transform .65s ease; pointer-events:none; }
+  .hero-reference-visual { position:absolute; inset:-5% -4% -5% 25%; transform-style:preserve-3d; transform:translate3d(var(--hero-pan-x,0px),var(--hero-pan-y,0px),0) rotateX(var(--hero-tilt-x,0deg)) rotateY(var(--hero-tilt-y,0deg)) scale(1.04); transition:transform .8s cubic-bezier(.16,1,.3,1); will-change:transform; }
+  .hero-reference-visual::before { content:""; position:absolute; inset:18% 4% 16% 7%; z-index:2; border-radius:50%; background:radial-gradient(ellipse, rgba(84,227,255,.14), transparent 66%); filter:blur(30px); pointer-events:none; }
+  .hero-reference-visual > img:first-child { position:absolute; inset:0; z-index:1; width:100%; height:100%; object-fit:contain; object-position:center; filter:saturate(1.02) contrast(1.06) brightness(.95) drop-shadow(0 34px 40px rgba(0,0,0,.52)); mix-blend-mode:screen; opacity:.93; mask-image:radial-gradient(ellipse at 65% 48%, #000 34%, rgba(0,0,0,.92) 63%, transparent 96%); user-select:none; pointer-events:none; }
+  .hero-reference-final { position:absolute; inset:0; z-index:3; width:100%; height:100%; object-fit:contain; object-position:center; opacity:0; filter:saturate(1.02) contrast(1.06) brightness(.94) drop-shadow(0 34px 40px rgba(0,0,0,.52)); mix-blend-mode:normal; mask-image:none; transform:translate3d(0,0,28px) scale(.92); transition:opacity .8s ease, transform 1s cubic-bezier(.16,1,.3,1); pointer-events:none; }
+  .hero-reference-stage.is-assembled .hero-reference-visual > img:first-child { opacity:0; transition:opacity .75s ease; } .hero-reference-stage.is-assembled .hero-reference-final { opacity:.95; transform:translate3d(0,0,28px) scale(1); }
+  .hero-assembly-pieces { position:absolute; inset:0; z-index:4; pointer-events:none; transform-style:preserve-3d; }
+  .hero-assembly-piece { position:absolute; width:32%; height:28%; background-image:url('assets/ac_exploded_3d_reference.jpg'); background-repeat:no-repeat; background-size:260% 260%; mix-blend-mode:screen; opacity:0; filter:saturate(1.06) contrast(1.08) brightness(1.02) drop-shadow(0 14px 20px rgba(0,0,0,.45)); transition:transform 1.1s cubic-bezier(.16,1,.3,1), opacity .45s ease; transform:translate3d(var(--piece-x,0px),var(--piece-y,0px),var(--piece-z,0px)) rotateZ(var(--piece-r,0deg)) scale(var(--piece-scale,1)); }
+  .hero-reference-stage.is-assembling .hero-assembly-piece { opacity:.95; }
+  .hero-reference-stage.is-assembled .hero-assembly-piece { opacity:0; transform:translate3d(0,0,0) scale(.96); }
+  .hero-piece-shell { left:47%; top:23%; background-position:48% 15%; --piece-x:88px; --piece-y:-28px; --piece-z:180px; --piece-r:-4deg; --piece-scale:1.12; }
+  .hero-piece-coil { left:52%; top:31%; background-position:70% 36%; --piece-x:-82px; --piece-y:-10px; --piece-z:116px; --piece-r:5deg; --piece-scale:.96; }
+  .hero-piece-blower { left:58%; top:40%; background-position:78% 56%; --piece-x:102px; --piece-y:22px; --piece-z:132px; --piece-r:-7deg; --piece-scale:.90; }
+  .hero-piece-board { left:57%; top:48%; background-position:86% 70%; --piece-x:-112px; --piece-y:62px; --piece-z:150px; --piece-r:8deg; --piece-scale:.82; }
+  .hero-piece-compressor { left:67%; top:53%; background-position:78% 81%; --piece-x:132px; --piece-y:82px; --piece-z:126px; --piece-r:-8deg; --piece-scale:.78; }
+  .hero-reference-scan { position:absolute; left:29%; right:8%; top:42%; z-index:6; height:1px; background:linear-gradient(90deg, transparent, rgba(97,237,255,.78), transparent); box-shadow:0 0 18px rgba(97,237,255,.58); opacity:.62; transform:translateY(var(--scan-y,0px)); transition:transform .9s ease, opacity .7s ease; pointer-events:none; }
+  .hero-reference-stage.is-assembled .hero-reference-scan { opacity:0; transform:translateY(190px); }
+  .hero-reference-chip { position:absolute; top:12%; right:7%; z-index:7; padding:8px 11px; border:1px solid rgba(107,236,255,.35); border-radius:999px; background:rgba(2,17,25,.48); color:rgba(216,249,255,.84); font:800 9px/1 Arial,sans-serif; letter-spacing:.14em; backdrop-filter:blur(12px); transform:translateZ(55px); }
+  .hero-reference-chip i { display:inline-block; width:6px; height:6px; margin-right:7px; border-radius:50%; background:#6bf2df; box-shadow:0 0 10px #6bf2df; animation:statusBlink 1.3s ease-in-out infinite; }
+  .hero-reference-caption { position:absolute; z-index:7; right:9%; bottom:14%; color:rgba(206,242,247,.60); font-size:.74rem; direction:rtl; letter-spacing:.05em; transform:translateZ(45px); }
+  @keyframes heroReferenceEnter { from { opacity:0; transform:scale(1.04); } to { opacity:1; transform:scale(1); } }
+  @media (max-width:900px) { .hero-reference-visual { inset:7% -16% 3% 17%; opacity:.76; } .hero-reference-stage::before { background:linear-gradient(90deg, rgba(3,11,19,.84), rgba(3,11,19,.16) 74%, rgba(3,11,19,.22)); } .hero-assembly-piece { width:38%; height:30%; } }
+  @media (max-width:700px) { .hero-reference-visual { inset:24% -35% 0 -6%; opacity:.54; } .hero-reference-chip { top:17%; right:8%; font-size:7px; } .hero-reference-caption { bottom:8%; right:10%; font-size:.62rem; } .hero-reference-stage::before { background:linear-gradient(90deg, rgba(3,11,19,.90), rgba(3,11,19,.42) 68%, rgba(3,11,19,.26)); } }
+  @media (prefers-reduced-motion:reduce) { .hero-reference-stage, .hero-reference-chip i { animation:none !important; } .hero-reference-visual { transform:none !important; } .hero-reference-final, .hero-assembly-piece { transition:none; } }
+
   </style>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -6088,17 +6120,21 @@ footer {
   <section class="hero" id="home">
     <canvas id="heroAirCanvas" class="hero-air-canvas" aria-hidden="true"></canvas>
 
-    <div class="hero-reference-stage" aria-label="منظومة تكييف واقعية تفاعلية">
+    <div class="hero-reference-stage" aria-label="مشهد تفاعلي لتجميع تكييف حقيقي من أجزائه الداخلية">
       <div class="hero-reference-glow" aria-hidden="true"></div>
       <div class="hero-reference-visual">
         <img src="assets/ac_exploded_3d_reference.jpg" alt="منظومة تكييف هواء واقعية بأجزائها الداخلية" />
-        <span class="hero-reference-frame" aria-hidden="true"></span>
-        <span class="hero-reference-axis axis-horizontal" aria-hidden="true"></span>
-        <span class="hero-reference-axis axis-vertical" aria-hidden="true"></span>
-        <span class="hero-reference-orbit orbit-a" aria-hidden="true"></span>
-        <span class="hero-reference-orbit orbit-b" aria-hidden="true"></span>
+        <img class="hero-reference-final" src="assets/ac_assembled_hero_cutout.png" alt="الوحدة الكاملة بعد تجميع مكونات التكييف" />
+        <div class="hero-assembly-pieces" aria-hidden="true">
+          <span class="hero-assembly-piece hero-piece-shell"></span>
+          <span class="hero-assembly-piece hero-piece-coil"></span>
+          <span class="hero-assembly-piece hero-piece-blower"></span>
+          <span class="hero-assembly-piece hero-piece-board"></span>
+          <span class="hero-assembly-piece hero-piece-compressor"></span>
+        </div>
+        <span class="hero-reference-scan" aria-hidden="true"></span>
       </div>
-      <div class="hero-reference-chip"><i></i> REAL HVAC / 360° VIEW</div>
+      <div class="hero-reference-chip"><i></i> REAL HVAC / ASSEMBLY VIEW</div>
       <div class="hero-reference-caption">من الداخل إلى الأداء المثالي</div>
     </div>
 
@@ -7902,6 +7938,23 @@ function showToast(message) {
         if (!raf) raf = requestAnimationFrame(render);
       }, { passive: true });
       stage.addEventListener('pointerleave', () => { tx = 0; ty = 0; if (!raf && !reduced) raf = requestAnimationFrame(render); }, { passive: true });
+    })();
+  </script>
+<script>
+    (() => {
+      const stage = document.querySelector('.hero-reference-stage');
+      if (!stage) return;
+      const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const preloader = document.querySelector('#preloader');
+      const run = () => {
+        if (reduced) { stage.classList.add('is-assembled'); return; }
+        stage.classList.add('is-assembling');
+        window.setTimeout(() => stage.classList.add('is-assembled'), 1850);
+      };
+      if (preloader) {
+        preloader.addEventListener('transitionend', run, { once: true });
+        window.setTimeout(run, 2500);
+      } else run();
     })();
   </script>
 </body>
