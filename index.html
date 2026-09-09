@@ -5435,571 +5435,380 @@ footer {
 
 
 
-  /* Cinematic exploded-view assembly entrance. */
-  .preloader-assembly {
+
+  /* Reference-faithful interactive exploded HVAC entrance. */
+  .preloader-reference {
     overflow: hidden;
     isolation: isolate;
-    background:
-      radial-gradient(circle at 50% 44%, rgba(0, 194, 255, 0.12), transparent 25rem),
-      radial-gradient(circle at 52% 78%, rgba(243, 146, 0, 0.10), transparent 22rem),
-      linear-gradient(145deg, #02060c 0%, #06131f 50%, #030609 100%);
+    background: #03070d;
+    color: #eefcff;
+    cursor: default;
   }
 
-  .preloader-assembly-backdrop {
+  .reference-backdrop {
     position: absolute;
-    inset: -18%;
-    z-index: -3;
-    background:
-      radial-gradient(ellipse at 50% 54%, rgba(24, 102, 154, 0.30), transparent 34%),
-      linear-gradient(115deg, transparent 35%, rgba(61, 218, 255, 0.09) 50%, transparent 67%);
-    filter: blur(18px);
-    animation: assemblyBackdrop 7s ease-in-out infinite alternate;
+    inset: -10%;
+    z-index: -4;
+    background: url('assets/ac_exploded_3d_reference.jpg') center / cover no-repeat;
+    filter: blur(28px) saturate(0.82) brightness(0.24);
+    opacity: 0.46;
+    transform: scale(1.1);
   }
 
-  .assembly-grid {
-    position: absolute;
-    inset: 0;
-    z-index: -2;
-    opacity: 0.22;
-    background-image:
-      linear-gradient(rgba(76, 215, 255, 0.11) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(76, 215, 255, 0.11) 1px, transparent 1px);
-    background-size: 56px 56px;
-    transform: perspective(620px) rotateX(62deg) translateY(24%);
-    transform-origin: center bottom;
-    mask-image: linear-gradient(to top, #000, transparent 78%);
-    animation: assemblyGridDrift 10s linear infinite;
-  }
-
-  .assembly-copy {
-    position: absolute;
-    top: clamp(36px, 7vh, 78px);
-    left: 0;
-    right: 0;
-    z-index: 4;
-    text-align: center;
-    direction: rtl;
-    animation: assemblyCopyIn 0.85s cubic-bezier(0.16, 1, 0.3, 1) both;
-  }
-
-  .assembly-copy .preloader-kicker {
-    color: #5ee9ff;
-    font-size: clamp(0.7rem, 1.2vw, 0.92rem);
-    letter-spacing: 0.22em;
-    font-weight: 700;
-  }
-
-  .assembly-copy-title {
-    margin-top: 11px;
-    color: #f6fbff;
-    font-size: clamp(1.22rem, 2.3vw, 2.05rem);
-    font-weight: 900;
-    letter-spacing: -0.02em;
-    text-shadow: 0 0 30px rgba(59, 221, 255, 0.22);
-  }
-
-  .assembly-copy-subtitle {
-    margin-top: 8px;
-    color: rgba(215, 240, 250, 0.56);
-    font-size: clamp(0.64rem, 1vw, 0.82rem);
-    letter-spacing: 0.14em;
-  }
-
-  .assembly-stage {
-    position: absolute;
-    width: min(720px, 84vw);
-    height: min(410px, 49vw);
-    min-height: 270px;
-    left: 50%;
-    top: 51%;
-    transform: translate(-50%, -50%);
-    perspective: 1200px;
-    transform-style: preserve-3d;
-  }
-
-  .assembly-reference {
-    position: absolute;
-    inset: 0;
-    z-index: -1;
-    background: url('assets/ac_exploded_3d_reference.jpg') center / contain no-repeat;
-    opacity: 0;
-    filter: saturate(0.66) contrast(1.12) brightness(0.72) sepia(0.08);
-    mix-blend-mode: screen;
-    animation: referenceBlueprint 4.8s cubic-bezier(0.16, 1, 0.3, 1) both;
-  }
-
-  .assembly-unit {
-    position: absolute;
-    inset: 0;
-    transform-style: preserve-3d;
-    animation: assemblyUnitTurn 4.8s cubic-bezier(0.16, 1, 0.3, 1) both;
-  }
-
-  .assembly-unit::before {
+  .reference-backdrop::after {
     content: "";
     position: absolute;
-    width: 430px;
-    height: 150px;
-    left: 50%;
-    top: 51%;
-    transform: translate(-50%, -50%) translateZ(-80px);
-    border-radius: 50%;
-    background: radial-gradient(ellipse, rgba(37, 220, 255, 0.24), transparent 68%);
-    filter: blur(22px);
-    opacity: 0;
-    animation: assemblyGlow 4.8s ease-out both;
+    inset: 0;
+    background: radial-gradient(circle at 50% 49%, transparent 0 18%, rgba(2, 7, 13, 0.55) 55%, #03070d 100%);
   }
 
-  .assembly-part {
+  .reference-grid {
     position: absolute;
+    inset: 0;
+    z-index: -3;
+    opacity: 0.18;
+    background-image: linear-gradient(rgba(86, 218, 255, 0.10) 1px, transparent 1px), linear-gradient(90deg, rgba(86, 218, 255, 0.10) 1px, transparent 1px);
+    background-size: 54px 54px;
+    transform: perspective(900px) rotateX(68deg) translateY(37%);
+    transform-origin: center bottom;
+    mask-image: linear-gradient(to top, #000, transparent 76%);
+  }
+
+  .reference-topline {
+    position: absolute;
+    top: clamp(24px, 4vw, 48px);
+    left: clamp(24px, 4vw, 62px);
+    right: clamp(24px, 4vw, 62px);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    direction: ltr;
+    color: rgba(212, 246, 254, 0.58);
+    font: 700 clamp(8px, 0.7vw, 10px)/1 Arial, sans-serif;
+    letter-spacing: 0.18em;
+    animation: referenceFadeUp 0.8s ease both;
+  }
+
+  .reference-kicker { color: #62eaff; }
+  .reference-code { color: rgba(255, 179, 70, 0.80); }
+
+  .reference-copy {
+    position: absolute;
+    top: clamp(62px, 10vh, 105px);
+    left: 0;
+    right: 0;
+    z-index: 5;
+    text-align: center;
+    direction: rtl;
+    animation: referenceFadeUp 0.9s 0.16s cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+
+  .reference-arabic-kicker {
+    color: #6ceeff;
+    font-size: clamp(0.68rem, 1vw, 0.84rem);
+    font-weight: 800;
+    letter-spacing: 0.10em;
+  }
+
+  .reference-copy h2 {
+    margin: 9px 0 0;
+    color: #f7fdff;
+    font-size: clamp(1.32rem, 2.5vw, 2.22rem);
+    line-height: 1.12;
+    font-weight: 950;
+    letter-spacing: -0.035em;
+    text-shadow: 0 0 34px rgba(76, 226, 255, 0.22);
+  }
+
+  .reference-copy p {
+    margin: 9px 0 0;
+    color: rgba(222, 245, 250, 0.57);
+    font-size: clamp(0.66rem, 1vw, 0.84rem);
+  }
+
+  .reference-viewer {
+    position: absolute;
+    width: min(890px, 84vw);
+    height: min(500px, 48vw);
+    min-height: 295px;
     left: 50%;
-    top: 50%;
-    display: block;
+    top: 52%;
+    transform: translate(-50%, -50%);
+    perspective: 1250px;
+    touch-action: none;
+    animation: referenceViewerIn 1.2s 0.16s cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+
+  .reference-visual {
+    position: absolute;
+    inset: 0;
     transform-style: preserve-3d;
+    transform: translate3d(var(--camera-x, 0px), var(--camera-y, 0px), 0) rotateX(var(--camera-tilt-x, 0deg)) rotateY(var(--camera-tilt-y, 0deg)) scale(var(--camera-scale, 1));
+    transition: transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: transform;
+  }
+
+  .reference-source,
+  .reference-piece,
+  .reference-piece img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    user-select: none;
+    pointer-events: none;
+  }
+
+  .reference-source {
+    z-index: 0;
+    opacity: 0.82;
+    filter: saturate(0.88) contrast(1.08) brightness(0.86);
+    mix-blend-mode: screen;
+    animation: referenceImageReveal 4.8s cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+
+  .reference-piece {
+    display: none;
+    z-index: 2;
     opacity: 0;
-    transform: var(--from);
-    animation: assemblyPart 4.8s var(--delay, 0s) cubic-bezier(0.16, 1, 0.3, 1) both;
+    clip-path: var(--clip);
+    transform-style: preserve-3d;
+    transform: var(--start-transform);
+    animation: referencePieceSettle 4.8s var(--piece-delay, 0s) cubic-bezier(0.16, 1, 0.3, 1) both;
     will-change: transform, opacity;
   }
 
-  .assembly-shell-back {
-    width: 405px;
-    height: 138px;
-    border: 2px solid rgba(142, 240, 255, 0.64);
-    border-radius: 30px 22px 26px 16px;
-    background: linear-gradient(155deg, #cdebf2, #5c8295 44%, #142b3a 100%);
-    box-shadow: inset -18px -14px 28px rgba(0, 13, 24, 0.50), 0 18px 44px rgba(11, 209, 255, 0.18);
-    --from: translate3d(-300px, -150px, 220px) rotateY(-62deg) rotateZ(-17deg) scale(0.7);
-    --to: translate3d(-202px, -70px, -45px) rotateY(-2deg) rotateZ(0deg) scale(1);
-    --delay: 0.10s;
+  .reference-piece img {
+    filter: saturate(1.04) contrast(1.08) brightness(1.08) drop-shadow(0 12px 25px rgba(0,0,0,0.38));
   }
 
-  .assembly-shell-front {
-    width: 396px;
-    height: 132px;
-    border: 2px solid rgba(226, 251, 255, 0.90);
-    border-radius: 28px 28px 22px 22px;
-    background: linear-gradient(150deg, #ffffff 0%, #e7f3f5 48%, #a6c4cc 100%);
-    box-shadow: inset 0 -16px 23px rgba(45, 107, 125, 0.20), 0 24px 38px rgba(0, 5, 15, 0.34);
-    --from: translate3d(280px, -125px, 260px) rotateY(68deg) rotateZ(16deg) scale(0.72);
-    --to: translate3d(-198px, -82px, 98px) rotateY(0deg) rotateZ(0deg) scale(1);
-    --delay: 0.22s;
-  }
+  .piece-shell { --clip: inset(3% 52% 53% 5%); --start-transform: translate3d(-22%, -15%, 160px) rotateY(-12deg) rotateZ(-2deg) scale(0.98); --settle-transform: translate3d(26%, 14%, 100px) rotateY(-2deg) rotateZ(0deg) scale(1); --piece-delay: 0.34s; }
+  .piece-chassis { --clip: inset(5% 34% 54% 38%); --start-transform: translate3d(7%, -8%, 130px) rotateY(10deg) scale(1.02); --settle-transform: translate3d(-18%, 19%, 62px) rotateY(0deg) scale(1); --piece-delay: 0.46s; }
+  .piece-filter { --clip: inset(3% 36% 51% 33%); --start-transform: translate3d(20%, -20%, 210px) rotateY(26deg) rotateZ(-4deg) scale(0.99); --settle-transform: translate3d(-21%, 15%, 77px) rotateY(0deg) rotateZ(0deg) scale(1); --piece-delay: 0.57s; }
+  .piece-coil { --clip: inset(31% 36% 33% 23%); --start-transform: translate3d(-10%, 12%, 150px) rotateX(10deg) rotateZ(2deg) scale(1.02); --settle-transform: translate3d(6%, 1%, 70px) rotateX(0deg) rotateZ(0deg) scale(1); --piece-delay: 0.68s; }
+  .piece-blower { --clip: inset(17% 5% 43% 64%); --start-transform: translate3d(25%, 8%, 190px) rotateY(24deg) rotateZ(5deg) scale(1.02); --settle-transform: translate3d(-13%, 17%, 86px) rotateY(0deg) rotateZ(0deg) scale(1); --piece-delay: 0.79s; }
+  .piece-pcb { --clip: inset(49% 9% 25% 69%); --start-transform: translate3d(25%, 14%, 200px) rotateY(-20deg) rotateZ(3deg) scale(1.06); --settle-transform: translate3d(-12%, -5%, 60px) rotateY(0deg) rotateZ(0deg) scale(1); --piece-delay: 0.90s; }
+  .piece-compressor { --clip: inset(51% 31% 5% 52%); --start-transform: translate3d(-16%, 17%, 180px) rotateY(25deg) rotateZ(-4deg) scale(1.04); --settle-transform: translate3d(-7%, 4%, 55px) rotateY(0deg) rotateZ(0deg) scale(1); --piece-delay: 1.01s; }
+  .piece-outlet { --clip: inset(53% 51% 14% 7%); --start-transform: translate3d(-20%, 20%, 170px) rotateY(-18deg) rotateZ(-4deg) scale(1.03); --settle-transform: translate3d(23%, 5%, 94px) rotateY(0deg) rotateZ(0deg) scale(1); --piece-delay: 1.12s; }
+  .piece-pipes { --clip: inset(31% 33% 29% 46%); --start-transform: translate3d(10%, 10%, 190px) rotateY(-14deg) rotateZ(2deg) scale(1.04); --settle-transform: translate3d(-3%, 2%, 58px) rotateY(0deg) rotateZ(0deg) scale(1); --piece-delay: 1.23s; }
 
-  .assembly-shell-front::before {
-    content: "";
+  .reference-scan {
     position: absolute;
-    left: 12%;
-    right: 12%;
-    bottom: 16px;
-    height: 9px;
-    border-radius: 10px;
-    background: repeating-linear-gradient(90deg, #355b6b 0 5px, transparent 5px 12px);
-    opacity: 0.75;
-    transform: perspective(120px) rotateX(18deg);
+    left: 8%;
+    right: 8%;
+    top: 5%;
+    height: 1px;
+    z-index: 8;
+    background: linear-gradient(90deg, transparent, #69edff, #ffd071, transparent);
+    box-shadow: 0 0 18px 5px rgba(72, 230, 255, 0.42);
+    opacity: 0;
+    animation: referenceScan 4.8s 0.3s ease both;
   }
 
-  .assembly-shell-front::after {
-    content: "";
+  .reference-ring {
     position: absolute;
-    top: 24px;
-    left: 15%;
-    right: 15%;
-    height: 2px;
-    background: linear-gradient(90deg, transparent, #63eaff, transparent);
-    box-shadow: 0 0 16px #63eaff;
-    opacity: 0.76;
-  }
-
-  .assembly-coil {
-    width: 258px;
-    height: 78px;
-    border: 3px solid #dca45b;
-    border-radius: 8px;
-    background: repeating-linear-gradient(0deg, rgba(255, 201, 119, 0.82) 0 2px, rgba(90, 53, 29, 0.82) 2px 5px);
-    box-shadow: 0 0 24px rgba(255, 171, 65, 0.18), inset 0 0 18px rgba(255, 216, 132, 0.38);
-    --from: translate3d(-30px, 180px, -90px) rotateY(-64deg) rotateX(36deg) scale(0.66);
-    --to: translate3d(-126px, -30px, 45px) rotateY(0deg) rotateX(0deg) scale(1);
-    --delay: 0.52s;
-  }
-
-  .assembly-coil::after {
-    content: "";
-    position: absolute;
-    inset: 6px -18px;
-    border: 2px solid #63cddc;
-    border-left-color: transparent;
-    border-radius: 50%;
-    opacity: 0.72;
-  }
-
-  .assembly-blower {
-    width: 92px;
-    height: 92px;
-    border: 10px solid #6cdee8;
-    border-radius: 50%;
-    background: repeating-conic-gradient(from 0deg, #152b38 0 8deg, #b1eaf0 8deg 12deg, #152b38 12deg 20deg);
-    box-shadow: 0 0 30px rgba(69, 238, 255, 0.30), inset 0 0 0 8px #163242;
-    --from: translate3d(300px, 178px, 180px) rotateX(70deg) rotateZ(80deg) scale(0.55);
-    --to: translate3d(118px, -18px, 52px) rotateX(78deg) rotateZ(0deg) scale(1);
-    --delay: 0.67s;
-  }
-
-  .assembly-blower::after {
-    content: "";
-    position: absolute;
-    inset: 34px;
-    border-radius: 50%;
-    border: 4px solid #f2ffff;
-    background: #213f4e;
-    box-shadow: 0 0 12px #5eeaff;
-  }
-
-  .assembly-pcb {
-    width: 105px;
-    height: 76px;
-    border: 2px solid #42e0dc;
-    border-radius: 8px;
-    background:
-      radial-gradient(circle at 70% 30%, #77ffff 0 3px, transparent 4px),
-      linear-gradient(140deg, #0c2a32, #061116);
-    box-shadow: 0 0 22px rgba(42, 237, 224, 0.22), inset 0 0 14px rgba(47, 218, 255, 0.12);
-    --from: translate3d(280px, -110px, -190px) rotateY(70deg) rotateZ(-28deg) scale(0.65);
-    --to: translate3d(128px, 62px, 30px) rotateY(-5deg) rotateZ(-5deg) scale(1);
-    --delay: 0.82s;
-  }
-
-  .assembly-compressor {
-    width: 72px;
-    height: 112px;
-    border-radius: 38px 38px 22px 22px;
-    border: 3px solid #7fadb7;
-    background: linear-gradient(90deg, #08151b, #38616b 48%, #0a151b);
-    box-shadow: 0 18px 25px rgba(0, 0, 0, 0.55), 0 0 18px rgba(68, 220, 255, 0.14);
-    --from: translate3d(-300px, 200px, -170px) rotateX(-65deg) rotateZ(44deg) scale(0.58);
-    --to: translate3d(62px, 98px, 8px) rotateX(0deg) rotateZ(0deg) scale(1);
-    --delay: 0.92s;
-  }
-
-  .assembly-compressor::before,
-  .assembly-compressor::after {
-    content: "";
-    position: absolute;
-    width: 4px;
-    height: 32px;
-    top: -26px;
-    background: #b0dedf;
-    border-radius: 4px;
-  }
-
-  .assembly-compressor::before { left: 18px; transform: rotate(-18deg); }
-  .assembly-compressor::after { right: 17px; transform: rotate(18deg); }
-
-  .assembly-outlet {
-    width: 266px;
-    height: 42px;
-    border: 2px solid rgba(182, 244, 250, 0.82);
-    border-radius: 6px 6px 22px 22px;
-    background: linear-gradient(180deg, #efffff, #9ccbd2 42%, #385f6b);
-    box-shadow: 0 12px 20px rgba(0, 0, 0, 0.30);
-    --from: translate3d(-290px, 230px, 210px) rotateX(76deg) rotateY(-20deg) scale(0.62);
-    --to: translate3d(-130px, 67px, 112px) rotateX(58deg) rotateY(0deg) scale(1);
-    --delay: 1.04s;
-  }
-
-  .assembly-grille {
-    width: 220px;
-    height: 10px;
-    border-radius: 10px;
-    background: repeating-linear-gradient(90deg, #082331 0 5px, #8ce5ea 5px 8px, #082331 8px 14px);
-    box-shadow: 0 0 18px rgba(78, 226, 255, 0.34);
-    --from: translate3d(290px, 210px, 140px) rotateY(-70deg) rotateZ(24deg) scale(0.68);
-    --to: translate3d(-105px, 39px, 130px) rotateY(0deg) rotateZ(0deg) scale(1);
-    --delay: 1.16s;
-  }
-
-  .assembly-led {
-    width: 36px;
-    height: 19px;
-    color: #6dffff;
-    font: 700 11px/19px Arial, sans-serif;
-    text-align: center;
-    border-radius: 5px;
-    background: #07141d;
-    border: 1px solid rgba(101, 255, 255, 0.78);
-    box-shadow: 0 0 13px rgba(101, 255, 255, 0.65);
-    --from: translate3d(250px, -250px, 350px) rotateZ(180deg) scale(0.4);
-    --to: translate3d(82px, -76px, 132px) rotateZ(0deg) scale(1);
-    --delay: 1.30s;
-  }
-
-  .assembly-orbit {
-    position: absolute;
+    z-index: 1;
     left: 50%;
     top: 50%;
-    width: 430px;
-    height: 150px;
-    border: 1px solid rgba(73, 224, 255, 0.30);
+    border: 1px solid rgba(81, 220, 255, 0.42);
     border-radius: 50%;
+    opacity: 0;
     transform-style: preserve-3d;
     pointer-events: none;
-    opacity: 0;
-    animation: assemblyOrbit 4.8s ease-out both;
+    animation: referenceRing 4.8s ease both;
   }
 
-  .assembly-orbit-a { transform: translate(-50%, -50%) rotateX(70deg) rotateZ(-20deg); }
-  .assembly-orbit-b { width: 300px; height: 98px; transform: translate(-50%, -50%) rotateY(68deg) rotateZ(20deg); border-color: rgba(255, 178, 70, 0.30); animation-delay: 0.22s; }
+  .reference-ring-one { width: 70%; height: 29%; transform: translate(-50%, -50%) rotateX(68deg) rotateZ(-15deg); }
+  .reference-ring-two { width: 49%; height: 71%; border-color: rgba(255, 184, 79, 0.30); transform: translate(-50%, -50%) rotateY(65deg) rotateZ(22deg); animation-delay: 0.24s; }
 
-  .assembly-orbit::after {
-    content: "";
+  .reference-crosshair {
     position: absolute;
-    width: 8px;
-    height: 8px;
-    left: 10%;
-    top: 12%;
-    border-radius: 50%;
-    background: #5defff;
-    box-shadow: 0 0 16px 5px rgba(93, 239, 255, 0.66);
-    animation: orbitDot 4.8s linear infinite;
-  }
-
-  .assembly-label {
-    position: absolute;
-    z-index: 5;
-    color: rgba(197, 246, 255, 0.78);
-    font: 700 clamp(7px, 0.8vw, 10px)/1 Arial, sans-serif;
-    letter-spacing: 0.15em;
-    white-space: nowrap;
-    opacity: 0;
-    text-shadow: 0 0 14px rgba(29, 217, 255, 0.60);
-    animation: labelAssemble 4.8s ease both;
-  }
-
-  .assembly-label::before {
-    content: "";
-    display: inline-block;
-    width: 34px;
-    height: 1px;
-    margin: 0 9px 3px 0;
-    background: linear-gradient(90deg, rgba(96, 238, 255, 0.2), #75edff);
-    box-shadow: 0 0 8px rgba(96, 238, 255, 0.46);
-  }
-
-  .label-shell { top: 28%; left: 5%; animation-delay: 0.18s; }
-  .label-filter { top: 18%; left: 37%; animation-delay: 0.32s; }
-  .label-coil { top: 70%; left: 5%; animation-delay: 0.48s; }
-  .label-blower { top: 32%; right: 2%; animation-delay: 0.62s; }
-  .label-board { bottom: 8%; right: 14%; animation-delay: 0.82s; }
-  .label-compressor { bottom: 2%; left: 38%; animation-delay: 1s; }
-
-  .assembly-scan {
-    position: absolute;
-    left: 13%;
-    right: 13%;
-    top: 16%;
-    height: 1px;
-    z-index: 6;
-    background: linear-gradient(90deg, transparent, #8af4ff, transparent);
-    box-shadow: 0 0 18px 4px rgba(76, 233, 255, 0.60);
-    opacity: 0;
-    animation: scanAssembly 4.8s ease both;
-  }
-
-  .assembly-flash {
-    position: absolute;
+    z-index: 7;
     left: 50%;
-    top: 52%;
-    width: 220px;
-    height: 220px;
+    top: 50%;
+    width: 18px;
+    height: 18px;
+    border: 1px solid rgba(255, 196, 101, 0.78);
     border-radius: 50%;
-    background: radial-gradient(circle, rgba(255,255,255,0.78), rgba(66, 231, 255, 0.25) 24%, transparent 68%);
-    transform: translate(-50%, -50%) scale(0.1);
+    transform: translate(-50%, -50%);
+    box-shadow: 0 0 18px rgba(255, 187, 74, 0.52);
     opacity: 0;
+    animation: referenceCrosshair 4.8s ease both;
+  }
+
+  .reference-crosshair::before,
+  .reference-crosshair::after {
+    content: "";
+    position: absolute;
+    background: #ffca74;
+  }
+
+  .reference-crosshair::before { width: 28px; height: 1px; top: 8px; left: -6px; }
+  .reference-crosshair::after { width: 1px; height: 28px; top: -6px; left: 8px; }
+
+  .reference-hotspot {
+    position: absolute;
     z-index: 10;
-    mix-blend-mode: screen;
-    animation: assemblyFlash 4.8s ease both;
-  }
-
-  .assembly-status-row {
-    position: absolute;
-    bottom: clamp(72px, 11vh, 118px);
-    left: 0;
-    right: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-    color: rgba(215, 244, 250, 0.74);
-    font-size: clamp(0.62rem, 1vw, 0.8rem);
-    letter-spacing: 0.08em;
-    animation: assemblyCopyIn 0.9s 0.35s both;
-  }
-
-  .assembly-status-dot {
-    width: 7px;
-    height: 7px;
+    width: 29px;
+    height: 29px;
+    border: 1px solid rgba(118, 240, 255, 0.78);
     border-radius: 50%;
-    background: #67f5e3;
-    box-shadow: 0 0 12px #67f5e3;
-    animation: statusPulse 1.2s ease-in-out infinite;
+    color: #dffcff;
+    background: rgba(2, 20, 30, 0.68);
+    box-shadow: 0 0 0 5px rgba(79, 224, 255, 0.08), 0 0 20px rgba(72, 226, 255, 0.55);
+    font: 800 9px/27px Arial, sans-serif;
+    padding: 0;
+    opacity: 0;
+    cursor: pointer;
+    transform: scale(0.6);
+    transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+    animation: hotspotIn 0.6s var(--hotspot-delay, 1.8s) cubic-bezier(0.16, 1, 0.3, 1) both;
   }
 
-  .assembly-status-percent {
-    min-width: 36px;
-    color: #ffb34b;
-    font: 800 0.68rem/1 Arial, sans-serif;
+  .reference-hotspot::after {
+    content: "";
+    position: absolute;
+    inset: -7px;
+    border: 1px solid rgba(97, 235, 255, 0.30);
+    border-radius: 50%;
+    animation: hotspotPulse 1.8s ease-in-out infinite;
   }
 
-  .assembly-progress {
+  .reference-hotspot:hover,
+  .reference-hotspot:focus-visible,
+  .reference-hotspot.is-active {
+    background: #f59a26;
+    border-color: #ffe1a4;
+    color: #fff;
+    transform: scale(1.14);
+    outline: none;
+  }
+
+  .hotspot-shell { left: 15%; top: 24%; --hotspot-delay: 2.10s; }
+  .hotspot-filter { left: 47%; top: 17%; --hotspot-delay: 2.22s; }
+  .hotspot-coil { left: 39%; top: 49%; --hotspot-delay: 2.34s; }
+  .hotspot-blower { right: 13%; top: 31%; --hotspot-delay: 2.46s; }
+  .hotspot-pcb { right: 19%; top: 64%; --hotspot-delay: 2.58s; }
+  .hotspot-compressor { left: 61%; bottom: 11%; --hotspot-delay: 2.70s; }
+
+  .reference-callout {
+    position: absolute;
+    z-index: 11;
+    left: clamp(10px, 6vw, 80px);
+    bottom: 20%;
+    min-width: 180px;
+    padding: 12px 14px;
+    border-left: 1px solid rgba(91, 232, 255, 0.74);
+    background: linear-gradient(90deg, rgba(4, 18, 28, 0.88), transparent);
+    direction: ltr;
+    opacity: 0;
+    transform: translateX(-12px);
+    animation: calloutIn 0.7s 2.1s ease both;
+  }
+
+  .callout-index { color: #ffb34b; font: 800 10px/1 Arial, sans-serif; }
+  .callout-title { display: block; margin-top: 6px; color: #dcfbff; font: 800 11px/1 Arial, sans-serif; letter-spacing: 0.12em; }
+  .callout-detail { display: block; margin-top: 5px; color: rgba(206, 239, 245, 0.54); font-size: 0.68rem; direction: rtl; }
+
+  .reference-footer {
+    position: absolute;
+    bottom: clamp(70px, 11vh, 112px);
+    left: clamp(24px, 4vw, 62px);
+    right: clamp(24px, 4vw, 62px);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    direction: ltr;
+    color: rgba(211, 243, 248, 0.66);
+    font: 700 10px/1 Arial, sans-serif;
+    letter-spacing: 0.08em;
+    animation: referenceFadeUp 0.8s 0.38s ease both;
+  }
+
+  .reference-status { direction: rtl; }
+  .reference-status i { display: inline-block; width: 6px; height: 6px; margin-left: 7px; border-radius: 50%; background: #5ff2da; box-shadow: 0 0 12px #5ff2da; animation: statusBlink 1.2s ease-in-out infinite; }
+  .reference-progress-label b { color: #ffb34b; font-weight: 900; }
+
+  .reference-progress {
     position: absolute;
     left: 50%;
-    bottom: clamp(48px, 7vh, 82px);
-    width: min(310px, 45vw);
-    height: 3px;
+    bottom: clamp(45px, 7vh, 72px);
+    width: min(360px, 48vw);
+    height: 2px;
+    overflow: hidden;
     transform: translateX(-50%);
-    background: rgba(255, 255, 255, 0.12);
-    box-shadow: 0 0 18px rgba(53, 220, 255, 0.14);
+    background: rgba(224, 247, 250, 0.16);
   }
 
-  .assembly-progress span {
+  .reference-progress span {
+    display: block;
     width: 100%;
-    right: auto;
-    left: 0;
+    height: 100%;
     transform: scaleX(0);
     transform-origin: left;
-    background: linear-gradient(90deg, #39ddff, #fff0a6 50%, #ff9e2b);
-    animation: assemblyProgress 4.8s cubic-bezier(0.16, 1, 0.3, 1) both;
+    background: linear-gradient(90deg, #43deff, #ffbb61);
+    box-shadow: 0 0 14px #43deff;
+    animation: referenceProgress 4.8s cubic-bezier(0.16, 1, 0.3, 1) both;
   }
 
-  .preloader-assembly .preloader-status {
+  .reference-hint {
     position: absolute;
-    bottom: clamp(21px, 3.6vh, 40px);
-    color: rgba(215, 244, 250, 0.46);
+    bottom: 19px;
+    left: 0;
+    right: 0;
+    text-align: center;
+    direction: rtl;
+    color: rgba(214, 241, 246, 0.42);
+    font-size: 0.68rem;
+    animation: referenceFadeUp 0.8s 0.7s ease both;
   }
 
-  .preloader-assembly.fade-out {
+  .reference-hint span { color: #ffb34b; margin-right: 5px; }
+
+  .preloader-reference.fade-out {
     opacity: 0;
-    transform: scale(1.04);
-    transition: opacity 0.9s ease, transform 0.9s var(--ref-ease), visibility 0.9s ease;
+    transform: scale(1.035);
+    transition: opacity 0.9s ease, transform 0.9s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.9s ease;
   }
 
-  @keyframes assemblyPart {
-    0% { opacity: 0; transform: var(--from); }
-    10% { opacity: 1; }
-    42% { opacity: 1; transform: var(--mid, var(--from)); }
-    78% { opacity: 1; transform: var(--to); }
-    100% { opacity: 1; transform: var(--to); }
-  }
-
-  @keyframes assemblyUnitTurn {
-    0% { transform: rotateY(-14deg) rotateX(7deg); }
-    50% { transform: rotateY(15deg) rotateX(-4deg); }
-    79%, 100% { transform: rotateY(0deg) rotateX(0deg); }
-  }
-
-  @keyframes assemblyOrbit {
-    0% { opacity: 0; transform: translate(-50%, -50%) rotateX(70deg) rotateZ(-20deg) scale(0.7); }
-    22%, 62% { opacity: 1; }
-    100% { opacity: 0.1; transform: translate(-50%, -50%) rotateX(70deg) rotateZ(178deg) scale(1.04); }
-  }
-
-  @keyframes orbitDot {
-    from { transform: rotate(0deg) translateX(205px) rotate(0deg); }
-    to { transform: rotate(360deg) translateX(205px) rotate(-360deg); }
-  }
-
-  @keyframes labelAssemble {
-    0%, 12% { opacity: 0; transform: translateY(8px); }
-    30%, 66% { opacity: 0.86; transform: translateY(0); }
-    86%, 100% { opacity: 0.12; transform: translateY(-2px); }
-  }
-
-  @keyframes scanAssembly {
-    0%, 10% { opacity: 0; transform: translateY(-55px); }
-    23%, 66% { opacity: 0.8; }
-    81%, 100% { opacity: 0; transform: translateY(210px); }
-  }
-
-  @keyframes assemblyFlash {
-    0%, 73% { opacity: 0; transform: translate(-50%, -50%) scale(0.1); }
-    80% { opacity: 0.95; transform: translate(-50%, -50%) scale(1.45); }
-    89%, 100% { opacity: 0; transform: translate(-50%, -50%) scale(2.2); }
-  }
-
-  @keyframes assemblyGlow {
-    0%, 58% { opacity: 0; transform: translate(-50%, -50%) scale(0.6); }
-    80% { opacity: 0.85; transform: translate(-50%, -50%) scale(1.12); }
-    100% { opacity: 0.34; transform: translate(-50%, -50%) scale(1); }
-  }
-
-  @keyframes referenceBlueprint {
-    0%, 7% { opacity: 0; transform: scale(0.88); }
-    18%, 55% { opacity: 0.22; transform: scale(1); }
-    78%, 100% { opacity: 0; transform: scale(1.05); }
-  }
-
-  @keyframes assemblyBackdrop {
-    from { transform: scale(0.96) translate3d(-2%, 0, 0); opacity: 0.72; }
-    to { transform: scale(1.08) translate3d(2%, -1%, 0); opacity: 1; }
-  }
-
-  @keyframes assemblyGridDrift {
-    from { background-position: 0 0; }
-    to { background-position: 0 56px; }
-  }
-
-  @keyframes assemblyCopyIn {
-    from { opacity: 0; transform: translateY(12px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-
-  @keyframes statusPulse {
-    0%, 100% { transform: scale(0.8); opacity: 0.7; }
-    50% { transform: scale(1.2); opacity: 1; }
-  }
-
-  @keyframes assemblyProgress {
-    0% { transform: scaleX(0); }
-    78% { transform: scaleX(0.88); }
-    100% { transform: scaleX(1); }
-  }
+  @keyframes referenceViewerIn { from { opacity: 0; transform: translate(-50%, -47%) scale(0.96); } to { opacity: 1; transform: translate(-50%, -50%) scale(1); } }
+  @keyframes referenceImageReveal { 0%, 8% { opacity: 0; filter: blur(12px) saturate(0.2) brightness(0.55); transform: scale(1.04); } 28%, 72% { opacity: 0.88; filter: blur(0) saturate(0.96) brightness(0.96); transform: scale(1); } 100% { opacity: 0.96; filter: blur(0) saturate(0.92) brightness(0.88); transform: scale(1.01); } }
+  @keyframes referencePieceSettle { 0%, 5% { opacity: 0; transform: var(--start-transform); } 16% { opacity: 0.92; } 52%, 76% { opacity: 1; transform: var(--settle-transform); } 100% { opacity: 0.94; transform: var(--settle-transform); } }
+  @keyframes referenceScan { 0%, 8% { opacity: 0; transform: translateY(-70px); } 25%, 68% { opacity: 0.8; } 86%, 100% { opacity: 0; transform: translateY(310px); } }
+  @keyframes referenceRing { 0%, 10% { opacity: 0; } 26%, 68% { opacity: 0.55; } 100% { opacity: 0.08; transform: translate(-50%, -50%) rotateX(68deg) rotateZ(164deg) scale(1.04); } }
+  @keyframes referenceCrosshair { 0%, 10% { opacity: 0; transform: translate(-50%, -50%) scale(0.6); } 34%, 68% { opacity: 0.78; transform: translate(-50%, -50%) scale(1); } 100% { opacity: 0; transform: translate(-50%, -50%) scale(1.5); } }
+  @keyframes hotspotIn { from { opacity: 0; transform: scale(0.6); } to { opacity: 0.94; transform: scale(1); } }
+  @keyframes hotspotPulse { 0%, 100% { opacity: 0.22; transform: scale(0.88); } 50% { opacity: 0.7; transform: scale(1.2); } }
+  @keyframes calloutIn { from { opacity: 0; transform: translateX(-12px); } to { opacity: 1; transform: translateX(0); } }
+  @keyframes referenceProgress { 0% { transform: scaleX(0); } 78% { transform: scaleX(0.84); } 100% { transform: scaleX(1); } }
+  @keyframes referenceFadeUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+  @keyframes statusBlink { 0%, 100% { opacity: 0.55; transform: scale(0.8); } 50% { opacity: 1; transform: scale(1.18); } }
 
   @media (max-width: 700px) {
-    .assembly-stage {
-      width: 680px;
-      height: 380px;
-      transform: translate(-50%, -50%) scale(0.58);
-    }
-
-    .assembly-copy { top: 42px; }
-    .assembly-copy-title { font-size: 1.16rem; }
-    .assembly-label { font-size: 8px; }
-    .label-shell { left: 0; }
-    .label-blower { right: 0; }
-    .assembly-status-row { bottom: 78px; font-size: 0.58rem; }
-    .assembly-progress { bottom: 53px; width: 62vw; }
-    .preloader-assembly .preloader-status { bottom: 26px; font-size: 0.66rem; }
+    .reference-topline { top: 24px; font-size: 7px; }
+    .reference-code { display: none; }
+    .reference-copy { top: 61px; }
+    .reference-copy h2 { font-size: 1.26rem; }
+    .reference-copy p { font-size: 0.62rem; }
+    .reference-viewer { width: 930px; height: 520px; transform: translate(-50%, -50%) scale(0.52); }
+    .reference-footer { bottom: 78px; font-size: 8px; }
+    .reference-progress { bottom: 52px; width: 62vw; }
+    .reference-callout { left: 18px; bottom: 27%; transform: scale(0.84); transform-origin: left bottom; }
+    .reference-hint { bottom: 25px; font-size: 0.6rem; }
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .preloader-assembly .assembly-part,
-    .preloader-assembly .assembly-unit,
-    .preloader-assembly .assembly-orbit,
-    .preloader-assembly .assembly-label,
-    .preloader-assembly .assembly-scan,
-    .preloader-assembly .assembly-flash,
-    .preloader-assembly .assembly-reference,
-    .preloader-assembly .assembly-progress span,
-    .preloader-assembly .assembly-copy,
-    .preloader-assembly .assembly-status-row,
-    .preloader-assembly .assembly-backdrop,
-    .preloader-assembly .assembly-grid {
-      animation: none !important;
+    .preloader-reference *,
+    .preloader-reference::before,
+    .preloader-reference::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
     }
-
-    .preloader-assembly .assembly-part { opacity: 1; transform: var(--to); }
-    .preloader-assembly .assembly-label { opacity: 0.12; }
-    .preloader-assembly .assembly-progress span { transform: scaleX(1); }
+    .reference-piece { opacity: 0.94; transform: var(--settle-transform); }
+    .reference-source { opacity: 0.96; }
+    .reference-hotspot { opacity: 0.94; }
   }
 
   </style>
@@ -6010,45 +5819,44 @@ footer {
 <body>
 
   <!-- شاشة التحميل المسبق الفاخرة (Preloader) -->
-  <div class="preloader preloader-assembly" id="preloader" role="status" aria-live="polite">
-    <div class="preloader-assembly-backdrop" aria-hidden="true"></div>
-    <div class="assembly-grid" aria-hidden="true"></div>
-    <div class="assembly-copy">
-      <div class="preloader-kicker">تراي أنجل للتكييف والتبريد</div>
-      <div class="assembly-copy-title">هندسة الراحة تبدأ من الداخل</div>
-      <div class="assembly-copy-subtitle">تركيب • تبريد • أداء مثالي</div>
+  <div class="preloader preloader-reference" id="preloader" role="status" aria-live="polite">
+    <div class="reference-backdrop" aria-hidden="true"></div>
+    <div class="reference-grid" aria-hidden="true"></div>
+    <div class="reference-topline">
+      <span class="reference-kicker">TRIANGLE AIR SYSTEMS</span>
+      <span class="reference-code">AC / EXPLODED VIEW / 360°</span>
     </div>
-    <div class="assembly-stage" aria-hidden="true">
-      <div class="assembly-reference"></div>
-      <div class="assembly-orbit assembly-orbit-a"></div>
-      <div class="assembly-orbit assembly-orbit-b"></div>
-      <div class="assembly-unit">
-        <span class="assembly-part assembly-shell-back"></span>
-        <span class="assembly-part assembly-coil"></span>
-        <span class="assembly-part assembly-blower"></span>
-        <span class="assembly-part assembly-pcb"></span>
-        <span class="assembly-part assembly-compressor"></span>
-        <span class="assembly-part assembly-shell-front"></span>
-        <span class="assembly-part assembly-outlet"></span>
-        <span class="assembly-part assembly-grille"></span>
-        <span class="assembly-part assembly-led">19°</span>
+    <div class="reference-copy">
+      <div class="reference-arabic-kicker">هندسة الراحة تبدأ من الداخل</div>
+      <h2>تكييف حقيقي. أداء محسوب.</h2>
+      <p>استكشف منظومة التبريد قطعةً قطعة قبل أن تكتمل.</p>
+    </div>
+    <div class="reference-viewer" aria-label="عرض تفاعلي لأجزاء تكييف هواء واقعية">
+      <div class="reference-visual">
+        <img class="reference-source" src="assets/ac_exploded_3d_reference.jpg" alt="تكييف هواء مفكك مع أجزائه الداخلية" />
+        <span class="reference-scan" aria-hidden="true"></span>
+        <span class="reference-ring reference-ring-one" aria-hidden="true"></span>
+        <span class="reference-ring reference-ring-two" aria-hidden="true"></span>
+        <span class="reference-crosshair" aria-hidden="true"></span>
       </div>
-      <span class="assembly-label label-shell">FRONT SHELL</span>
-      <span class="assembly-label label-filter">MICRO-MESH FILTER</span>
-      <span class="assembly-label label-coil">HEAT EXCHANGER</span>
-      <span class="assembly-label label-blower">CROSS-FLOW BLOWER</span>
-      <span class="assembly-label label-board">INVERTER CONTROL</span>
-      <span class="assembly-label label-compressor">COMPRESSOR</span>
-      <span class="assembly-scan"></span>
-      <span class="assembly-flash"></span>
+      <button class="reference-hotspot hotspot-shell" type="button" data-reference-part="front-shell" aria-label="استكشف الغلاف الأمامي">01</button>
+      <button class="reference-hotspot hotspot-filter" type="button" data-reference-part="micro-filter" aria-label="استكشف فلتر المايكرو">02</button>
+      <button class="reference-hotspot hotspot-coil" type="button" data-reference-part="heat-exchanger" aria-label="استكشف المبادل الحراري">03</button>
+      <button class="reference-hotspot hotspot-blower" type="button" data-reference-part="cross-flow-blower" aria-label="استكشف مروحة التدفق العرضي">04</button>
+      <button class="reference-hotspot hotspot-pcb" type="button" data-reference-part="inverter-pcb" aria-label="استكشف لوحة الإنفرتر">05</button>
+      <button class="reference-hotspot hotspot-compressor" type="button" data-reference-part="compressor" aria-label="استكشف الضاغط">06</button>
+      <div class="reference-callout" role="status" aria-live="polite">
+        <span class="callout-index">01</span>
+        <span class="callout-title">FRONT SHELL</span>
+        <span class="callout-detail">غلاف أمامي بانحناء هندسي</span>
+      </div>
     </div>
-    <div class="assembly-status-row">
-      <span class="assembly-status-dot"></span>
-      <span>جارٍ تجميع منظومة التبريد الذكية</span>
-      <span class="assembly-status-percent">100%</span>
+    <div class="reference-footer">
+      <span class="reference-status"><i></i> جاري معايرة منظومة التبريد</span>
+      <span class="reference-progress-label">ASSEMBLY <b>100%</b></span>
     </div>
-    <div class="preloader-progress assembly-progress" aria-hidden="true"><span></span></div>
-    <div class="preloader-status" aria-hidden="true"><span></span> جاهز لتجربة أكثر برودة</div>
+    <div class="reference-progress" aria-hidden="true"><span></span></div>
+    <div class="reference-hint">حرّك المؤشر لاستكشاف العمق <span>↗</span></div>
   </div>
   <!-- شريط التنقل العلوي الأصلي (Navbar) -->
   <header class="glass entry-header">
@@ -7790,5 +7598,86 @@ function showToast(message) {
     })();
   </script>
 
+
+  <script>
+    (() => {
+      const viewer = document.querySelector('.reference-viewer');
+      const visual = document.querySelector('.reference-visual');
+      const callout = document.querySelector('.reference-callout');
+      if (!viewer || !visual) return;
+
+      const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      let raf = 0;
+      let targetX = 0;
+      let targetY = 0;
+      let currentX = 0;
+      let currentY = 0;
+      let dragging = false;
+      let startX = 0;
+      let startY = 0;
+
+      const callouts = {
+        'front-shell': ['01', 'FRONT SHELL', 'غلاف أمامي بانحناء هندسي'],
+        'micro-filter': ['02', 'MICRO-MESH FILTER', 'فلتر شبكي لتنقية الهواء'],
+        'heat-exchanger': ['03', 'HEAT EXCHANGER', 'مبادل حراري نحاسي عالي الكفاءة'],
+        'cross-flow-blower': ['04', 'CROSS-FLOW BLOWER', 'مروحة تدفق عرضي لتوزيع الهواء'],
+        'inverter-pcb': ['05', 'INVERTER CONTROL', 'لوحة تحكم إلكترونية ذكية'],
+        'compressor': ['06', 'COMPRESSOR', 'ضاغط دورة التبريد']
+      };
+
+      const setCamera = () => {
+        currentX += (targetX - currentX) * 0.10;
+        currentY += (targetY - currentY) * 0.10;
+        visual.style.setProperty('--camera-tilt-y', `${currentX * 7}deg`);
+        visual.style.setProperty('--camera-tilt-x', `${currentY * -4.5}deg`);
+        visual.style.setProperty('--camera-x', `${currentX * 11}px`);
+        visual.style.setProperty('--camera-y', `${currentY * 8}px`);
+        if (Math.abs(targetX - currentX) > 0.001 || Math.abs(targetY - currentY) > 0.001) raf = requestAnimationFrame(setCamera);
+        else raf = 0;
+      };
+
+      const nudge = (clientX, clientY) => {
+        const rect = viewer.getBoundingClientRect();
+        targetX = Math.max(-1, Math.min(1, ((clientX - rect.left) / rect.width - 0.5) * 2));
+        targetY = Math.max(-1, Math.min(1, ((clientY - rect.top) / rect.height - 0.5) * 2));
+        if (!raf && !reducedMotion) raf = requestAnimationFrame(setCamera);
+      };
+
+      viewer.addEventListener('pointermove', (event) => {
+        if (dragging || event.pointerType === 'mouse') nudge(event.clientX, event.clientY);
+      }, { passive: true });
+
+      viewer.addEventListener('pointerdown', (event) => {
+        dragging = true;
+        startX = event.clientX;
+        startY = event.clientY;
+        viewer.setPointerCapture?.(event.pointerId);
+      });
+
+      viewer.addEventListener('pointerup', (event) => {
+        dragging = false;
+        viewer.releasePointerCapture?.(event.pointerId);
+        if (event.pointerType !== 'mouse' && Math.hypot(event.clientX - startX, event.clientY - startY) < 12) nudge(event.clientX, event.clientY);
+      });
+
+      viewer.addEventListener('pointerleave', () => {
+        if (!dragging) { targetX = 0; targetY = 0; if (!raf && !reducedMotion) raf = requestAnimationFrame(setCamera); }
+      });
+
+      viewer.querySelectorAll('.reference-hotspot').forEach((hotspot) => {
+        hotspot.addEventListener('click', () => {
+          viewer.querySelectorAll('.reference-hotspot').forEach((item) => item.classList.remove('is-active'));
+          hotspot.classList.add('is-active');
+          const data = callouts[hotspot.dataset.referencePart];
+          if (!data || !callout) return;
+          callout.innerHTML = `<span class="callout-index">${data[0]}</span><span class="callout-title">${data[1]}</span><span class="callout-detail">${data[2]}</span>`;
+        });
+      });
+
+      if (!reducedMotion) {
+        window.addEventListener('blur', () => { targetX = 0; targetY = 0; if (!raf) raf = requestAnimationFrame(setCamera); }, { passive: true });
+      }
+    })();
+  </script>
 </body>
 </html>
