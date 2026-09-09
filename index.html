@@ -6034,6 +6034,34 @@ footer {
   @media (max-width:700px) { .hero-reference-visual { inset:24% -35% 0 -6%; opacity:.54; } .hero-reference-chip { top:17%; right:8%; font-size:7px; } .hero-reference-caption { bottom:8%; right:10%; font-size:.62rem; } .hero-reference-stage::before { background:linear-gradient(90deg, rgba(3,11,19,.90), rgba(3,11,19,.42) 68%, rgba(3,11,19,.26)); } }
   @media (prefers-reduced-motion:reduce) { .hero-reference-stage, .hero-reference-chip i { animation:none !important; } .hero-reference-visual { transform:none !important; } .hero-reference-final, .hero-assembly-piece { transition:none; } }
 
+  /* Axis-locked, non-rectangular reference sprites for the corrected assembly. */
+  .hero-reference-stage.is-assembling .hero-reference-visual > img:first-child { opacity:.12; filter:saturate(.92) contrast(1.02) brightness(.74) blur(.25px); transition:opacity .9s ease, filter .9s ease; }
+  .hero-reference-stage.is-assembled .hero-reference-visual > img:first-child { opacity:0; }
+  .hero-assembly-pieces { position:absolute; inset:0; z-index:4; pointer-events:none; transform-style:preserve-3d; }
+  .hero-assembly-piece { position:absolute; display:block; inset:auto; right:auto; bottom:auto; left:var(--to-left); top:var(--to-top); width:var(--to-width); height:var(--to-height); object-fit:contain; object-position:center; opacity:0; mix-blend-mode:normal; filter:saturate(1.04) contrast(1.04) brightness(1.02) drop-shadow(0 16px 18px rgba(0,0,0,.42)); transform:translate3d(var(--from-x),var(--from-y),var(--from-z)) rotateZ(var(--from-r)) scale(.96); transform-origin:center; transition:transform 2.75s cubic-bezier(.2,.86,.22,1), opacity .42s ease; }
+  .hero-reference-stage.is-assembling .hero-assembly-piece { opacity:1; transform:translate3d(0,0,0) rotateZ(0deg) scale(1); }
+  .hero-reference-stage.is-assembled .hero-assembly-piece { opacity:0; transform:translate3d(0,0,0) rotateZ(0deg) scale(1); transition:opacity .38s ease; }
+  .hero-piece-shell { --to-left:32%; --to-top:26%; --to-width:28%; --to-height:24%; --from-x:126px; --from-y:-82px; --from-z:160px; --from-r:-6deg; }
+  .hero-piece-chassis { --to-left:39%; --to-top:27%; --to-width:30%; --to-height:22%; --from-x:-92px; --from-y:-62px; --from-z:130px; --from-r:4deg; }
+  .hero-piece-coil { --to-left:37%; --to-top:36%; --to-width:25%; --to-height:18%; --from-x:-120px; --from-y:84px; --from-z:110px; --from-r:-3deg; }
+  .hero-piece-blower { --to-left:64%; --to-top:30%; --to-width:16%; --to-height:24%; --from-x:120px; --from-y:-54px; --from-z:150px; --from-r:-8deg; }
+  .hero-piece-board { --to-left:60%; --to-top:44%; --to-width:14%; --to-height:17%; --from-x:-130px; --from-y:80px; --from-z:130px; --from-r:6deg; }
+  .hero-piece-airout { --to-left:31%; --to-top:45%; --to-width:39%; --to-height:17%; --from-x:-100px; --from-y:90px; --from-z:100px; --from-r:-5deg; }
+  .hero-piece-compressor { --to-left:68%; --to-top:49%; --to-width:14%; --to-height:20%; --from-x:130px; --from-y:80px; --from-z:120px; --from-r:-8deg; }
+  @media (max-width:700px) { .hero-assembly-piece { filter:brightness(1.04) drop-shadow(0 10px 12px rgba(0,0,0,.35)); } }
+  /* Preloader uses the same transparent component sprites; no full rectangular source image. */
+  .reference-source { display:none !important; }
+  .reference-assembly-sprites { position:absolute; inset:0; z-index:3; transform-style:preserve-3d; pointer-events:none; }
+  .reference-assembly-sprite { position:absolute; display:block; object-fit:contain; object-position:center; opacity:0; filter:saturate(1.06) contrast(1.06) brightness(1.02) drop-shadow(0 14px 22px rgba(0,0,0,.42)); transform:translate3d(var(--ref-x),var(--ref-y),var(--ref-z)) rotateZ(var(--ref-r)) scale(.94); transform-origin:center; animation:referenceSpriteAssemble 4.25s var(--ref-delay) cubic-bezier(.16,1,.3,1) both; }
+  .ref-shell { left:18%; top:24%; width:30%; height:24%; --ref-x:-92px; --ref-y:-36px; --ref-z:160px; --ref-r:-5deg; --ref-delay:.08s; }
+  .ref-chassis { left:34%; top:23%; width:27%; height:24%; --ref-x:52px; --ref-y:-46px; --ref-z:128px; --ref-r:4deg; --ref-delay:.18s; }
+  .ref-coil { left:25%; top:43%; width:28%; height:19%; --ref-x:-84px; --ref-y:62px; --ref-z:118px; --ref-r:-3deg; --ref-delay:.28s; }
+  .ref-blower { left:61%; top:25%; width:18%; height:27%; --ref-x:112px; --ref-y:-50px; --ref-z:148px; --ref-r:-7deg; --ref-delay:.38s; }
+  .ref-board { left:55%; top:54%; width:17%; height:16%; --ref-x:-106px; --ref-y:72px; --ref-z:135px; --ref-r:7deg; --ref-delay:.48s; }
+  .ref-outlet { left:16%; top:57%; width:35%; height:18%; --ref-x:-96px; --ref-y:92px; --ref-z:102px; --ref-r:-4deg; --ref-delay:.58s; }
+  .ref-compressor { left:49%; top:58%; width:14%; height:22%; --ref-x:126px; --ref-y:84px; --ref-z:122px; --ref-r:-8deg; --ref-delay:.68s; }
+  @keyframes referenceSpriteAssemble { 0% { opacity:0; } 14% { opacity:.98; } 100% { opacity:.98; transform:translate3d(0,0,0) rotateZ(0deg) scale(1); } }
+  @media (max-width:700px) { .reference-assembly-sprite { filter:brightness(1.03) drop-shadow(0 8px 14px rgba(0,0,0,.34)); } }
   </style>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -6056,7 +6084,15 @@ footer {
     </div>
     <div class="reference-viewer" aria-label="عرض تفاعلي لأجزاء تكييف هواء واقعية">
       <div class="reference-visual">
-        <img class="reference-source" src="assets/ac_exploded_3d_reference.jpg" alt="تكييف هواء مفكك مع أجزائه الداخلية" />
+        <div class="reference-assembly-sprites" aria-hidden="true">
+          <img class="reference-assembly-sprite ref-shell" src="assets/hvac-parts/front-shell.png" alt="" />
+          <img class="reference-assembly-sprite ref-chassis" src="assets/hvac-parts/main-chassis.png" alt="" />
+          <img class="reference-assembly-sprite ref-coil" src="assets/hvac-parts/heat-exchanger.png" alt="" />
+          <img class="reference-assembly-sprite ref-blower" src="assets/hvac-parts/cross-flow-blower.png" alt="" />
+          <img class="reference-assembly-sprite ref-board" src="assets/hvac-parts/inverter-pcb.png" alt="" />
+          <img class="reference-assembly-sprite ref-outlet" src="assets/hvac-parts/air-outlet.png" alt="" />
+          <img class="reference-assembly-sprite ref-compressor" src="assets/hvac-parts/compressor.png" alt="" />
+        </div>
         <span class="reference-scan" aria-hidden="true"></span>
         <span class="reference-ring reference-ring-one" aria-hidden="true"></span>
         <span class="reference-ring reference-ring-two" aria-hidden="true"></span>
@@ -6126,11 +6162,13 @@ footer {
         <img src="assets/ac_exploded_3d_reference.jpg" alt="منظومة تكييف هواء واقعية بأجزائها الداخلية" />
         <img class="hero-reference-final" src="assets/ac_assembled_hero_cutout.png" alt="الوحدة الكاملة بعد تجميع مكونات التكييف" />
         <div class="hero-assembly-pieces" aria-hidden="true">
-          <span class="hero-assembly-piece hero-piece-shell"></span>
-          <span class="hero-assembly-piece hero-piece-coil"></span>
-          <span class="hero-assembly-piece hero-piece-blower"></span>
-          <span class="hero-assembly-piece hero-piece-board"></span>
-          <span class="hero-assembly-piece hero-piece-compressor"></span>
+          <img class="hero-assembly-piece hero-piece-shell" src="assets/hvac-parts/front-shell.png" alt="" />
+          <img class="hero-assembly-piece hero-piece-chassis" src="assets/hvac-parts/main-chassis.png" alt="" />
+          <img class="hero-assembly-piece hero-piece-coil" src="assets/hvac-parts/heat-exchanger.png" alt="" />
+          <img class="hero-assembly-piece hero-piece-blower" src="assets/hvac-parts/cross-flow-blower.png" alt="" />
+          <img class="hero-assembly-piece hero-piece-board" src="assets/hvac-parts/inverter-pcb.png" alt="" />
+          <img class="hero-assembly-piece hero-piece-airout" src="assets/hvac-parts/air-outlet.png" alt="" />
+          <img class="hero-assembly-piece hero-piece-compressor" src="assets/hvac-parts/compressor.png" alt="" />
         </div>
         <span class="hero-reference-scan" aria-hidden="true"></span>
       </div>
@@ -7949,7 +7987,7 @@ function showToast(message) {
       const run = () => {
         if (reduced) { stage.classList.add('is-assembled'); return; }
         stage.classList.add('is-assembling');
-        window.setTimeout(() => stage.classList.add('is-assembled'), 1850);
+        window.setTimeout(() => stage.classList.add('is-assembled'), 3000);
       };
       if (preloader) {
         preloader.addEventListener('transitionend', run, { once: true });
