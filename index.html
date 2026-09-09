@@ -2655,50 +2655,515 @@ body:has(#orderModal.active) .floating-actions-suite {
 
 
 /* ============================================================================
-   الهوية البصرية الجديدة: اللوجو الرسمي + مشهد 3D للتكييف
+   الدخلة السينمائية الاحترافية 3D: تجميع قطع التكييف الميكانيكية + اللوجو الرسمي
    ============================================================================ */
 .preloader {
-  background:
-    radial-gradient(circle at 50% 42%, rgba(0, 98, 172, 0.18), transparent 30%),
-    radial-gradient(circle at 50% 75%, rgba(243, 146, 0, 0.12), transparent 34%),
-    #050608;
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(ellipse at 50% 35%, #071526 0%, #030811 55%, #010306 100%);
+  z-index: 999999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  direction: rtl;
+  perspective: 1400px;
+  transform-style: preserve-3d;
+  transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1), transform 0.85s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.85s ease;
 }
 
-.preloader::before,
-.preloader::after {
-  content: "";
-  position: absolute;
-  border-radius: 50%;
+.preloader.fade-out {
+  opacity: 0;
+  visibility: hidden;
+  transform: scale(1.08) translateZ(40px);
   pointer-events: none;
-  filter: blur(2px);
 }
 
-.preloader::before {
-  width: 360px;
-  height: 360px;
-  border: 1px solid rgba(0, 180, 216, 0.18);
-  box-shadow: 0 0 80px rgba(0, 98, 172, 0.18), inset 0 0 50px rgba(0, 180, 216, 0.08);
-  animation: preloaderOrbit 8s linear infinite;
+/* خلفية جزيئات الضوء المحيطي */
+.cinematic-bg-glow {
+  position: absolute;
+  inset: -20%;
+  background: radial-gradient(circle at 50% 40%, rgba(0, 180, 216, 0.22) 0%, rgba(0, 98, 172, 0.12) 40%, transparent 70%);
+  filter: blur(40px);
+  pointer-events: none;
+  animation: ambientGlowPulse 4s ease-in-out infinite alternate;
 }
 
-.preloader::after {
-  width: 220px;
-  height: 220px;
-  border: 1px solid rgba(243, 146, 0, 0.18);
-  animation: preloaderOrbitReverse 6s linear infinite;
+.cinematic-dust-particles {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
 }
 
-.preloader-content {
-  position: relative;
-  z-index: 1;
-  gap: 16px;
-  animation: preloaderContentIn 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
+.cinematic-dust-particles span {
+  position: absolute;
+  width: 3px;
+  height: 3px;
+  background: #00d4ff;
+  border-radius: 50%;
+  box-shadow: 0 0 10px #00d4ff, 0 0 20px #00b4d8;
+  opacity: 0.6;
+  animation: dustFloat 6s ease-in-out infinite alternate;
 }
+.cinematic-dust-particles span:nth-child(1) { top: 20%; left: 15%; animation-delay: 0s; }
+.cinematic-dust-particles span:nth-child(2) { top: 65%; left: 25%; animation-delay: 1.2s; background: #f39200; }
+.cinematic-dust-particles span:nth-child(3) { top: 35%; right: 20%; animation-delay: 2.4s; }
+.cinematic-dust-particles span:nth-child(4) { top: 75%; right: 18%; animation-delay: 0.8s; }
+.cinematic-dust-particles span:nth-child(5) { top: 15%; right: 35%; animation-delay: 1.8s; }
 
-.preloader-kicker {
-  color: #8fe8ff;
+/* زر التخطي الفوري */
+.cinematic-skip-btn {
+  position: absolute;
+  top: 24px;
+  left: 24px;
+  z-index: 100;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 18px;
+  background: rgba(10, 25, 42, 0.7);
+  border: 1px solid rgba(0, 212, 255, 0.35);
+  border-radius: 999px;
+  color: #e2e8f0;
+  font-family: 'Cairo', sans-serif;
+  font-size: 0.84rem;
   font-weight: 700;
-  text-shadow: 0 0 18px rgba(0, 180, 216, 0.45);
+  cursor: pointer;
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.4);
+}
+.cinematic-skip-btn:hover {
+  background: rgba(0, 180, 216, 0.25);
+  border-color: rgba(0, 212, 255, 0.8);
+  color: #ffffff;
+  transform: translateY(-2px);
+  box-shadow: 0 0 20px rgba(0, 212, 255, 0.5);
+}
+
+/* مسرح المشهد السينمائي */
+.preloader-cinematic-stage {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 28px;
+  width: 94%;
+  max-width: 620px;
+  transform-style: preserve-3d;
+}
+
+/* مسرح التكييف 3D */
+.ac-assembly-3d-scene {
+  position: relative;
+  width: 420px;
+  max-width: 90vw;
+  height: 125px;
+  perspective: 1200px;
+  transform-style: preserve-3d;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: rotateX(8deg) rotateY(-12deg);
+  animation: scene3dFloat 5s ease-in-out infinite alternate;
+}
+
+.ac-3d-ambient-glow {
+  position: absolute;
+  inset: -20px -35px;
+  background: radial-gradient(ellipse at center, rgba(0, 212, 255, 0.4) 0%, rgba(0, 98, 172, 0.15) 50%, transparent 75%);
+  filter: blur(25px);
+  z-index: 0;
+  opacity: 0.85;
+}
+
+/* النواة الأساسية لقطع التكييف */
+.ac-unit-3d-core {
+  position: relative;
+  width: 380px;
+  max-width: 100%;
+  height: 105px;
+  transform-style: preserve-3d;
+}
+
+/* القطع العامة */
+.ac-part {
+  position: absolute;
+  inset: 0;
+  transform-style: preserve-3d;
+  transition: transform 1.2s cubic-bezier(0.2, 0.9, 0.3, 1), opacity 1.2s ease, filter 1.2s ease;
+}
+
+/* وسوم أسماء القطع أثناء التفكيك */
+.part-label {
+  position: absolute;
+  bottom: -26px;
+  right: 0;
+  font-size: 0.65rem;
+  font-weight: 700;
+  color: rgba(143, 232, 255, 0.9);
+  background: rgba(3, 12, 22, 0.85);
+  padding: 2px 8px;
+  border-radius: 4px;
+  border: 1px solid rgba(0, 212, 255, 0.3);
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 1;
+  transition: opacity 0.5s ease;
+}
+.ac-assembly-3d-scene.assembled .part-label {
+  opacity: 0;
+}
+
+/* القطعة 1: الهيكل الخلفي */
+.part-back-chassis {
+  transform: translate3d(0, -25px, -180px) rotateX(-16deg);
+  opacity: 0.65;
+}
+.chassis-mount-plate {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, #1a2736 0%, #0d1622 100%);
+  border: 1px solid rgba(143, 232, 255, 0.25);
+  border-radius: 12px;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.7);
+}
+.chassis-copper-terminals {
+  position: absolute;
+  left: 20px;
+  bottom: -12px;
+  display: flex;
+  gap: 6px;
+}
+.chassis-copper-terminals .pipe {
+  width: 8px;
+  height: 24px;
+  background: linear-gradient(180deg, #d97736 0%, #b45309 100%);
+  border-radius: 4px;
+  box-shadow: 0 0 8px rgba(217, 119, 6, 0.5);
+}
+
+/* القطعة 2: رادياتير ومبخر النحاس والزعانف الذهبية */
+.part-evaporator-coil {
+  transform: translate3d(0, -85px, -70px) rotateX(26deg);
+  opacity: 0.75;
+}
+.golden-fins-matrix {
+  position: absolute;
+  inset: 10px 18px 18px 18px;
+  background: repeating-linear-gradient(90deg, #eab308 0px, #ca8a04 2px, #713f12 3px, #eab308 4px);
+  border-radius: 6px;
+  border: 1px solid rgba(234, 179, 8, 0.5);
+  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.6);
+}
+.blue-fins-matrix {
+  position: absolute;
+  top: 10px;
+  left: 18px;
+  right: 18px;
+  height: 24px;
+  background: repeating-linear-gradient(90deg, #0284c7 0px, #0369a1 2px, #075985 3px, #0284c7 4px);
+  border-radius: 6px 6px 0 0;
+}
+.copper-tubes-bank {
+  position: absolute;
+  right: 6px;
+  top: 14px;
+  bottom: 18px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+.copper-tubes-bank .u-bend {
+  width: 12px;
+  height: 12px;
+  border: 3px solid #d97736;
+  border-left: none;
+  border-radius: 0 10px 10px 0;
+}
+
+/* القطعة 3: مروحة التوربين */
+.part-turbine-blower {
+  transform: translate3d(-140px, 15px, -20px) rotateY(-32deg);
+  opacity: 0.75;
+}
+.turbine-rotor {
+  position: absolute;
+  left: 25px;
+  right: 25px;
+  top: 40px;
+  height: 38px;
+  background: linear-gradient(180deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
+  border-radius: 999px;
+  border: 1px solid rgba(0, 180, 216, 0.3);
+  overflow: hidden;
+}
+.rotor-blades {
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.15) 0px, transparent 4px, rgba(0, 212, 255, 0.3) 6px, transparent 8px);
+  animation: rotorSpin 0.6s linear infinite;
+}
+
+/* القطعة 4: الفلاتر */
+.part-bio-filters {
+  transform: translate3d(0, -75px, 60px) rotateX(-22deg);
+  opacity: 0.8;
+  display: flex;
+  gap: 12px;
+  padding: 10px 22px;
+}
+.filter-mesh {
+  flex: 1;
+  height: 60px;
+  background: rgba(2, 132, 199, 0.15);
+  border: 1.5px solid rgba(56, 189, 248, 0.6);
+  border-radius: 6px;
+  backdrop-filter: blur(4px);
+  background-image: radial-gradient(rgba(56, 189, 248, 0.4) 1px, transparent 1px);
+  background-size: 5px 5px;
+}
+
+/* القطعة 5: لوحة الذكاء الاصطناعي */
+.part-inverter-board {
+  transform: translate3d(150px, -20px, 50px) rotateY(35deg);
+  opacity: 0.85;
+}
+.pcb-circuits {
+  position: absolute;
+  right: 25px;
+  top: 20px;
+  width: 50px;
+  height: 65px;
+  background: #064e3b;
+  border: 1px solid rgba(16, 185, 129, 0.5);
+  border-radius: 6px;
+  box-shadow: 0 0 15px rgba(16, 185, 129, 0.3);
+}
+.pcb-chip {
+  position: absolute;
+  right: 32px;
+  top: 36px;
+  padding: 2px 4px;
+  background: #111827;
+  color: #10b981;
+  font-size: 0.45rem;
+  font-weight: 900;
+  border-radius: 2px;
+  border: 1px solid #10b981;
+}
+.pcb-led-glow {
+  position: absolute;
+  right: 46px;
+  top: 66px;
+  width: 6px;
+  height: 6px;
+  background: #00ffcc;
+  border-radius: 50%;
+  box-shadow: 0 0 10px #00ffcc;
+  animation: ledBlink 0.8s ease-in-out infinite alternate;
+}
+
+/* القطعة 6: الغطاء الأمامي الفاخر */
+.part-front-casing {
+  transform: translate3d(0, 45px, 200px) rotateX(-18deg);
+  opacity: 0.9;
+  background: linear-gradient(180deg, #ffffff 0%, #f8fafc 55%, #e2e8f0 100%);
+  border-radius: 12px 12px 16px 16px;
+  border: 1px solid rgba(255, 255, 255, 0.95);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6), inset 0 2px 4px rgba(255, 255, 255, 1);
+  overflow: visible;
+}
+.casing-pearl-sheen {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 14px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.95), transparent);
+  border-radius: 12px 12px 0 0;
+}
+.casing-chrome-strip {
+  position: absolute;
+  bottom: 22px;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #94a3b8 0%, #e2e8f0 50%, #94a3b8 100%);
+}
+
+.casing-brand-insignia {
+  position: absolute;
+  top: 16px;
+  left: 20px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.insignia-triangle {
+  width: 12px;
+  height: 12px;
+  background: linear-gradient(135deg, #0062ac, #f39200);
+  clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+}
+.insignia-text {
+  font-family: 'Cairo', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 900;
+  color: #0062ac;
+  letter-spacing: 1px;
+}
+.insignia-tag {
+  font-size: 0.55rem;
+  font-weight: 800;
+  color: #f39200;
+  background: rgba(243, 146, 0, 0.12);
+  padding: 1px 5px;
+  border-radius: 3px;
+}
+
+/* شاشة LED المخفية */
+.ac-hidden-led-display {
+  position: absolute;
+  top: 14px;
+  right: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  opacity: 0;
+  transform: scale(0.8);
+  transition: opacity 0.5s ease, transform 0.5s cubic-bezier(0.34, 1.5, 0.64, 1);
+}
+.led-temp-num {
+  font-family: monospace, sans-serif;
+  font-size: 1.6rem;
+  font-weight: 900;
+  line-height: 1;
+  color: #00b4d8;
+  text-shadow: 0 0 10px rgba(0, 180, 216, 0.9), 0 0 22px rgba(0, 98, 172, 0.7);
+}
+.led-unit {
+  font-size: 0.75rem;
+}
+.led-mode-row {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  font-size: 0.55rem;
+  font-weight: 800;
+  color: #0284c7;
+}
+
+/* القطعة 7: ريشة توجيه الهواء */
+.part-bottom-louver {
+  transform: translate3d(0, 85px, 140px) rotateX(42deg);
+  opacity: 0.85;
+}
+.louver-deflector-wing {
+  position: absolute;
+  bottom: 0;
+  left: 6px;
+  right: 6px;
+  height: 22px;
+  background: linear-gradient(180deg, #cbd5e1 0%, #94a3b8 100%);
+  border-radius: 0 0 10px 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  transform-origin: top center;
+  transition: transform 0.9s cubic-bezier(0.2, 0.9, 0.3, 1);
+}
+.louver-ice-illumination {
+  position: absolute;
+  bottom: 4px;
+  left: 10px;
+  right: 10px;
+  height: 3px;
+  background: #00e5ff;
+  border-radius: 2px;
+  box-shadow: 0 0 14px #00e5ff, 0 0 25px #00b4d8;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+/* حالة التجميع المكتمل (ASSEMBLED) */
+.ac-assembly-3d-scene.assembled .ac-part {
+  transform: translate3d(0, 0, 0) rotateX(0) rotateY(0);
+  opacity: 1;
+}
+
+/* حالة التشغيل (POWERED ON) */
+.ac-assembly-3d-scene.powered-on .ac-hidden-led-display {
+  opacity: 1;
+  transform: scale(1);
+}
+.ac-assembly-3d-scene.powered-on .louver-deflector-wing {
+  transform: rotateX(55deg) translateY(4px);
+}
+.ac-assembly-3d-scene.powered-on .louver-ice-illumination {
+  opacity: 1;
+}
+.ac-assembly-3d-scene.powered-on .ac-cold-jet-blast {
+  opacity: 1;
+}
+
+/* تيارات التبريد الثلجي */
+.ac-cold-jet-blast {
+  position: absolute;
+  top: 95px;
+  left: -15px;
+  right: -15px;
+  height: 160px;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.6s ease;
+}
+.jet-stream-cone {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at top, rgba(0, 212, 255, 0.4) 0%, rgba(0, 180, 216, 0.15) 50%, transparent 80%);
+  filter: blur(14px);
+  animation: mistFlow 2s ease-in-out infinite alternate;
+}
+.frost-wave-pulse {
+  position: absolute;
+  left: 8%;
+  right: 8%;
+  height: 3px;
+  background: linear-gradient(90deg, transparent 0%, rgba(0, 212, 255, 0.85) 50%, transparent 100%);
+  box-shadow: 0 0 14px rgba(0, 212, 255, 0.9);
+  animation: frostPulseDown 1.8s cubic-bezier(0.2, 0.8, 0.4, 1) infinite;
+}
+.frost-wave-pulse.pulse-2 {
+  animation-delay: 0.7s;
+}
+.frost-floating-crystals {
+  position: absolute;
+  top: 30px;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: space-around;
+  color: rgba(0, 212, 255, 0.85);
+  font-size: 0.9rem;
+  text-shadow: 0 0 12px rgba(0, 212, 255, 0.9);
+  animation: crystalsDrift 2.5s ease-in-out infinite alternate;
+}
+
+/* بطاقة الهوية واللوجو الرسمي */
+.cinematic-brand-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.2, 0.8, 0.4, 1);
+}
+.cinematic-brand-card.revealed {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .preloader-logo-wrapper {
@@ -2709,7 +3174,6 @@ body:has(#orderModal.active) .floating-actions-suite {
   align-items: center;
   justify-content: center;
   perspective: 900px;
-  animation: logoFloat 3.8s ease-in-out infinite;
 }
 
 .preloader-logo-image {
@@ -2719,26 +3183,85 @@ body:has(#orderModal.active) .floating-actions-suite {
   border-radius: 12px;
   object-fit: contain;
   box-shadow: 0 18px 55px rgba(0, 98, 172, 0.25), 0 0 30px rgba(243, 146, 0, 0.14);
-  transform: rotateX(3deg) rotateY(-3deg);
-  animation: logoSheen 3.2s ease-in-out infinite;
 }
 
-.preloader-text {
-  font-size: 1.05rem;
-  color: rgba(255, 255, 255, 0.86);
-  letter-spacing: 0.2px;
+.cinematic-auth-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 12px;
+  background: rgba(0, 98, 172, 0.18);
+  border: 1px solid rgba(0, 180, 216, 0.35);
+  border-radius: 999px;
+  color: #70e1ff;
+  font-size: 0.74rem;
+  font-weight: 700;
+}
+.auth-point {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #00e5ff;
+  box-shadow: 0 0 8px #00e5ff;
 }
 
-.preloader-progress {
-  width: min(230px, 58vw);
-  height: 5px;
-  background: rgba(255, 255, 255, 0.1);
-  box-shadow: 0 0 16px rgba(0, 180, 216, 0.18);
+.cinematic-progress-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  margin-top: 4px;
+}
+.cinematic-progress-bar {
+  width: 220px;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: 4px;
+  overflow: hidden;
+}
+.cinematic-progress-fill {
+  width: 0%;
+  height: 100%;
+  background: linear-gradient(90deg, #00b4d8, #0062ac, #f39200);
+  box-shadow: 0 0 10px #00b4d8;
+  transition: width 0.3s ease;
+}
+.cinematic-status-text {
+  font-size: 0.78rem;
+  color: rgba(230, 245, 255, 0.8);
 }
 
-.preloader-progress span {
-  background: linear-gradient(90deg, #00b4d8, #8fe8ff, #f39200);
-  box-shadow: 0 0 12px rgba(0, 180, 216, 0.55);
+/* Animations */
+@keyframes scene3dFloat {
+  0% { transform: rotateX(8deg) rotateY(-12deg) translateY(0); }
+  100% { transform: rotateX(4deg) rotateY(-6deg) translateY(-8px); }
+}
+@keyframes rotorSpin {
+  100% { background-position: 40px 0; }
+}
+@keyframes ledBlink {
+  0% { opacity: 0.4; }
+  100% { opacity: 1; }
+}
+@keyframes mistFlow {
+  0% { opacity: 0.4; transform: scaleY(0.9); }
+  100% { opacity: 0.85; transform: scaleY(1.1); }
+}
+@keyframes frostPulseDown {
+  0% { top: 0; opacity: 1; transform: scaleX(0.7); }
+  100% { top: 120px; opacity: 0; transform: scaleX(1.15); }
+}
+@keyframes crystalsDrift {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(8px); }
+}
+@keyframes ambientGlowPulse {
+  0% { opacity: 0.5; }
+  100% { opacity: 0.85; }
+}
+@keyframes dustFloat {
+  0% { transform: translateY(0) scale(1); }
+  100% { transform: translateY(-20px) scale(1.4); }
 }
 
 .brand-logo-image {
@@ -5067,16 +5590,134 @@ footer {
 </head>
 <body>
 
-  <!-- شاشة التحميل المسبق الفاخرة (Preloader) -->
-  <div class="preloader" id="preloader" role="status" aria-live="polite">
-    <div class="preloader-content">
-      <div class="preloader-kicker">أهلاً بك في</div>
-      <div class="preloader-logo-wrapper">
-        <img class="preloader-logo-image" src="assets/tryangle-logo-clean.png" alt="تراي أنجل للتكييف والتبريد">
+  <!-- شاشة الدخول السينمائية ثلاثية الأبعاد - تجميع أجزاء التكييف 3D (Cinematic 3D AC Assembly Intro) -->
+  <div class="preloader cinematic-3d-preloader" id="preloader" role="status" aria-live="polite">
+    <!-- خلفية جزيئات الثلج والضوء المحيطي -->
+    <div class="cinematic-bg-glow"></div>
+    <div class="cinematic-dust-particles" aria-hidden="true">
+      <span></span><span></span><span></span><span></span><span></span>
+    </div>
+
+    <!-- زر تخطي فوري أنيق -->
+    <button type="button" class="cinematic-skip-btn" id="cinematicSkipBtn" aria-label="تخطي الدخول">
+      <span>تخطي الدخول</span>
+      <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M5.59 7.41L10.18 12l-4.59 4.59L7 18l6-6-6-6-1.41 1.41zM16 6h2v12h-2z"/></svg>
+    </button>
+
+    <div class="preloader-cinematic-stage">
+      
+      <!-- 1. مسرح مجسم التكييف ثلاثي الأبعاد الميكانيكي مع قطع التجميع -->
+      <div class="ac-assembly-3d-scene" id="acAssemblyScene">
+        <!-- هالة التبريد المحيطية -->
+        <div class="ac-3d-ambient-glow"></div>
+
+        <!-- المجسم الحجمي للتكييف بأجزائه المتفككة والمجمعة -->
+        <div class="ac-unit-3d-core" id="acUnit3dCore">
+          
+          <!-- القطعة 1: الهيكل الخلفي وقاعدة التثبيت المعدنية والجدران -->
+          <div class="ac-part part-back-chassis">
+            <div class="chassis-mount-plate"></div>
+            <div class="chassis-copper-terminals">
+              <span class="pipe pipe-1"></span>
+              <span class="pipe pipe-2"></span>
+              <span class="pipe pipe-3"></span>
+            </div>
+            <div class="part-label label-chassis">الهيكل القاعدي المقاوم للاهتزاز</div>
+          </div>
+
+          <!-- القطعة 2: رادياتير ومبخر النحاس والزعانف الذهبية المقاومة للتآكل -->
+          <div class="ac-part part-evaporator-coil">
+            <div class="copper-tubes-bank">
+              <span class="u-bend"></span><span class="u-bend"></span><span class="u-bend"></span><span class="u-bend"></span>
+            </div>
+            <div class="golden-fins-matrix"></div>
+            <div class="blue-fins-matrix"></div>
+            <div class="part-label label-evaporator">رادياتير النحاس والزعانف الذهبية Gold Fin</div>
+          </div>
+
+          <!-- القطعة 3: مروحة التوربين الأسطوانية فائقة الهدوء -->
+          <div class="ac-part part-turbine-blower">
+            <div class="turbine-rotor">
+              <div class="rotor-blades"></div>
+            </div>
+            <div class="part-label label-blower">مروحة التوربين السايلنت Cross-Flow</div>
+          </div>
+
+          <!-- القطعة 4: فلاتر تنقية الهواء عالية الكثافة ومضادة للبكتيريا -->
+          <div class="ac-part part-bio-filters">
+            <div class="filter-mesh filter-left"></div>
+            <div class="filter-mesh filter-right"></div>
+            <div class="part-label label-filters">فلاتر الكربون والميكرو-فلتر Bio Filter</div>
+          </div>
+
+          <!-- القطعة 5: لوحة الذكاء الاصطناعي ومعالج الإنفرتر -->
+          <div class="ac-part part-inverter-board">
+            <div class="pcb-circuits"></div>
+            <div class="pcb-chip">AI INVERTER</div>
+            <div class="pcb-led-glow"></div>
+          </div>
+
+          <!-- القطعة 6: الغطاء الأمامي الانسيابي الكريستالي الفاخر -->
+          <div class="ac-part part-front-casing">
+            <div class="casing-pearl-sheen"></div>
+            <div class="casing-chrome-strip"></div>
+            
+            <!-- علامة التكييف وشاشة LED المخفية -->
+            <div class="casing-brand-insignia">
+              <div class="insignia-triangle"></div>
+              <span class="insignia-text">TRY ANGLE</span>
+              <span class="insignia-tag">AI INVERTER</span>
+            </div>
+
+            <div class="ac-hidden-led-display" id="acHiddenDisplay">
+              <div class="led-temp-num">18<span class="led-unit">°C</span></div>
+              <div class="led-mode-row">
+                <span class="led-snow-icon">❄</span>
+                <span class="led-mode-name">TURBO COOL</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- القطعة 7: ريشة توجيه الهواء الذكية السفلية التي تفتح -->
+          <div class="ac-part part-bottom-louver" id="acBottomLouver">
+            <div class="louver-deflector-wing"></div>
+            <div class="louver-ice-illumination"></div>
+          </div>
+
+          <!-- تيارات الهواء الثلجي المندفعة فور اكتمال التجميع -->
+          <div class="ac-cold-jet-blast" id="acColdJetBlast" aria-hidden="true">
+            <div class="jet-stream-cone"></div>
+            <div class="frost-wave-pulse pulse-1"></div>
+            <div class="frost-wave-pulse pulse-2"></div>
+            <div class="frost-floating-crystals">
+              <span>❄</span><span>•</span><span>❄</span><span>•</span><span>❄</span>
+            </div>
+          </div>
+
+        </div>
       </div>
-      <div class="preloader-text">تراي أنجل للتكييف والصيانة</div>
-      <div class="preloader-progress" aria-hidden="true"><span></span></div>
-      <div class="preloader-status" aria-hidden="true"><span></span> جاري تجهيز تجربتك</div>
+
+      <!-- 2. بطاقة الهوية والشعار الرسمي بعد اكتمال التجميع -->
+      <div class="cinematic-brand-card" id="cinematicBrandCard">
+        <div class="preloader-kicker">نصنع لك الانتعاش والمناخ المثالي</div>
+        <div class="preloader-logo-wrapper">
+          <img class="preloader-logo-image" src="assets/tryangle-logo-clean.png" alt="تراي أنجل للتكييف والتبريد">
+        </div>
+        <div class="preloader-text">تراي أنجل للتكييف والتبريد</div>
+        <div class="cinematic-auth-badge">
+          <span class="auth-point"></span>
+          <span>الوكيل والموزع المعتمد لكاريير وميديا في مصر</span>
+        </div>
+        
+        <!-- شريط التقدم الفاخر -->
+        <div class="cinematic-progress-wrap">
+          <div class="cinematic-progress-bar">
+            <div class="cinematic-progress-fill" id="cinematicProgressFill"></div>
+          </div>
+          <div class="cinematic-status-text" id="cinematicStatusText">جاري تجميع التكييف بدقة هندسية 3D...</div>
+        </div>
+      </div>
+
     </div>
   </div>
 
@@ -6638,24 +7279,74 @@ function initIntroAndScrollReveal() {
   const preloader = document.getElementById("preloader");
   const entryHeader = document.querySelector(".entry-header");
   const entryTargets = document.querySelectorAll(".reveal-fade");
+  const acScene = document.getElementById("acAssemblyScene");
+  const brandCard = document.getElementById("cinematicBrandCard");
+  const progressFill = document.getElementById("cinematicProgressFill");
+  const statusText = document.getElementById("cinematicStatusText");
+  const skipBtn = document.getElementById("cinematicSkipBtn");
 
-  function startIntro() {
+  let isDismissed = false;
+
+  function finishCinematicIntro() {
+    if (isDismissed) return;
+    isDismissed = true;
+
     if (entryHeader) entryHeader.classList.add("is-visible");
-
     entryTargets.forEach((element, index) => {
       setTimeout(() => {
         element.classList.add("revealed");
-      }, 300 + (index * 95));
+      }, 150 + (index * 80));
     });
 
     if (preloader) {
-        setTimeout(() => {
-          preloader.classList.add("fade-out");
-        }, 1900);
-        setTimeout(() => {
-          preloader.remove();
-        }, 2550);
+      preloader.classList.add("fade-out");
+      setTimeout(() => {
+        preloader.remove();
+      }, 850);
     }
+  }
+
+  function startIntro() {
+    // زر التخطي الفوري
+    if (skipBtn) {
+      skipBtn.addEventListener("click", finishCinematicIntro);
+    }
+
+    // إمكانية التخطي بالمسافة أو Escape
+    window.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" || e.code === "Space") {
+        finishCinematicIntro();
+      }
+    }, { once: true });
+
+    // المرحلة 1 (0.8 ثانية): تجميع قطع التكييف 3D بانسيابية هندسية
+    setTimeout(() => {
+      if (isDismissed) return;
+      if (acScene) acScene.classList.add("assembled");
+      if (statusText) statusText.textContent = "تجميع دقيق للأجزاء والتحام الهيكل الميكانيكي ⚡";
+      if (progressFill) progressFill.style.width = "45%";
+    }, 850);
+
+    // المرحلة 2 (2.0 ثانية): إضاءة الشاشة الرقمية 18°C وفتح الريش وتدفق الهواء البارد
+    setTimeout(() => {
+      if (isDismissed) return;
+      if (acScene) acScene.classList.add("powered-on");
+      if (statusText) statusText.textContent = "تشغيل الإنفرتر وتدفق تيار التبريد الثلجي 18°C ❄";
+      if (progressFill) progressFill.style.width = "75%";
+    }, 2000);
+
+    // المرحلة 3 (2.8 ثانية): ظهور بطاقة وشعار تراي أنجل الرسمي الفاخر
+    setTimeout(() => {
+      if (isDismissed) return;
+      if (brandCard) brandCard.classList.add("revealed");
+      if (statusText) statusText.textContent = "تراي أنجل | الوكيل والموزع المعتمد لكاريير وميديا";
+      if (progressFill) progressFill.style.width = "100%";
+    }, 2850);
+
+    // المرحلة 4 (3.9 ثانية): فتح الدخول بسلاسة تامة إلى الموقع
+    setTimeout(() => {
+      finishCinematicIntro();
+    }, 3900);
   }
 
   requestAnimationFrame(() => {
