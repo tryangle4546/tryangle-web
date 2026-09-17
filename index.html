@@ -5474,7 +5474,7 @@ footer {
   z-index: 1;
   pointer-events: none;
   background: 
-    radial-gradient(ellipse 70% 50% at 50% 48%, rgba(0, 180, 216, 0.18), transparent 70%),
+    radial-gradient(ellipse 70% 50% at 50% 48%, rgba(0, 180, 216, 0.20), transparent 70%),
     radial-gradient(ellipse 40% 30% at 50% 60%, rgba(243, 146, 0, 0.12), transparent 60%);
   filter: blur(10px);
 }
@@ -5517,7 +5517,7 @@ footer {
   z-index: 20;
   width: 100%;
   max-width: 1300px;
-  padding: clamp(16px, 3vw, 28px) clamp(20px, 4vw, 40px);
+  padding: clamp(14px, 2.5vw, 24px) clamp(20px, 4vw, 40px);
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -5531,7 +5531,7 @@ footer {
 }
 
 .cinema-logo {
-  height: clamp(38px, 5vw, 48px);
+  height: clamp(38px, 4.5vw, 48px);
   width: auto;
   object-fit: contain;
   filter: drop-shadow(0 0 16px rgba(0, 180, 216, 0.45));
@@ -5626,7 +5626,7 @@ footer {
   transform: translateX(-3px);
 }
 
-/* 4. مسرح التجميع ثلاثي الأبعاد الملحمي (3D Stage & Parts) */
+/* 4. مسرح التجميع ثلاثي الأبعاد الملحمي (Photorealistic 3D Stage) */
 .cinema-stage {
   position: relative;
   z-index: 10;
@@ -5636,278 +5636,251 @@ footer {
   justify-content: center;
   align-items: center;
   perspective: 1200px;
-  touch-action: none;
+  padding: 10px;
+  box-sizing: border-box;
 }
 
 .cinema-halo-glow {
   position: absolute;
-  width: min(700px, 80vw);
-  height: min(450px, 50vh);
+  width: min(850px, 90vw);
+  height: min(500px, 55vh);
   border-radius: 50%;
-  background: radial-gradient(ellipse, rgba(0, 180, 216, 0.28) 0%, rgba(0, 98, 172, 0.14) 45%, transparent 72%);
-  filter: blur(48px);
+  background: radial-gradient(ellipse, rgba(0, 180, 216, 0.32) 0%, rgba(0, 98, 172, 0.16) 50%, transparent 72%);
+  filter: blur(54px);
   pointer-events: none;
   animation: haloBreathe 4s infinite ease-in-out;
 }
 
 @keyframes haloBreathe {
-  0%, 100% { transform: scale(0.95); opacity: 0.65; }
-  50% { transform: scale(1.1); opacity: 0.95; }
+  0%, 100% { transform: scale(0.96); opacity: 0.7; }
+  50% { transform: scale(1.08); opacity: 1; }
 }
 
-.cinema-laser-orb {
-  position: absolute;
-  width: min(540px, 68vw);
-  height: min(320px, 40vh);
-  border: 1px solid rgba(0, 180, 216, 0.25);
-  border-radius: 50%;
-  pointer-events: none;
-  transform: rotateX(65deg);
-  animation: laserRingRotate 18s linear infinite;
-  box-shadow: 0 0 30px rgba(0, 180, 216, 0.12), inset 0 0 30px rgba(0, 180, 216, 0.08);
-}
-
-@keyframes laserRingRotate {
-  0% { transform: rotateX(65deg) rotateZ(0deg); }
-  100% { transform: rotateX(65deg) rotateZ(360deg); }
-}
-
-/* حاوية الأجزاء ثلاثية الأبعاد */
-.cinema-ac-assembly {
+/* الإطار الهندسي الكامل للتكييف (16:9 Aspect Ratio) */
+.cinema-ac-viewport {
   position: relative;
-  width: min(740px, 86vw);
-  height: min(420px, 52vh);
+  width: min(880px, 92vw);
+  aspect-ratio: 16 / 9;
+  max-height: 52vh;
+  border-radius: 20px;
+  overflow: hidden;
+  background: #020509;
+  border: 1px solid rgba(0, 180, 216, 0.35);
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.85), 0 0 50px rgba(0, 180, 216, 0.25);
   transform-style: preserve-3d;
   transform: translate3d(var(--cam-pan-x, 0px), var(--cam-pan-y, 0px), 0px) 
-             rotateX(var(--cam-rot-x, 4deg)) 
-             rotateY(var(--cam-rot-y, -6deg)) 
+             rotateX(var(--cam-rot-x, 3deg)) 
+             rotateY(var(--cam-rot-y, -4deg)) 
              scale(var(--cam-scale, 1));
-  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.6s ease;
   will-change: transform;
 }
 
-/* التنسيق الأساسي لكل قطعة تكييف تطفو في الفضاء */
-.cinema-part {
+/* الطبقات الأساسية داخل الإطار */
+.ac-layer {
   position: absolute;
   inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  transition: opacity 1.1s cubic-bezier(0.19, 1, 0.22, 1), 
+              transform 1.2s cubic-bezier(0.19, 1, 0.22, 1),
+              filter 0.8s ease;
+  will-change: opacity, transform, filter;
+}
+
+.ac-stage-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  user-select: none;
+}
+
+/* 1. طبقة التفكك ثلاثي الأبعاد */
+.layer-exploded {
+  z-index: 10;
+  opacity: 1;
+  transform: scale(1);
+  filter: contrast(1.05) brightness(1);
+}
+
+.cinema-intro.state-assembling .layer-exploded {
+  opacity: 0;
+  transform: scale(0.96) translateZ(-30px);
+  filter: contrast(1.2) brightness(1.3) blur(2px);
+}
+
+/* 2. طبقة التكييف المجمع النهائي */
+.layer-assembled {
+  z-index: 12;
+  opacity: 0;
+  transform: scale(1.04) translateZ(20px);
+  filter: contrast(1.05) brightness(0.9);
+}
+
+.cinema-intro.state-assembling .layer-assembled {
+  opacity: 1;
+  transform: scale(1) translateZ(0);
+  filter: contrast(1.05) brightness(1);
+}
+
+.cinema-intro.state-assembled .layer-assembled {
+  opacity: 1;
+  transform: scale(1) translateZ(0);
+}
+
+/* مؤشرات التحديد والبيانات الهندسية (Holographic Tech Pins) */
+.tech-pin {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  z-index: 25;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  transition: opacity 0.5s ease, transform 0.6s ease;
+}
+
+.pin-ring {
+  width: 22px;
+  height: 22px;
+  border: 1px solid #00f0ff;
+  border-radius: 50%;
+  box-shadow: 0 0 14px rgba(0, 240, 255, 0.6), inset 0 0 8px rgba(0, 240, 255, 0.4);
+  animation: pinPulse 1.8s infinite ease-in-out;
   display: flex;
   justify-content: center;
   align-items: center;
-  transform-style: preserve-3d;
-  pointer-events: none;
-  opacity: 0;
-  will-change: transform, opacity;
-  transition: transform 1.25s cubic-bezier(0.19, 1, 0.22, 1), 
-              opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1),
-              filter 0.6s ease;
+  flex-shrink: 0;
 }
 
-.cinema-part img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  user-select: none;
-  filter: drop-shadow(0 20px 30px rgba(0, 0, 0, 0.55));
-}
-
-/* حالة التفكك المبدئي الفضائي (State: Exploded 3D) */
-.cinema-intro.state-exploded .cinema-part {
-  opacity: 0.95;
-}
-
-/* 1. الشاسيه والهيكل الخلفي */
-.cinema-intro.state-exploded .part-chassis {
-  transform: translate3d(0px, 15px, -90px) rotateX(10deg) scale(0.92);
-}
-
-/* 2. التوربين الهوائي */
-.cinema-intro.state-exploded .part-blower {
-  transform: translate3d(60px, -75px, 160px) rotateZ(-16deg) rotateY(18deg) scale(0.96);
-}
-
-/* 3. مبخر التبريد النحاسي */
-.cinema-intro.state-exploded .part-coil {
-  transform: translate3d(-85px, -65px, 240px) rotateZ(12deg) rotateX(16deg) scale(1.02);
-}
-
-/* 4. اللوحة الذكية */
-.cinema-intro.state-exploded .part-board {
-  transform: translate3d(145px, 45px, 280px) rotateY(-24deg) rotateZ(8deg) scale(1.05);
-}
-
-/* 5. موجهات الهواء */
-.cinema-intro.state-exploded .part-airout {
-  transform: translate3d(-15px, 110px, 190px) rotateX(32deg) scale(0.98);
-}
-
-/* 6. الواجهة الأمامية */
-.cinema-intro.state-exploded .part-shell {
-  transform: translate3d(-35px, -30px, 420px) rotateY(-14deg) rotateX(-10deg) scale(1.18);
-}
-
-/* 7. التحفة النهائية المجمعة */
-.part-assembled-masterpiece {
-  z-index: 25;
-  opacity: 0;
-  transform: translate3d(0, 0, 30px) scale(0.96);
-  transition: opacity 0.8s ease, transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.part-assembled-masterpiece img {
-  filter: drop-shadow(0 25px 45px rgba(0, 0, 0, 0.65)) drop-shadow(0 0 35px rgba(0, 180, 216, 0.25));
-}
-
-/* ===================================================
-   مراحل التجميع الديناميكية المتتالية (Progressive Assembly Steps)
-   =================================================== */
-
-/* الخطوة 1: تثبيت الشاسيه والتوربين */
-.cinema-intro.step-chassis-blower .part-chassis {
-  opacity: 1;
-  transform: translate3d(0, 0, 0) rotateX(0deg) scale(1);
-}
-
-.cinema-intro.step-chassis-blower .part-blower {
-  opacity: 1;
-  transform: translate3d(10px, 2px, 20px) rotateZ(0deg) rotateY(0deg) scale(1);
-  filter: drop-shadow(0 0 20px rgba(0, 180, 216, 0.5));
-}
-
-/* الخطوة 2: تثبيت مبخر التبريد واللوحة الذكية */
-.cinema-intro.step-coil-board .part-chassis {
-  opacity: 1;
-  transform: translate3d(0, 0, 0) scale(1);
-}
-
-.cinema-intro.step-coil-board .part-blower {
-  opacity: 1;
-  transform: translate3d(10px, 2px, 20px) scale(1);
-}
-
-.cinema-intro.step-coil-board .part-coil {
-  opacity: 1;
-  transform: translate3d(0px, -6px, 40px) rotateZ(0deg) rotateX(0deg) scale(1);
-  filter: drop-shadow(0 0 25px rgba(0, 229, 255, 0.65));
-}
-
-.cinema-intro.step-coil-board .part-board {
-  opacity: 1;
-  transform: translate3d(88px, 12px, 50px) rotateY(0deg) rotateZ(0deg) scale(1);
-  filter: drop-shadow(0 0 20px rgba(243, 146, 0, 0.7));
-}
-
-/* الخطوة 3: إحكام موجهات الهواء والغطاء الأمامي */
-.cinema-intro.step-shell-outlet .part-airout {
-  opacity: 1;
-  transform: translate3d(0px, 38px, 45px) rotateX(0deg) scale(1);
-}
-
-.cinema-intro.step-shell-outlet .part-shell {
-  opacity: 1;
-  transform: translate3d(0px, 0px, 60px) rotateY(0deg) rotateX(0deg) scale(1);
-  filter: drop-shadow(0 20px 35px rgba(0, 0, 0, 0.6));
-}
-
-/* الخطوة 4: اكتمال الوحدة واستقرار التحفة (Masterpiece Settled) */
-.cinema-intro.state-assembled .cinema-part:not(.part-assembled-masterpiece) {
-  opacity: 0;
-  transform: translate3d(0, 0, 20px) scale(0.98);
-  transition: opacity 0.5s ease, transform 0.5s ease;
-}
-
-.cinema-intro.state-assembled .part-assembled-masterpiece {
-  opacity: 1;
-  transform: translate3d(0, 0, 50px) scale(1);
-  animation: acGentleFloat 4s ease-in-out infinite alternate;
-}
-
-@keyframes acGentleFloat {
-  0% { transform: translate3d(0, 0, 50px) rotateX(0deg) rotateY(0deg); }
-  100% { transform: translate3d(0, -10px, 60px) rotateX(2deg) rotateY(-2deg); }
-}
-
-/* الشاشة الرقمية المضيئة في قلب التكييف */
-.ac-led-display {
+.pin-dot {
+  width: 6px;
+  height: 6px;
+  background: #ffaa2b;
+  border-radius: 50%;
+  box-shadow: 0 0 8px #ffaa2b;
   position: absolute;
-  right: 28%;
-  top: 40%;
+  left: 8px;
+  top: 8px;
+}
+
+.pin-tag {
+  background: rgba(3, 14, 26, 0.82);
+  border: 1px solid rgba(0, 229, 255, 0.45);
+  color: #e2f8ff;
+  font-size: clamp(0.65rem, 0.8vw, 0.76rem);
+  font-weight: 800;
+  padding: 3px 10px;
+  border-radius: 6px;
+  backdrop-filter: blur(8px);
+  white-space: nowrap;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.8);
+}
+
+@keyframes pinPulse {
+  0%, 100% { transform: scale(0.9); opacity: 0.8; }
+  50% { transform: scale(1.2); opacity: 1; }
+}
+
+.cinema-intro.state-assembling .tech-pin {
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(0.4);
+}
+
+/* خط ليزر التجميع المغناطيسي الفائق (Assembly Laser Beam) */
+.ac-assembly-laser {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  left: -20px;
+  z-index: 30;
+  background: linear-gradient(180deg, transparent, #00f0ff 30%, #ffffff 50%, #ffaa2b 70%, transparent);
+  box-shadow: 0 0 25px 6px rgba(0, 240, 255, 0.85), 0 0 60px 15px rgba(243, 146, 0, 0.45);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.cinema-intro.state-assembling .ac-assembly-laser {
+  opacity: 1;
+  animation: laserSweep 1.8s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
+
+@keyframes laserSweep {
+  0% { left: 0%; opacity: 0; }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { left: 100%; opacity: 0; }
+}
+
+/* توهج شاشة التكييف الرقمية (19°C) */
+.ac-screen-glow {
+  position: absolute;
+  top: 41%;
+  left: 48%;
   display: flex;
   align-items: center;
   gap: 4px;
-  background: rgba(0, 15, 25, 0.85);
-  border: 1px solid rgba(0, 229, 255, 0.55);
+  background: rgba(0, 20, 35, 0.9);
+  border: 1px solid #00f0ff;
+  border-radius: 8px;
   padding: 4px 10px;
-  border-radius: 6px;
-  box-shadow: 0 0 16px rgba(0, 229, 255, 0.6), inset 0 0 10px rgba(0, 229, 255, 0.3);
+  box-shadow: 0 0 20px rgba(0, 240, 255, 0.8), inset 0 0 10px rgba(0, 240, 255, 0.4);
   opacity: 0;
-  transform: scale(0.7);
-  transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  transform: scale(0.6);
+  transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
-.cinema-intro.state-assembled .ac-led-display {
+.cinema-intro.state-assembled .ac-screen-glow {
   opacity: 1;
   transform: scale(1);
 }
 
-.ac-temp-val {
+.ac-screen-temp {
   font-family: 'Courier New', Courier, monospace;
   font-size: 1.15rem;
   font-weight: 900;
   color: #00f0ff;
-  letter-spacing: -0.05em;
-  text-shadow: 0 0 8px #00f0ff;
+  text-shadow: 0 0 10px #00f0ff;
 }
 
-.ac-ice-glyph {
-  font-size: 0.9rem;
-  color: #8befff;
+.ac-screen-ice {
+  color: #ffaa2b;
+  font-size: 0.95rem;
   animation: iceTwinkle 2s infinite ease-in-out;
 }
 
 @keyframes iceTwinkle {
-  0%, 100% { transform: rotate(0deg) scale(0.9); opacity: 0.8; }
-  50% { transform: rotate(180deg) scale(1.15); opacity: 1; }
+  0%, 100% { transform: scale(0.9); opacity: 0.8; }
+  50% { transform: scale(1.2); opacity: 1; }
 }
 
-/* انبعاثات وتيارات التبريد الفائق المنطلقة */
-.ac-cool-airflow {
+/* انطلاق نسيم التبريد الفائق (Cool Air Mist) */
+.ac-mist-burst {
   position: absolute;
-  left: 20%;
-  right: 20%;
-  bottom: 22%;
-  height: 60px;
-  pointer-events: none;
+  left: 15%;
+  right: 15%;
+  bottom: 12%;
+  height: 80px;
+  background: radial-gradient(ellipse at center bottom, rgba(0, 240, 255, 0.35) 0%, rgba(0, 180, 216, 0.1) 50%, transparent 80%);
+  filter: blur(14px);
   opacity: 0;
-  transition: opacity 0.8s ease 0.3s;
+  pointer-events: none;
+  transition: opacity 0.8s ease 0.2s;
 }
 
-.cinema-intro.state-assembled .ac-cool-airflow {
+.cinema-intro.state-assembled .ac-mist-burst {
   opacity: 1;
+  animation: mistPulse 3s infinite ease-in-out alternate;
 }
 
-.ac-cool-airflow span {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(180deg, rgba(0, 229, 255, 0.35) 0%, rgba(0, 180, 216, 0.08) 60%, transparent 100%);
-  filter: blur(8px);
-  border-radius: 50% 50% 0 0;
-  transform-origin: center top;
-  animation: airflowWave 2s infinite ease-out;
-}
-
-.ac-cool-airflow span:nth-child(2) {
-  animation-delay: 0.65s;
-  opacity: 0.7;
-}
-
-.ac-cool-airflow span:nth-child(3) {
-  animation-delay: 1.3s;
-  opacity: 0.4;
-}
-
-@keyframes airflowWave {
-  0% { transform: scaleY(0.2) translateY(0); opacity: 0.8; }
-  100% { transform: scaleY(1.8) translateY(25px); opacity: 0; }
+@keyframes mistPulse {
+  0% { transform: scaleY(0.7); opacity: 0.6; }
+  100% { transform: scaleY(1.3); opacity: 1; }
 }
 
 /* 5. شريط القياس والبيانات الحية السفلي (Bottom HUD) */
@@ -5916,20 +5889,20 @@ footer {
   z-index: 20;
   width: 100%;
   max-width: 900px;
-  padding: 0 clamp(16px, 3vw, 30px) clamp(16px, 3vw, 24px);
+  padding: 0 clamp(16px, 3vw, 30px) clamp(14px, 2.5vw, 22px);
   box-sizing: border-box;
 }
 
 .cinema-hud-card {
-  background: rgba(8, 16, 26, 0.75);
-  border: 1px solid rgba(0, 180, 216, 0.28);
+  background: rgba(8, 16, 26, 0.78);
+  border: 1px solid rgba(0, 180, 216, 0.3);
   border-radius: 20px;
-  padding: clamp(14px, 2vw, 20px) clamp(16px, 3vw, 26px);
+  padding: clamp(12px, 1.8vw, 18px) clamp(16px, 2.5vw, 24px);
   backdrop-filter: blur(16px);
   box-shadow: 0 16px 40px rgba(0, 0, 0, 0.6), 0 0 30px rgba(0, 98, 172, 0.15);
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 10px;
 }
 
 .cinema-step-info {
@@ -6093,7 +6066,6 @@ footer {
   z-index: 5;
 }
 
-/* مسرح الهيرو المحدث */
 .hero-reference-stage {
   position: absolute;
   top: 8%;
@@ -6236,15 +6208,19 @@ footer {
   .cinema-mode-badge {
     display: none;
   }
-  .cinema-ac-assembly {
-    width: 92vw;
-    height: 44vh;
+  .cinema-ac-viewport {
+    width: 95vw;
+    max-height: 42vh;
+  }
+  .tech-pin .pin-tag {
+    font-size: 0.62rem;
+    padding: 2px 6px;
   }
   .cinema-bottom-hud {
     padding: 0 12px 12px;
   }
   .cinema-hud-card {
-    padding: 12px 14px;
+    padding: 10px 14px;
     gap: 8px;
   }
   .cinema-chips-strip {
@@ -6267,22 +6243,13 @@ footer {
 
 @media (prefers-reduced-motion: reduce) {
   .cinema-intro,
-  .cinema-part,
   .hero-reference-stage,
-  .hero-reference-final,
-  .ac-cool-airflow span {
+  .hero-reference-final {
     animation: none !important;
     transition: none !important;
   }
-  .cinema-part {
-    display: none !important;
-  }
-  .part-assembled-masterpiece {
-    display: block !important;
-    opacity: 1 !important;
-    transform: none !important;
-  }
 }
+
 
   </style>
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -6291,7 +6258,7 @@ footer {
 </head>
 <body>
 
-    <!-- شاشة الدخول والتجميع ثلاثي الأبعاد الأسطورية (3D Cinematic AC Assembly) -->
+      <!-- شاشة الدخول والتجميع ثلاثي الأبعاد الأسطورية (3D Cinematic AC Assembly) -->
   <div class="preloader cinema-intro" id="preloader" role="dialog" aria-modal="true" aria-label="تجربة تجميع التكييف ثلاثية الأبعاد">
     <!-- خلفية فلكية وشبكة ليزرية وضباب تبريد -->
     <div class="cinema-backdrop" aria-hidden="true"></div>
@@ -6308,7 +6275,7 @@ footer {
         </div>
       </div>
       <div class="cinema-actions">
-        <div class="cinema-mode-badge"><span class="badge-pulse"></span> نظام تجميع ذكي 3D</div>
+        <div class="cinema-mode-badge"><span class="badge-pulse"></span> نظام تجميع هندسي 3D</div>
         <button type="button" class="cinema-skip-btn" id="cinemaSkipBtn" aria-label="تخطي العرض والدخول للموقع">
           <span>تخطي العرض والتصفح فوراً</span>
           <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M4 18l8.5-6L4 6v12zm9-12v12l8.5-6L13 6z"/></svg>
@@ -6316,59 +6283,96 @@ footer {
       </div>
     </div>
 
-    <!-- مسرح العرض ثلاثي الأبعاد (3D Assembly Stage) -->
+    <!-- مسرح العرض ثلاثي الأبعاد الفاخر (Cinema 3D Stage) -->
     <div class="cinema-stage" id="cinemaStage">
       <div class="cinema-halo-glow" aria-hidden="true"></div>
-      <div class="cinema-laser-orb" aria-hidden="true"></div>
 
-      <div class="cinema-ac-assembly" id="cinemaAcAssembly">
-        <!-- القطعة 1: الهيكل الرئيسي والشاسيه الخلفي -->
-        <div class="cinema-part part-chassis" data-title="الهيكل الأساسي والشاسيه الخلفي" data-en="MAIN CHASSIS">
-          <img src="assets/hvac-parts/main-chassis.png" alt="الهيكل والشاسيه" />
-        </div>
-
-        <!-- القطعة 2: التوربين الهوائي الدوار فائق الهدوء -->
-        <div class="cinema-part part-blower" data-title="التوربين الهوائي فائق الهدوء" data-en="CROSS-FLOW TURBINE">
-          <img src="assets/hvac-parts/cross-flow-blower.png" alt="التوربين الهوائي" />
-        </div>
-
-        <!-- القطعة 3: راديتر ومبخر التبريد النحاسي ومكثف الفريون -->
-        <div class="cinema-part part-coil" data-title="راديتر ومبخر التبريد النحاسي" data-en="CRYO HEAT EXCHANGER">
-          <img src="assets/hvac-parts/heat-exchanger.png" alt="مبخر التبريد" />
-        </div>
-
-        <!-- القطعة 4: اللوحة الذكية ومعالج الإنفرتر المزدوج -->
-        <div class="cinema-part part-board" data-title="اللوحة الذكية ومعالج Dual Inverter" data-en="INVERTER AI PCB">
-          <img src="assets/hvac-parts/inverter-pcb.png" alt="اللوحة الذكية" />
-        </div>
-
-        <!-- القطعة 5: موجهات الهواء السفلية الذكية -->
-        <div class="cinema-part part-airout" data-title="موجهات الهواء الذكية (Smart Louvers)" data-en="AERODYNAMIC OUTLET">
-          <img src="assets/hvac-parts/air-outlet.png" alt="موجهات الهواء" />
-        </div>
-
-        <!-- القطعة 6: الواجهة الأمامية الفاخرة -->
-        <div class="cinema-part part-shell" data-title="الواجهة الأمامية الفاخرة" data-en="SLEEK FRONT FASCIA">
-          <img src="assets/hvac-parts/front-shell.png" alt="الواجهة الأمامية" />
-        </div>
-
-        <!-- الوحدة المتكاملة المجمعة بالكامل بعد الإحكام -->
-        <div class="cinema-part part-assembled-masterpiece" id="cinemaMasterpiece">
-          <img src="assets/ac_assembled_hero_cutout.png" alt="تكييف تراي أنجل المكتمل" />
-          <!-- شاشة رقمية مضيئة في قلب التكييف -->
-          <div class="ac-led-display" aria-hidden="true">
-            <span class="ac-temp-val">16°</span>
-            <span class="ac-ice-glyph">❄</span>
+      <!-- الإطار الهندسي للتكييف (16:9 Aspect Ratio) -->
+      <div class="cinema-ac-viewport" id="cinemaAcViewport">
+        <!-- طبقة التفكك ثلاثي الأبعاد (Exploded Hologram View) -->
+        <div class="ac-layer layer-exploded" id="layerExploded">
+          <img src="assets/ac_exploded_3d_reference.jpg" alt="المكونات الهندسية لتكييف الهواء" class="ac-stage-img" />
+          
+          <!-- مؤشرات القياس وتحديد القطع الهندسية (Targeting Pins) -->
+          <div class="tech-pin pin-shell" style="top: 18%; left: 16%;">
+            <span class="pin-ring"><span class="pin-dot"></span></span>
+            <span class="pin-tag">01 الواجهة الانسيابية</span>
           </div>
-          <!-- موجات الهواء البارد المنبعثة -->
-          <div class="ac-cool-airflow" aria-hidden="true">
-            <span></span><span></span><span></span>
+          <div class="tech-pin pin-coil" style="top: 48%; left: 32%;">
+            <span class="pin-ring"><span class="pin-dot"></span></span>
+            <span class="pin-tag">02 مبخر التبريد النحاسي</span>
           </div>
+          <div class="tech-pin pin-blower" style="top: 26%; right: 18%;">
+            <span class="pin-ring"><span class="pin-dot"></span></span>
+            <span class="pin-tag">03 التوربين فائق الهدوء</span>
+          </div>
+          <div class="tech-pin pin-pcb" style="top: 56%; right: 18%;">
+            <span class="pin-ring"><span class="pin-dot"></span></span>
+            <span class="pin-tag">04 معالج Dual Inverter</span>
+          </div>
+          <div class="tech-pin pin-comp" style="bottom: 16%; left: 56%;">
+            <span class="pin-ring"><span class="pin-dot"></span></span>
+            <span class="pin-tag">05 الضاغط المزدوج</span>
+          </div>
+        </div>
+
+        <!-- خط الليزر الماسح والمغناطيسي للتجميع (Magnetic Convergence Laser) -->
+        <div class="ac-assembly-laser" id="acLaser" aria-hidden="true"></div>
+
+        <!-- طبقة التكييف المجمع المكتمل بالكامل (Fully Assembled Unit) -->
+        <div class="ac-layer layer-assembled" id="layerAssembled">
+          <img src="assets/ac_assembled_hero.png" alt="تكييف تراي أنجل المكتمل" class="ac-stage-img" />
+          
+          <!-- الشاشة الرقمية المضيئة في قلب التكييف -->
+          <div class="ac-screen-glow" aria-hidden="true">
+            <span class="ac-screen-temp">19°C</span>
+            <span class="ac-screen-ice">❄</span>
+          </div>
+
+          <!-- انبعاث نسيم التبريد الفائق -->
+          <div class="ac-mist-burst" aria-hidden="true"></div>
         </div>
       </div>
     </div>
 
     <!-- شريط القياس والبيانات الحية السفلي (HUD Telemetry) -->
+    <div class="cinema-bottom-hud">
+      <div class="cinema-hud-card">
+        <div class="cinema-step-info">
+          <div class="cinema-step-icon">
+            <span class="step-spinner"></span>
+            <svg class="step-check" viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+          </div>
+          <div class="cinema-step-texts">
+            <span class="cinema-step-subtitle" id="cinemaStepSub">مرحلة التجميع الهندسي:</span>
+            <h3 class="cinema-step-title" id="cinemaStepTitle">تفكيك المكونات في الفضاء ثلاثي الأبعاد...</h3>
+          </div>
+        </div>
+
+        <div class="cinema-progress-container">
+          <div class="cinema-progress-labels">
+            <span class="cinema-assembly-tag">3D ASSEMBLY SYSTEM</span>
+            <span class="cinema-percent-val" id="cinemaPercentVal">0%</span>
+          </div>
+          <div class="cinema-progress-bar">
+            <div class="cinema-progress-gauge" id="cinemaProgressGauge"></div>
+          </div>
+        </div>
+
+        <div class="cinema-chips-strip">
+          <span class="chip-item">⚡ كاريير أوبتيماكس & ميديا برو</span>
+          <span class="chip-dot"></span>
+          <span class="chip-item">❄ تبريد فائق Turbo Cool</span>
+          <span class="chip-dot"></span>
+          <span class="chip-item">🌱 تكنولوجيا بلازما جرين</span>
+          <span class="chip-dot"></span>
+          <span class="chip-item">🔇 عزل صوتي وتشغيل صامت</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<!-- شريط القياس والبيانات الحية السفلي (HUD Telemetry) -->
     <div class="cinema-bottom-hud">
       <div class="cinema-hud-card">
         <div class="cinema-step-info">
@@ -8229,7 +8233,7 @@ function showToast(message) {
   const percentVal = document.getElementById("cinemaPercentVal");
   const canvas = document.getElementById("cinemaAirflowCanvas");
   const stage = document.getElementById("cinemaStage");
-  const assembly = document.getElementById("cinemaAcAssembly");
+  const viewport = document.getElementById("cinemaAcViewport");
 
   let isFinished = false;
   const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -8246,7 +8250,7 @@ function showToast(message) {
     resizeCanvas();
     window.addEventListener("resize", resizeCanvas, { passive: true });
 
-    const particleCount = window.innerWidth < 768 ? 28 : 55;
+    const particleCount = window.innerWidth < 768 ? 26 : 52;
     for (let i = 0; i < particleCount; i++) {
       particles.push({
         x: Math.random() * window.innerWidth,
@@ -8281,19 +8285,19 @@ function showToast(message) {
     drawParticles();
   }
 
-  // 2. التحكم في حركة المنظور 3D عبر حركة الماوس أو اللمس (3D Interactive Parallax)
-  if (assembly && stage && !reducedMotion) {
-    let targetX = -6, targetY = 4;
-    let currX = -6, currY = 4;
+  // 2. التحكم في المنظور 3D عبر حركة الماوس أو اللمس (3D Interactive Parallax)
+  if (viewport && stage && !reducedMotion) {
+    let targetX = -4, targetY = 3;
+    let currX = -4, currY = 3;
     let pRaf = null;
 
     const updateParallax = () => {
       currX += (targetX - currX) * 0.08;
       currY += (targetY - currY) * 0.08;
-      assembly.style.setProperty("--cam-rot-y", `${currX}deg`);
-      assembly.style.setProperty("--cam-rot-x", `${currY}deg`);
-      assembly.style.setProperty("--cam-pan-x", `${currX * 1.5}px`);
-      assembly.style.setProperty("--cam-pan-y", `${currY * 1.2}px`);
+      viewport.style.setProperty("--cam-rot-y", `${currX}deg`);
+      viewport.style.setProperty("--cam-rot-x", `${currY}deg`);
+      viewport.style.setProperty("--cam-pan-x", `${currX * 1.8}px`);
+      viewport.style.setProperty("--cam-pan-y", `${currY * 1.4}px`);
 
       if (Math.abs(targetX - currX) > 0.01 || Math.abs(targetY - currY) > 0.01) {
         pRaf = requestAnimationFrame(updateParallax);
@@ -8306,13 +8310,13 @@ function showToast(message) {
       if (isFinished) return;
       const nx = (e.clientX / window.innerWidth - 0.5) * 2;
       const ny = (e.clientY / window.innerHeight - 0.5) * 2;
-      targetX = nx * 14;
-      targetY = -ny * 10;
+      targetX = nx * 12;
+      targetY = -ny * 8;
       if (!pRaf) pRaf = requestAnimationFrame(updateParallax);
     }, { passive: true });
   }
 
-  // 3. تحديث نسبة التقدم وعناوين الخطوات (HUD Telemetry Update)
+  // 3. تحديث شريط القياس والبيانات الحية (HUD Telemetry Update)
   const setStep = (percent, sub, title, stageClass) => {
     if (isFinished) return;
     if (progressGauge) progressGauge.style.width = `${percent}%`;
@@ -8324,21 +8328,23 @@ function showToast(message) {
     }
   };
 
-  // 4. إنهاء الدخلة بسلاسة مطلقة والدخول للموقع (Finish & Transition)
+  // 4. الانتقال السلس والدخول للصفحة الرئيسية (Finish & Transition)
   const finishIntro = () => {
     if (isFinished) return;
     isFinished = true;
 
     if (animId) cancelAnimationFrame(animId);
 
-    // تفعيل ظهور عناصر الموقع والهيدر
-    const entryHeader = document.querySelector(".entry-header");
-    if (entryHeader) entryHeader.classList.add("is-visible");
-
-    const revealTargets = document.querySelectorAll(".reveal-fade");
-    revealTargets.forEach((el, idx) => {
-      setTimeout(() => el.classList.add("revealed"), 150 + idx * 80);
-    });
+    if (typeof window.revealHeroAndHeader === "function") {
+      window.revealHeroAndHeader();
+    } else {
+      const entryHeader = document.querySelector(".entry-header");
+      if (entryHeader) entryHeader.classList.add("is-visible");
+      const revealTargets = document.querySelectorAll(".reveal-fade");
+      revealTargets.forEach((el, idx) => {
+        setTimeout(() => el.classList.add("revealed"), 100 + idx * 80);
+      });
+    }
 
     if (preloader) {
       preloader.classList.add("fade-out");
@@ -8348,11 +8354,9 @@ function showToast(message) {
       }, 900);
     }
 
-    // تفعيل تفاعل الماوس مع تكييف الهيرو في الصفحة الرئيسية
     initHeroParallax();
   };
 
-  // زر التخطي الفوري
   if (skipBtn) {
     skipBtn.addEventListener("click", finishIntro);
   }
@@ -8360,40 +8364,30 @@ function showToast(message) {
     if (e.key === "Escape" || e.code === "Space") finishIntro();
   });
 
-  // 5. جدولة مراحل التجميع السينمائية (The 5-Step Choreography)
+  // 5. جدولة مراحل التجميع الهندسي (The 3D Assembly Sequence)
   if (reducedMotion) {
     setStep(100, "[ مكتمل ]", "تكييف تراي أنجل جاهز", "state-assembled");
     setTimeout(finishIntro, 900);
   } else {
-    // البدء الفوري: الانفجار الفضائي 3D
+    // الخطوة 1: فحص المكونات في وضع التفكك 3D
     requestAnimationFrame(() => {
-      setStep(15, "[ 01 / 05 ] مرحلة التهيئة الهندسية", "تفكيك مكونات التكييف في الفضاء ثلاثي الأبعاد...", "state-exploded");
+      setStep(18, "[ 01 / 04 ] فحص وتجهيز المكونات", "تفكيك المكونات في الفضاء ثلاثي الأبعاد...", "");
     });
 
-    // الخطوة 2: تثبيت الشاسيه والتوربين
+    // الخطوة 2: الانجذاب المغناطيسي والمسح الليزري
     setTimeout(() => {
-      setStep(42, "[ 02 / 05 ] تثبيت القلب الميكانيكي", "تثبيت شاسيه التثبيت وتدوير التوربين الهوائي فائق الهدوء...", "step-chassis-blower");
-    }, 850);
+      setStep(68, "[ 02 / 04 ] التجميع المغناطيسي الذكي", "انجذاب وتثبيت القطع في الشاسيه الرئيسي...", "state-assembling");
+    }, 1100);
 
-    // الخطوة 3: راديتر التبريد النحاسي واللوحة الذكية
+    // الخطوة 3: اكتمال الوحدة وتفعيل وضع التبريد 19°C
     setTimeout(() => {
-      setStep(72, "[ 03 / 05 ] دمج مبخر التبريد والإنفرتر", "تركيب راديتر التبريد النحاسي ووحدة معالجة Dual Inverter...", "step-coil-board");
-    }, 1750);
+      setStep(100, "[ 03 / 04 ] اكتمل التجميع بنجاح!", "تم تجميع التكييف بالكامل ❄️ تفعيل وضع التبريد الفائق 19°C", "state-assembled");
+    }, 2400);
 
-    // الخطوة 4: إحكام الغطاء الانسيابي وموجهات الهواء
-    setTimeout(() => {
-      setStep(92, "[ 04 / 05 ] الإحكام الأيروديناميكي", "إحكام الغطاء الانسيابي الفاخر وموجهات الهواء الذكية...", "step-shell-outlet");
-    }, 2650);
-
-    // الخطوة 5: اكتمال التحفة وانطلاق البرودة 16°C
-    setTimeout(() => {
-      setStep(100, "[ 05 / 05 ] اكتمال التجميع بنجاح!", "تم تجميع التكييف بالكامل ❄️ تفعيل وضع التبريد الفائق 16°C", "state-assembled");
-    }, 3400);
-
-    // الانتقال السلس التلقائي للموقع
+    // الانتقال التلقائي السلس إلى الموقع
     setTimeout(() => {
       finishIntro();
-    }, 4500);
+    }, 4200);
   }
 
   // 6. تفاعل الماوس مع تكييف الهيرو في الصفحة الرئيسية (Hero 3D Parallax)
