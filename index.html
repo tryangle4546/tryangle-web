@@ -5538,12 +5538,167 @@ footer {
     max-width: 440px;
   }
 }
+  /* ==========================================================================
+   CHIC & RELAXED BRAND SPLASH (دخلة رايقة واحترافية)
+   ========================================================================== */
+.preloader.chic-splash {
+  position: fixed;
+  inset: 0;
+  z-index: 999999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: radial-gradient(circle at 50% 48%, #08111e 0%, #03060a 65%, #010204 100%);
+  color: #ffffff;
+  overflow: hidden;
+  user-select: none;
+  font-family: 'Cairo', system-ui, -apple-system, sans-serif;
+  cursor: pointer;
+  transition: opacity 0.55s ease, transform 0.55s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.55s ease;
+  will-change: opacity, transform;
+}
+
+.preloader.chic-splash.fade-out {
+  opacity: 0;
+  transform: scale(1.03);
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.chic-mist-bg {
+  position: absolute;
+  width: min(500px, 85vw);
+  height: min(340px, 60vh);
+  border-radius: 50%;
+  background: radial-gradient(ellipse, rgba(0, 180, 216, 0.22) 0%, rgba(243, 146, 0, 0.10) 50%, transparent 72%);
+  filter: blur(50px);
+  pointer-events: none;
+  animation: chicMistPulse 3s infinite ease-in-out alternate;
+}
+
+@keyframes chicMistPulse {
+  0% { transform: scale(0.92); opacity: 0.6; }
+  100% { transform: scale(1.08); opacity: 1; }
+}
+
+.chic-splash-card {
+  position: relative;
+  z-index: 5;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 14px;
+  padding: 24px;
+  animation: chicCardEnter 0.75s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes chicCardEnter {
+  0% { opacity: 0; transform: translateY(14px) scale(0.96); }
+  100% { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.chic-logo-wrap {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.chic-splash-logo {
+  width: min(310px, 76vw);
+  height: auto;
+  max-height: 76px;
+  object-fit: contain;
+  filter: drop-shadow(0 6px 20px rgba(0, 180, 216, 0.4));
+}
+
+.chic-splash-text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.chic-splash-title {
+  margin: 0;
+  font-size: clamp(1.15rem, 2.2vw, 1.45rem);
+  font-weight: 800;
+  color: #ffffff;
+  letter-spacing: 0.02em;
+  text-shadow: 0 2px 12px rgba(0, 98, 172, 0.45);
+}
+
+.chic-splash-desc {
+  margin: 0;
+  font-size: clamp(0.74rem, 1.1vw, 0.86rem);
+  font-weight: 700;
+  color: #00e5ff;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.chic-splash-bar {
+  margin-top: 6px;
+  width: min(180px, 48vw);
+  height: 3px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.08);
+  overflow: hidden;
+  position: relative;
+}
+
+.chic-splash-progress {
+  position: absolute;
+  inset: 0;
+  width: 0%;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #0088eb, #00e5ff 60%, #f39200 100%);
+  box-shadow: 0 0 10px rgba(0, 229, 255, 0.8);
+  animation: chicFill 1.25s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+@keyframes chicFill {
+  0% { width: 0%; }
+  100% { width: 100%; }
+}
+
+.chic-splash-skip {
+  font-size: 0.68rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.38);
+  margin-top: 4px;
+  letter-spacing: 0.04em;
+  transition: color 0.2s ease;
+}
+
+.preloader.chic-splash:hover .chic-splash-skip {
+  color: rgba(255, 255, 255, 0.7);
+}
   </style>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 </head>
 <body>
+  <!-- شاشة الدخول الرايقة والاحترافية (Sleek Brand Splash) -->
+  <div class="preloader chic-splash" id="preloader" role="dialog" aria-modal="true" aria-label="تراي أنجل للتكييف والتبريد">
+    <div class="chic-mist-bg" aria-hidden="true"></div>
+    <div class="chic-splash-card">
+      <div class="chic-logo-wrap">
+        <img src="assets/tryangle-logo-clean.png" alt="تراي أنجل للتكييف والتبريد" class="chic-splash-logo" />
+      </div>
+      <div class="chic-splash-text">
+        <h2 class="chic-splash-title">تراي أنجل للتكييف والتبريد</h2>
+        <p class="chic-splash-desc">الموزع المعتمد لكبرى تكييفات كاريير وميديا</p>
+      </div>
+      <div class="chic-splash-bar">
+        <div class="chic-splash-progress"></div>
+      </div>
+      <span class="chic-splash-skip">انقر في أي مكان للتخطي الفوري</span>
+    </div>
+  </div>
+
 
         <!-- شريط التنقل العلوي الأصلي (Navbar) -->
   <header class="glass entry-header">
@@ -7352,10 +7507,16 @@ function showToast(message) {
 
   <script>
 /* ==========================================================================
-   INSTANT SMOOTH LOAD CONTROLLER (دخول فوري وسلس بدون تعليق)
+   CHIC SPLASH CONTROLLER (دخلة رايقة وسريعة وتخطي بنقرة واحدة)
    ========================================================================== */
 (() => {
-  const initPage = () => {
+  const preloader = document.getElementById("preloader");
+  let isDone = false;
+
+  const dismissSplash = () => {
+    if (isDone) return;
+    isDone = true;
+
     const entryHeader = document.querySelector(".entry-header");
     if (entryHeader) entryHeader.classList.add("is-visible");
 
@@ -7363,13 +7524,27 @@ function showToast(message) {
     revealTargets.forEach((el, idx) => {
       setTimeout(() => el.classList.add("revealed"), 40 + idx * 40);
     });
+
+    if (preloader) {
+      preloader.classList.add("fade-out");
+      setTimeout(() => {
+        preloader.style.display = "none";
+        preloader.remove();
+      }, 550);
+    }
   };
 
-  if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", initPage);
-  } else {
-    initPage();
+  // إغلاق تلقائي رايق بعد 1.35 ثانية
+  setTimeout(dismissSplash, 1350);
+
+  // إغلاق فوري عند النقر بالماوس أو اللمس في أي مكان أو أي زر
+  if (preloader) {
+    preloader.addEventListener("click", dismissSplash, { once: true });
+    preloader.addEventListener("touchstart", dismissSplash, { passive: true, once: true });
   }
+  window.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" || e.code === "Space" || e.key === "Enter") dismissSplash();
+  }, { once: true });
 })();
   </script>
 </body>
