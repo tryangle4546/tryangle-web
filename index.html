@@ -5437,291 +5437,105 @@ footer {
 
 
   /* ==========================================================================
-   CHIC & MINIMALIST BRAND INTRO (دخلة احترافية وهادئة)
-   ========================================================================== */
-.preloader.chic-intro {
-  position: fixed;
-  inset: 0;
-  z-index: 99999;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: radial-gradient(circle at 50% 50%, #08111d 0%, #03060a 65%, #010204 100%);
-  color: #ffffff;
-  overflow: hidden;
-  user-select: none;
-  font-family: 'Cairo', system-ui, -apple-system, sans-serif;
-  cursor: pointer;
-  transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.5s ease;
-  will-change: opacity;
-}
-
-.preloader.chic-intro.fade-out {
-  opacity: 0;
-  visibility: hidden;
-  pointer-events: none;
-}
-
-.chic-glow {
-  position: absolute;
-  width: min(420px, 80vw);
-  height: min(300px, 60vh);
-  border-radius: 50%;
-  background: radial-gradient(ellipse, rgba(0, 180, 216, 0.18) 0%, rgba(243, 146, 0, 0.08) 50%, transparent 75%);
-  filter: blur(40px);
-  pointer-events: none;
-  animation: chicGlow 2.5s infinite ease-in-out alternate;
-}
-
-@keyframes chicGlow {
-  0% { transform: scale(0.92); opacity: 0.6; }
-  100% { transform: scale(1.08); opacity: 1; }
-}
-
-.chic-brand-card {
-  position: relative;
-  z-index: 5;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  gap: 12px;
-  padding: 24px;
-  animation: chicCardIn 0.65s cubic-bezier(0.16, 1, 0.3, 1) both;
-}
-
-@keyframes chicCardIn {
-  0% { opacity: 0; transform: translateY(12px) scale(0.97); }
-  100% { opacity: 1; transform: translateY(0) scale(1); }
-}
-
-.chic-logo {
-  width: min(290px, 72vw);
-  height: auto;
-  max-height: 72px;
-  object-fit: contain;
-  filter: drop-shadow(0 4px 18px rgba(0, 180, 216, 0.35));
-}
-
-.chic-title {
-  margin: 0;
-  font-size: clamp(1.1rem, 2vw, 1.35rem);
-  font-weight: 800;
-  color: #ffffff;
-  letter-spacing: 0.02em;
-  text-shadow: 0 2px 10px rgba(0, 98, 172, 0.4);
-}
-
-.chic-sub {
-  margin: 0;
-  font-size: clamp(0.72rem, 1vw, 0.82rem);
-  font-weight: 700;
-  color: rgba(0, 180, 216, 0.85);
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-}
-
-.chic-line-wrap {
-  margin-top: 8px;
-  width: min(160px, 44vw);
-  height: 3px;
-  border-radius: 999px;
-  background: rgba(255, 255, 255, 0.08);
-  overflow: hidden;
-  position: relative;
-}
-
-.chic-line-bar {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  width: 0%;
-  border-radius: 999px;
-  background: linear-gradient(90deg, #0088eb, #00e5ff 60%, #f39200 100%);
-  box-shadow: 0 0 10px rgba(0, 229, 255, 0.8);
-  animation: chicLine 0.95s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-}
-
-@keyframes chicLine {
-  0% { width: 0%; }
-  100% { width: 100%; }
-}
-
-/* ==========================================================================
-   HERO 3D UNIT INTEGRATION
+   ELEGANT & CLEAN TWO-COLUMN HERO (هيرو رايق وفخم بدون زحمة)
    ========================================================================== */
 .hero {
   position: relative;
   isolation: isolate;
   overflow: hidden;
-  min-height: 100vh;
+  min-height: 85vh;
+  display: flex;
+  align-items: center;
   background: 
-    radial-gradient(circle at 75% 38%, rgba(0, 98, 172, 0.20) 0%, transparent 45%),
-    radial-gradient(circle at 25% 75%, rgba(243, 146, 0, 0.10) 0%, transparent 40%),
+    radial-gradient(circle at 80% 35%, rgba(0, 98, 172, 0.22) 0%, transparent 45%),
+    radial-gradient(circle at 20% 70%, rgba(243, 146, 0, 0.10) 0%, transparent 40%),
     #05080e;
+  padding: clamp(90px, 12vh, 120px) 0 clamp(40px, 8vh, 70px);
 }
 
-.hero > .hero-air-canvas,
-.hero > .hero-reference-stage {
+.hero-air-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
   z-index: 1;
+  opacity: 0.7;
 }
 
 .hero-container {
+  max-width: 1240px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 clamp(20px, 4vw, 40px);
   position: relative;
   z-index: 5;
 }
 
-.hero-reference-stage {
-  position: absolute;
-  top: 10%;
-  right: 2%;
-  width: min(680px, 50vw);
-  height: min(520px, 65vh);
-  perspective: 1200px;
-  pointer-events: auto;
-  transform: translateZ(0);
-  animation: heroStageEnter 1s 0.15s cubic-bezier(0.16, 1, 0.3, 1) both;
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  align-items: center;
+  gap: clamp(30px, 5vw, 60px);
 }
 
-@keyframes heroStageEnter {
-  0% { opacity: 0; transform: scale(0.94) translate3d(30px, 15px, 0); }
-  100% { opacity: 1; transform: scale(1) translate3d(0, 0, 0); }
+.hero-content {
+  text-align: right;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  z-index: 2;
 }
 
-.hero-reference-glow {
-  position: absolute;
-  inset: 12% 8% 18% 18%;
-  border-radius: 50%;
-  background: radial-gradient(ellipse, rgba(0, 180, 216, 0.26), transparent 65%);
-  filter: blur(42px);
-  pointer-events: none;
-  transform: translate3d(var(--hero-glow-x, 0px), var(--hero-glow-y, 0px), 0);
-  transition: transform 0.6s ease;
-}
-
-.hero-reference-visual {
-  position: absolute;
-  inset: 0;
-  transform-style: preserve-3d;
-  transform: translate3d(var(--hero-pan-x, 0px), var(--hero-pan-y, 0px), 0) 
-             rotateX(var(--hero-tilt-x, 0deg)) 
-             rotateY(var(--hero-tilt-y, 0deg));
-  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-  will-change: transform;
+.hero-image-col {
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 2;
 }
 
-.hero-reference-final {
+.hero-image-glow {
+  position: absolute;
+  width: 85%;
+  height: 85%;
+  border-radius: 50%;
+  background: radial-gradient(ellipse, rgba(0, 180, 216, 0.25) 0%, rgba(0, 98, 172, 0.12) 50%, transparent 70%);
+  filter: blur(45px);
+  pointer-events: none;
+}
+
+.hero-image-ac {
   width: 100%;
-  height: 100%;
+  max-width: 580px;
+  height: auto;
   object-fit: contain;
-  filter: drop-shadow(0 25px 45px rgba(0, 0, 0, 0.7)) drop-shadow(0 0 25px rgba(0, 180, 216, 0.2));
-  transform: translateZ(30px);
-  animation: heroFloat 5s infinite ease-in-out alternate;
+  filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.7)) drop-shadow(0 0 25px rgba(0, 180, 216, 0.2));
+  animation: heroFloatSoft 5s infinite ease-in-out alternate;
+  will-change: transform;
 }
 
-@keyframes heroFloat {
-  0% { transform: translateZ(30px) translateY(0px); }
-  100% { transform: translateZ(35px) translateY(-10px); }
+@keyframes heroFloatSoft {
+  0% { transform: translateY(0px) rotate(0deg); }
+  100% { transform: translateY(-10px) rotate(-0.5deg); }
 }
 
-.hero-unit-badge {
-  position: absolute;
-  bottom: 22%;
-  right: 16%;
-  background: rgba(4, 15, 26, 0.85);
-  border: 1px solid rgba(0, 229, 255, 0.45);
-  border-radius: 999px;
-  padding: 6px 14px;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  color: #72e5ff;
-  font-size: 0.75rem;
-  font-weight: 800;
-  backdrop-filter: blur(10px);
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4), 0 0 15px rgba(0, 180, 216, 0.3);
-  transform: translateZ(60px);
-}
-
-.hero-unit-badge .badge-light {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: #00f0ff;
-  box-shadow: 0 0 10px #00f0ff;
-  animation: pulseDot 1.5s infinite;
-}
-
-.hero-reference-chip {
-  position: absolute;
-  top: 8%;
-  right: 8%;
-  z-index: 7;
-  padding: 8px 14px;
-  border: 1px solid rgba(0, 180, 216, 0.4);
-  border-radius: 999px;
-  background: rgba(3, 14, 24, 0.65);
-  color: rgba(216, 249, 255, 0.9);
-  font: 800 10px/1 Arial, sans-serif;
-  letter-spacing: 0.14em;
-  backdrop-filter: blur(12px);
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
-  transform: translateZ(50px);
-}
-
-.hero-reference-chip i {
-  display: inline-block;
-  width: 7px;
-  height: 7px;
-  margin-left: 6px;
-  border-radius: 50%;
-  background: #00f0ff;
-  box-shadow: 0 0 10px #00f0ff;
-  animation: pulseDot 1.4s ease-in-out infinite;
-}
-
-.hero-reference-caption {
-  position: absolute;
-  z-index: 7;
-  right: 10%;
-  bottom: 12%;
-  color: rgba(206, 242, 247, 0.75);
-  font-size: 0.78rem;
-  font-weight: 700;
-  direction: rtl;
-  letter-spacing: 0.03em;
-  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8);
-  transform: translateZ(45px);
-}
-
-@media (max-width: 1024px) {
-  .hero-reference-stage {
-    width: 58vw;
-    right: -4%;
-    opacity: 0.85;
+@media (max-width: 991px) {
+  .hero {
+    min-height: auto;
+    padding: 85px 0 45px;
   }
-}
-
-@media (max-width: 768px) {
-  .hero-reference-stage {
-    top: 32%;
-    right: -15%;
-    width: 95vw;
-    height: 48vh;
-    opacity: 0.42;
+  .hero-grid {
+    grid-template-columns: 1fr;
+    text-align: center;
+    gap: 36px;
   }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .chic-intro,
-  .hero-reference-stage,
-  .hero-reference-final {
-    animation: none !important;
-    transition: none !important;
+  .hero-content {
+    align-items: center;
+    text-align: center;
+  }
+  .hero-image-ac {
+    max-width: 440px;
   }
 }
   </style>
@@ -5731,20 +5545,7 @@ footer {
 </head>
 <body>
 
-        <!-- شاشة الدخول الاحترافية الهادئة (Chic Brand Intro) -->
-  <div class="preloader chic-intro" id="preloader" role="dialog" aria-modal="true" aria-label="تراي أنجل للتكييف والتبريد">
-    <div class="chic-glow" aria-hidden="true"></div>
-    <div class="chic-brand-card">
-      <img src="assets/tryangle-logo-clean.png" alt="تراي أنجل للتكييف والتبريد" class="chic-logo" />
-      <h2 class="chic-title">تراي أنجل للتكييف والتبريد</h2>
-      <p class="chic-sub">موزع ووكيل معتمد كاريير وميديا • Carrier & Midea</p>
-      <div class="chic-line-wrap">
-        <div class="chic-line-bar"></div>
-      </div>
-    </div>
-  </div>
-
-  <!-- شريط التنقل العلوي الأصلي (Navbar) -->
+        <!-- شريط التنقل العلوي الأصلي (Navbar) -->
   <header class="glass entry-header">
     <div class="nav-container">
       <!-- الشعار الأصلي -->
@@ -5779,59 +5580,53 @@ footer {
     </div>
   </header>
 
-  <!-- القسم الرئيسي (Home / Hero) مع جزيئات التبريد التفاعلية في الخلفية -->
+    <!-- القسم الرئيسي (Home / Hero) - تصميم رايق وعصري بدون أي زحمة -->
   <section class="hero" id="home">
     <canvas id="heroAirCanvas" class="hero-air-canvas" aria-hidden="true"></canvas>
 
-        <div class="hero-reference-stage" id="heroStage" aria-label="عرض تكييف تراي أنجل المكتمل ثلاثي الأبعاد">
-      <div class="hero-reference-glow" aria-hidden="true"></div>
-      <div class="hero-reference-visual" id="heroVisual">
-        <img class="hero-reference-final" src="assets/ac_assembled_hero_cutout.png" alt="تكييف تراي أنجل المكتمل - تبريد فائق كاريير وميديا" />
-        <div class="hero-unit-badge">
-          <span class="badge-light"></span>
-          <span>16°C • TURBO ACTIVE</span>
-        </div>
-      </div>
-      <div class="hero-reference-chip"><i></i> REAL HVAC / 3D ARCHITECTURE</div>
-      <div class="hero-reference-caption">كاريير وميديا بأعلى كفاءة طاقة وتبريد</div>
-    </div>
-
-<div class="hero-container" style="justify-content: center; text-align: center;">
-      <div class="hero-content" style="max-width: 850px; margin: 0 auto;">
-
-        <!-- شارة الاعتماد الأصلية -->
-        <div class="authorized-badge reveal-fade" style="margin: 0 auto 20px auto;">
-          <span class="badge-dot"></span>
-          <span class="badge-text">وكيل وموزع معتمد لـ Carrier و Midea</span>
-        </div>
-
-        <h1 class="hero-title reveal-fade">نصنع لك <span>المناخ المثالي</span><br>طوال العام</h1>
-        <p class="hero-description reveal-fade">
-          شركة <strong>تراي أنجل للتكييف والتبريد (Triangle Air Conditioning)</strong> توفر لك أفضل حلول التبريد والتدفئة بأقوى العروض والأسعار المعتمدة لشركتي كاريير وميديا مع خدمات التركيب والصيانة الاحترافية.
-        </p>
-
-        <div class="hero-cta reveal-fade" style="justify-content: center;">
-          <a href="#store" class="btn btn-primary btn-glow">تصفح المتجر واطلب الآن</a>
-          <a href="#maintenance" class="btn btn-secondary">احجز صيانة الآن</a>
-        </div>
-
-        <!-- شبكات التواصل الاجتماعي -->
-        <div class="social-links reveal-fade" style="justify-content: center; margin-top: 30px;">
-          <span class="social-title">تابعنا وتواصل معنا:</span>
-          <div class="social-icons">
-            <a href="https://wa.me/201061694024" target="_blank" aria-label="WhatsApp" class="social-icon whatsapp-icon">
-              <svg class="icon-svg" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397.01 12.008.01c3.202.001 6.212 1.246 8.477 3.514 2.266 2.268 3.507 5.28 3.505 8.484-.004 6.657-5.34 11.997-11.953 11.997-2.005-.001-3.973-.502-5.73-1.466L0 24zm6.59-4.846c1.6.95 2.8 1.458 4.825 1.459 5.55 0 10.061-4.512 10.063-10.066.002-2.69-1.043-5.22-2.94-7.119C16.699 1.529 14.18 .483 11.997.484 6.444.484 1.932 4.997 1.93 10.553c-.001 2.03.527 3.255 1.492 4.922L2.44 21.56l6.207-1.628zM17.5 14.5c-.3-.15-1.78-.88-2.05-.98-.28-.1-.48-.15-.68.15-.2.3-.78.98-.95 1.18-.18.2-.35.23-.65.08-1.02-.51-1.74-.91-2.42-1.58-.57-.56-1.12-1.22-1.3-1.53-.18-.3-.02-.46.13-.61.14-.14.3-.35.45-.53.15-.18.2-.3.3-.5.1-.2.05-.38-.02-.53-.07-.15-.68-1.63-.93-2.24-.25-.61-.51-.53-.68-.53h-.58c-.2 0-.53.07-.8.38-.28.3-1.08 1.05-1.08 2.57 0 1.52 1.1 3 1.25 3.2.15.2 2.16 3.3 5.24 4.63.73.3 1.3.49 1.75.63.74.24 1.4.2 1.93.12.59-.09 1.78-.73 2.03-1.43.25-.7.25-1.3.17-1.43-.08-.13-.28-.2-.58-.35z"/></svg>
-            </a>
-            <a href="https://www.facebook.com/share/17yf9LtdmD/?mibextid=wwXIfr" target="_blank" aria-label="Facebook" class="social-icon facebook-icon">
-              <svg class="icon-svg" viewBox="0 0 24 24"><path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H8v-3h2V9.5C10 7.57 11.57 6 13.5 6H16v3h-2c-.55 0-1 .45-1 1v2h3v3h-3v6.95c4.56-.93 8-4.96 8-9.75z"/></svg>
-            </a>
-            <a href="https://www.tiktok.com/@tryangel18?_r=1&_t=ZS-98AHp9YRBE9" target="_blank" aria-label="TikTok" class="social-icon tiktok-icon">
-              <svg class="icon-svg" viewBox="0 0 24 24"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.17-2.86-.74-3.94-1.74-.22-.21-.42-.45-.61-.7-.03 3.76-.02 7.53-.03 11.29-.07 3.08-1.51 6.13-4.48 7.37-3.79 1.68-8.58-.1-10.23-4.05-1.88-4.22.42-9.61 4.88-10.45.6-.11 1.22-.12 1.83-.07v4.09c-.58-.08-1.18-.03-1.74.15-1.92.57-2.91 2.82-2.14 4.69.75 1.92 3.1 2.78 4.9 1.82 1.17-.6 1.81-1.89 1.79-3.21-.02-5.07-.01-10.14-.02-15.21z"/></svg>
-            </a>
-            <a href="tel:+201061694024" aria-label="Phone" class="social-icon phone-icon">
-              <svg class="icon-svg" viewBox="0 0 24 24"><path d="M20.01 15.38c-1.23 0-2.42-.2-3.53-.56a.977.977 0 0 0-1.01.24l-2.2 2.2a15.045 15.045 0 0 1-6.59-6.59l2.2-2.21c.28-.26.36-.65.25-1A11.36 11.36 0 0 0 8.5 4c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1 0 9.39 7.61 17 17 17 .55 0 1-.45 1-1v-3.5c0-.55-.45-1-1-1z"/></svg>
-            </a>
+    <div class="hero-container">
+      <div class="hero-grid">
+        <!-- الجانب الأيمن: النصوص والأزرار -->
+        <div class="hero-content">
+          <div class="authorized-badge reveal-fade">
+            <span class="badge-dot"></span>
+            <span class="badge-text">وكيل وموزع معتمد لـ Carrier و Midea</span>
           </div>
+
+          <h1 class="hero-title reveal-fade">نصنع لك <span>المناخ المثالي</span><br>طوال العام</h1>
+          <p class="hero-description reveal-fade">
+            شركة <strong>تراي أنجل للتكييف والتبريد (Triangle Air Conditioning)</strong> توفر لك أفضل حلول التبريد والتدفئة بأقوى العروض والأسعار المعتمدة لشركتي كاريير وميديا مع خدمات التركيب والصيانة الاحترافية.
+          </p>
+
+          <div class="hero-cta reveal-fade">
+            <a href="#store" class="btn btn-primary btn-glow">تصفح المتجر واطلب الآن</a>
+            <a href="#maintenance" class="btn btn-secondary">احجز صيانة الآن</a>
+          </div>
+
+          <!-- شبكات التواصل الاجتماعي -->
+          <div class="social-links reveal-fade">
+            <span class="social-title">تواصل معنا مباشرة:</span>
+            <div class="social-icons">
+              <a href="https://wa.me/201061694024" target="_blank" aria-label="WhatsApp" class="social-icon whatsapp-icon">
+                <svg class="icon-svg" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397.01 12.008.01c3.202.001 6.212 1.246 8.477 3.514 2.266 2.268 3.507 5.28 3.505 8.484-.004 6.657-5.34 11.997-11.953 11.997-2.005-.001-3.973-.502-5.73-1.466L0 24zm6.59-4.846c1.6.95 2.8 1.458 4.825 1.459 5.55 0 10.061-4.512 10.063-10.066.002-2.69-1.043-5.22-2.94-7.119C16.699 1.529 14.18 .483 11.997.484 6.444.484 1.932 4.997 1.93 10.553c-.001 2.03.527 3.255 1.492 4.922L2.44 21.56l6.207-1.628zM17.5 14.5c-.3-.15-1.78-.88-2.05-.98-.28-.1-.48-.15-.68.15-.2.3-.78.98-.95 1.18-.18.2-.35.23-.65.08-1.02-.51-1.74-.91-2.42-1.58-.57-.56-1.12-1.22-1.3-1.53-.18-.3-.02-.46.13-.61.14-.14.3-.35.45-.53.15-.18.2-.3.3-.5.1-.2.05-.38-.02-.53-.07-.15-.68-1.63-.93-2.24-.25-.61-.51-.53-.68-.53h-.58c-.2 0-.53.07-.8.38-.28.3-1.08 1.05-1.08 2.57 0 1.52 1.1 3 1.25 3.2.15.2 2.16 3.3 5.24 4.63.73.3 1.3.49 1.75.63.74.24 1.4.2 1.93.12.59-.09 1.78-.73 2.03-1.43.25-.7.25-1.3.17-1.43-.08-.13-.28-.2-.58-.35z"/></svg>
+              </a>
+              <a href="https://www.facebook.com/share/17yf9LtdmD/?mibextid=wwXIfr" target="_blank" aria-label="Facebook" class="social-icon facebook-icon">
+                <svg class="icon-svg" viewBox="0 0 24 24"><path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H8v-3h2V9.5C10 7.57 11.57 6 13.5 6H16v3h-2c-.55 0-1 .45-1 1v2h3v3h-3v6.95c4.56-.93 8-4.96 8-9.75z"/></svg>
+              </a>
+              <a href="https://www.tiktok.com/@tryangel18?_r=1&_t=ZS-98AHp9YRBE9" target="_blank" aria-label="TikTok" class="social-icon tiktok-icon">
+                <svg class="icon-svg" viewBox="0 0 24 24"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.17-2.86-.74-3.94-1.74-.22-.21-.42-.45-.61-.7-.03 3.76-.02 7.53-.03 11.29-.07 3.08-1.51 6.13-4.48 7.37-3.79 1.68-8.58-.1-10.23-4.05-1.88-4.22.42-9.61 4.88-10.45.6-.11 1.22-.12 1.83-.07v4.09c-.58-.08-1.18-.03-1.74.15-1.92.57-2.91 2.82-2.14 4.69.75 1.92 3.1 2.78 4.9 1.82 1.17-.6 1.81-1.89 1.79-3.21-.02-5.07-.01-10.14-.02-15.21z"/></svg>
+              </a>
+              <a href="tel:+201061694024" aria-label="Phone" class="social-icon phone-icon">
+                <svg class="icon-svg" viewBox="0 0 24 24"><path d="M20.01 15.38c-1.23 0-2.42-.2-3.53-.56a.977.977 0 0 0-1.01.24l-2.2 2.2a15.045 15.045 0 0 1-6.59-6.59l2.2-2.21c.28-.26.36-.65.25-1A11.36 11.36 0 0 0 8.5 4c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1 0 9.39 7.61 17 17 17 .55 0 1-.45 1-1v-3.5c0-.55-.45-1-1-1z"/></svg>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- الجانب الأيسر: صورة التكييف الفخمة بدون أي عناصر عشوائية -->
+        <div class="hero-image-col">
+          <div class="hero-image-glow" aria-hidden="true"></div>
+          <img class="hero-image-ac" src="assets/ac_assembled_hero_cutout.png" alt="تكييف كاريير وميديا - تراي أنجل للتكييف والتبريد" />
         </div>
       </div>
     </div>
@@ -7557,93 +7352,23 @@ function showToast(message) {
 
   <script>
 /* ==========================================================================
-   CHIC MINIMALIST INTRO CONTROLLER (سريع وسلس جداً)
+   INSTANT SMOOTH LOAD CONTROLLER (دخول فوري وسلس بدون تعليق)
    ========================================================================== */
 (() => {
-  const preloader = document.getElementById("preloader");
-  let isDone = false;
+  const initPage = () => {
+    const entryHeader = document.querySelector(".entry-header");
+    if (entryHeader) entryHeader.classList.add("is-visible");
 
-  const closeIntro = () => {
-    if (isDone) return;
-    isDone = true;
-
-    if (typeof window.revealHeroAndHeader === "function") {
-      window.revealHeroAndHeader();
-    } else {
-      const entryHeader = document.querySelector(".entry-header");
-      if (entryHeader) entryHeader.classList.add("is-visible");
-      const revealTargets = document.querySelectorAll(".reveal-fade");
-      revealTargets.forEach((el, idx) => {
-        setTimeout(() => el.classList.add("revealed"), 50 + idx * 50);
-      });
-    }
-
-    if (preloader) {
-      preloader.classList.add("fade-out");
-      setTimeout(() => {
-        preloader.style.display = "none";
-        preloader.remove();
-      }, 550);
-    }
-
-    initHeroParallax();
+    const revealTargets = document.querySelectorAll(".reveal-fade");
+    revealTargets.forEach((el, idx) => {
+      setTimeout(() => el.classList.add("revealed"), 40 + idx * 40);
+    });
   };
 
-  // إغلاق سريع تلقائي بعد 1 ثانية بالضبط
-  setTimeout(closeIntro, 1000);
-
-  // إغلاق فوري عند النقر بالماوس أو اللمس في أي مكان أو أي زر
-  if (preloader) {
-    preloader.addEventListener("click", closeIntro, { once: true });
-    preloader.addEventListener("touchstart", closeIntro, { passive: true, once: true });
-  }
-  window.addEventListener("keydown", (e) => {
-    if (e.key === "Escape" || e.code === "Space" || e.key === "Enter") closeIntro();
-  }, { once: true });
-
-  // تفاعل الماوس مع تكييف الهيرو في الصفحة الرئيسية
-  function initHeroParallax() {
-    const heroStage = document.getElementById("heroStage") || document.querySelector(".hero-reference-stage");
-    const heroVisual = document.getElementById("heroVisual") || document.querySelector(".hero-reference-visual");
-    const heroGlow = document.querySelector(".hero-reference-glow");
-    if (!heroStage || !heroVisual) return;
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-
-    let hTargetX = 0, hTargetY = 0;
-    let hCurrX = 0, hCurrY = 0;
-    let hRaf = null;
-
-    const renderHero = () => {
-      hCurrX += (hTargetX - hCurrX) * 0.08;
-      hCurrY += (hTargetY - hCurrY) * 0.08;
-      heroVisual.style.setProperty("--hero-tilt-y", `${hCurrX * 4.8}deg`);
-      heroVisual.style.setProperty("--hero-tilt-x", `${hCurrY * -3.2}deg`);
-      heroVisual.style.setProperty("--hero-pan-x", `${hCurrX * 8}px`);
-      heroVisual.style.setProperty("--hero-pan-y", `${hCurrY * 6}px`);
-      if (heroGlow) {
-        heroGlow.style.setProperty("--hero-glow-x", `${hCurrX * 14}px`);
-        heroGlow.style.setProperty("--hero-glow-y", `${hCurrY * 10}px`);
-      }
-      if (Math.abs(hTargetX - hCurrX) > 0.005 || Math.abs(hTargetY - hCurrY) > 0.005) {
-        hRaf = requestAnimationFrame(renderHero);
-      } else {
-        hRaf = null;
-      }
-    };
-
-    window.addEventListener("pointermove", (e) => {
-      const rect = heroStage.getBoundingClientRect();
-      if (rect.top > window.innerHeight || rect.bottom < 0) return;
-      hTargetX = Math.max(-1, Math.min(1, ((e.clientX - rect.left) / rect.width - 0.5) * 2));
-      hTargetY = Math.max(-1, Math.min(1, ((e.clientY - rect.top) / rect.height - 0.5) * 2));
-      if (!hRaf) hRaf = requestAnimationFrame(renderHero);
-    }, { passive: true });
-
-    heroStage.addEventListener("pointerleave", () => {
-      hTargetX = 0;
-      hTargetY = 0;
-      if (!hRaf) hRaf = requestAnimationFrame(renderHero);
-    }, { passive: true });
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initPage);
+  } else {
+    initPage();
   }
 })();
   </script>
